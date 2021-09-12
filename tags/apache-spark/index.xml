@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>apache spark on Noteworthy</title>
-    <link>https://example.com/tags/apache-spark/</link>
+    <link>https://rbarman.github.io/tags/apache-spark/</link>
     <description>Recent content in apache spark on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Sep 2021 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/apache-spark/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://rbarman.github.io/tags/apache-spark/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Create an Apache Spark standalone cluster</title>
-      <link>https://example.com/posts/apache_spark_standalone_cluster_09102021/</link>
+      <link>https://rbarman.github.io/posts/apache_spark_standalone_cluster_09102021/</link>
       <pubDate>Fri, 10 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/posts/apache_spark_standalone_cluster_09102021/</guid>
+      <guid>https://rbarman.github.io/posts/apache_spark_standalone_cluster_09102021/</guid>
       <description>This tutorial covers how to set up a standalone spark cluster on your local machine and submit a spark job to your cluster</description>
     </item>
     
