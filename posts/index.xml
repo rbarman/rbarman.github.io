@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Sep 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>1NF, 2NF, and 3NF Normalization</title>
+      <link>https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/</guid>
+      <description>Database normalization is a crucial step in designing database systems.</description>
+    </item>
     
     <item>
       <title>Create an Apache Spark standalone cluster</title>

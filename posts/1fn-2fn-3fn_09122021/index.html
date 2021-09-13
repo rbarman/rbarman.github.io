@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>1NF, 2NF, and 3NF Normalization | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,67 +158,322 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Collection of data engineering and data science insights.</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/">
-                    1NF, 2NF, and 3NF Normalization
-                </a>
-            </h2>
-            <div>
-                <p>Database normalization is a crucial step in designing database systems.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 13, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/normalization">#normalization</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/apache_spark_standalone_cluster_09102021/">
-                    Create an Apache Spark standalone cluster
-                </a>
-            </h2>
-            <div>
-                <p>This tutorial covers how to set up a standalone spark cluster on your local machine and submit a spark job to your cluster</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 10, 2021</time>
+<h1 class="post-title">1NF, 2NF, and 3NF Normalization</h1>
+    
+    <time>September 13, 2021</time>
+    
+    <div>
+        <p>
+        <p>Database normalization is a crucial step in designing database systems.</p>
+<h2 id="intro">Intro</h2>
+<p>Normalization improves data integrity and reduces data redundancy. In this tutorial we will go over the common types of normalization - First Normal form (1NF), Second Normal form (2NF), and Third Normal form (3NF).</p>
+<h2 id="initial-data">Initial data</h2>
+<p>We have a dataset of baseball games that shows which players scored runs.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Game ID</th>
+<th align="left">Player Names</th>
+<th align="left">Player IDs</th>
+<th align="left">Date</th>
+<th align="left">Zip Code</th>
+<th align="left">City</th>
+<th align="left">State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">Mark, Thomas, Scott</td>
+<td align="left">1,2,3</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+<td align="left">Chicago</td>
+<td align="left">IL</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">Mark</td>
+<td align="left">1</td>
+<td align="left">1/08/2021</td>
+<td align="left">53794</td>
+<td align="left">Madison</td>
+<td align="left">WI</td>
+</tr>
+</tbody>
+</table>
+<p>The data contains 2 games noted by the <em>Game ID</em>.  Mark, Thomas, and Scott scored in game 1 while Mark scored in game 2. Each player also has a corresponding id  - Mark&rsquo;s id is 1 and Thomas&rsquo;s id is 2. The <em>Date</em> column specifies when a game took place. The <em>Zip Code</em>, <em>City</em>, and <em>State</em> columns specify where a game took place.</p>
+<h2 id="1nf">1NF</h2>
+<p><strong>1st Normal Form critiera</strong>:</p>
+<ul>
+<li>Each cell must contain a single value</li>
+</ul>
+<p>In our table the <em>Player Names</em> and <em>Player IDs</em> column contain multiple values. The first row has Mark, Thomas, and Scott in the <em>Player Names</em> column. We can satisfy the 1NF criteria by creating a separate row for each player.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Game ID</th>
+<th align="left">Player Names</th>
+<th align="left">Player IDs</th>
+<th align="left">Date</th>
+<th align="left">Zip Code</th>
+<th align="left">City</th>
+<th align="left">State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">Mark</td>
+<td align="left">1</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+<td align="left">Chicago</td>
+<td align="left">IL</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">Thomas</td>
+<td align="left">2</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+<td align="left">Chicago</td>
+<td align="left">IL</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">Scott</td>
+<td align="left">3</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+<td align="left">Chicago</td>
+<td align="left">IL</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">Mark</td>
+<td align="left">1</td>
+<td align="left">1/08/2021</td>
+<td align="left">53794</td>
+<td align="left">Madison</td>
+<td align="left">WI</td>
+</tr>
+</tbody>
+</table>
+<p>The data now meets 1NF! Each cell contains one value.</p>
+<p>Note that now each row in the table is unique by the combination of <em>Game ID</em> and <em>Player ID</em>. We can say that these 2 columns form a <em>composite primary</em> key.</p>
+<hr>
+<h2 id="2nf">2NF</h2>
+<p><strong>2nd Normal Form criteria:</strong></p>
+<ul>
+<li>meet 1NF criteria</li>
+<li>should not contain any <em>partial dependencies</em></li>
+</ul>
+<p>The textbook definition of a <em>partial dependency</em> is when &ldquo;non-prime attribute (attributes which are not part of any candidate key) is dependent on any proper subset of any candidate key of the table.&rdquo;</p>
+<p>Let&rsquo;s break it down:</p>
+<ul>
+<li>&ldquo;non prime attributes&rdquo; are columns that do not belong to the composite or primary key.
+<ul>
+<li>The composite key for our data is <em>Game ID</em> and <em>Player ID</em></li>
+<li>The &ldquo;non prime attributes&rdquo; for our data are <em>Date</em>, <em>City</em>, <em>State</em> and <em>Player Name</em></li>
+</ul>
+</li>
+<li>Do these columns depend on the composite key? If so, we violate 2NF.
+<ul>
+<li><em>Date</em> column is dependent on <em>Game ID</em>. <em>Game ID</em> is part of the composite key thus we violate 2NF</li>
+<li><em>Zip Code</em> column is dependent on <em>Game ID</em>. <em>Game ID</em> is part of the composite key thus we violate 2NF</li>
+<li><em>City</em> column is dependent on <em>Game ID</em>. <em>Game ID</em> is part of the composite key thus we violate 2NF</li>
+<li><em>State</em> column is dependent on <em>Game ID</em>. <em>Game ID</em> is part of the composite key thus we violate 2NF</li>
+<li><em>Player Name</em> column is dependent on <em>Player ID</em>. <em>Player ID</em> is part of the composite key thus we violate 2NF</li>
+</ul>
+</li>
+</ul>
+<p>We can satisfy 2NF criteria by splitting the table into smaller tables:</p>
+<p><em>Game</em> table: Store all game specific information in one table.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Game ID</th>
+<th align="left">Date</th>
+<th align="left">Zip Code</th>
+<th align="left">City</th>
+<th align="left">State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+<td align="left">Chicago</td>
+<td align="left">IL</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+<td align="left">Chicago</td>
+<td align="left">IL</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+<td align="left">Chicago</td>
+<td align="left">IL</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1/01/2021</td>
+<td align="left">53794</td>
+<td align="left">Madison</td>
+<td align="left">WI</td>
+</tr>
+</tbody>
+</table>
+<p><em>Player</em> table: Store all player specific information in one table</p>
+<table>
+<thead>
+<tr>
+<th align="left">Player ID</th>
+<th align="left">Player Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">Mark</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">Thomas</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">Scott</td>
+</tr>
+</tbody>
+</table>
+<p><em>Scores</em> table: Store when each player scores in a game</p>
+<table>
+<thead>
+<tr>
+<th align="left">Game ID</th>
+<th align="left">Player ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>The tables are now in 2NF. The composite key consisted of <em>Game ID</em> and <em>Player ID</em>. Now all columns that are dependent on <em>Game ID</em> are in a separate Game table and all columns that are dependent on <em>Player ID</em> are in a separate Player table.</p>
+<hr>
+<h2 id="3nf">3NF</h2>
+<p><strong>3rd Normal Form criteria:</strong></p>
+<ul>
+<li>Must be in 2NF</li>
+<li>No transitive dependeny for non prime attributes.</li>
+</ul>
+<p>What is a <em>transitive dependency</em>?</p>
+<p>If B depends on A and C depends on A, then C <em>transitively</em> depends on A.</p>
+<p>Let&rsquo;s look at our <em>Game</em> table:</p>
+<ul>
+<li><em>City</em> depends on <em>Zip Code</em> -&gt;  <em>Zip Code</em> depends on <em>Game ID</em> -&gt; <em>City</em> transitively depends on <em>Game ID</em></li>
+<li><em>State</em> depends on <em>Zip Code</em> -&gt;  <em>Zip Code</em> depends on <em>Game ID</em> -&gt; <em>State</em> transitively depends on <em>Game ID</em></li>
+</ul>
+<p>We need to remove these transitive dependencies from the <em>Game</em> table to put it in 3NF.</p>
+<p>One approach is to remove the <em>City</em> and <em>State</em> columns. We can understand the city and state based on the zip code, so why store the extra data?</p>
+<p><em>Game</em> table:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Game ID</th>
+<th align="left">Date</th>
+<th align="left">Zip Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1/01/2021</td>
+<td align="left">60601</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">1/01/2021</td>
+<td align="left">53794</td>
+</tr>
+</tbody>
+</table>
+<p>However if we want to store the city and state information, we can create a separate lookup table for location information:</p>
+<p><em>Location reference</em> table:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Zip Code</th>
+<th align="left">City</th>
+<th align="left">State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">60601</td>
+<td align="left">Chicago</td>
+<td align="left">IL</td>
+</tr>
+<tr>
+<td align="left">53794</td>
+<td align="left">Madison</td>
+<td align="left">WI</td>
+</tr>
+</tbody>
+</table>
+<p>All of our data is now in 3NF!</p>
+<hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>You are now able to transform data to 1NF, 2NF, and 3NF.</p>
 
-            
-            
-                
-                    <a class="tag" href="/tags/apache-spark">#apache spark</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/normalization">#normalization</a>
         
+      
     </div>
+
 
         
 
