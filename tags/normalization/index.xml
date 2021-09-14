@@ -6,7 +6,7 @@
     <description>Recent content in normalization on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Sep 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/normalization/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>1NF, 2NF, and 3NF Normalization</title>
       <link>https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/</link>
-      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/</guid>
       <description>Database normalization is a crucial step in designing database systems.</description>

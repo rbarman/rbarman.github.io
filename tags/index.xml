@@ -12,9 +12,45 @@
     
     
     <item>
+      <title>boto3</title>
+      <link>https://rbarman.github.io/tags/boto3/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/boto3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas</title>
+      <link>https://rbarman.github.io/tags/pandas/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/pandas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>S3</title>
+      <link>https://rbarman.github.io/tags/s3/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/s3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>smart_open</title>
+      <link>https://rbarman.github.io/tags/smart_open/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/smart_open/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>normalization</title>
       <link>https://rbarman.github.io/tags/normalization/</link>
-      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/normalization/</guid>
       <description></description>

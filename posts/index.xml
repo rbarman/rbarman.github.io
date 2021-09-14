@@ -12,9 +12,18 @@
     
     
     <item>
+      <title>Pandas dataframe from S3 data using boto3 or smart_open</title>
+      <link>https://rbarman.github.io/posts/aws_s3_with_python_09132021/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/aws_s3_with_python_09132021/</guid>
+      <description>Walkthrough on how to create a Pandas dataframe from data stored in Amazon S3 data using boto3 or smart_open library.</description>
+    </item>
+    
+    <item>
       <title>1NF, 2NF, and 3NF Normalization</title>
       <link>https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/</link>
-      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/</guid>
       <description>Database normalization is a crucial step in designing database systems.</description>
