@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Tags | Noteworthy</title>
+    <title>Use JIRA API with SAS to retrieve tickets | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -38,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/tags/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,28 +159,114 @@
         <div id="content" class="content-container">
         
 
-<h1>Tags</h1>
+<h1 class="post-title">Use JIRA API with SAS to retrieve tickets</h1>
+    
+    <time>September 17, 2021</time>
+    
+    <div>
+        <p>
+        <p>Walkthrough on how to leverage the JIRA Rest API with SAS to retrieve JIRA tickets</p>
+<h2 id="intro">Intro</h2>
+<p><a href="https://www.atlassian.com/software/jira">JIRA</a> is a widely used project management tool that facilitates bug tracking, project planning, and agile development.</p>
+<p>JIRA integration with data pipelines improves transparency. There are many scenarios where a data pipelines can communicate with JIRA. For example if a job runs into an unknown error, it can automatically create a ticket for review. Or maybe you want to execute a job if a ticket changes status. etc</p>
+<p>This post focuses on how to use the JIRA API with SAS to retrieve tickets. Unfortunately there isn&rsquo;t a SAS package for JIRA like how there is a <a href="https://pypi.org/project/jira/">python jira package</a>. This means we will need to make direct api calls with <code>proc http</code> and parse the JSON results.</p>
+<h2 id="overview">Overview</h2>
+<p>There are 3 main steps:</p>
 <ul>
-    
-        <li><a href="https://rbarman.github.io/tags/apache-spark/">apache spark</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/boto3/">boto3</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/jira/">jira</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/normalization/">normalization</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/pandas/">pandas</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/s3/">S3</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/sas/">sas</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/smart_open/">smart_open</a> 1</li>
-    
+<li>Create a JQL query</li>
+<li>Send a GET request to /search/ endpoint with JQL query</li>
+<li>Parse JSON response</li>
+</ul>
+<h2 id="create-a-jql-query">Create a JQL Query</h2>
+<p><a href="https://www.atlassian.com/software/jira/guides/expand-jira/jql">JQL</a> is JIRA internal scripting language to retrieve tickets. Similar to SQL, we use conditions to search for specific tickets.</p>
+<p>For example this JQL Query:</p>
+<pre><code>project=TEST and status in (RESOLVED,DEPLOYED)
+</code></pre><p>returns all tickets associated with the &lsquo;TEST&rsquo; project that have a status of &lsquo;RESOLVED&rsquo; or &lsquo;DEPLOYED&rsquo;.</p>
+<p>JQL queries are very flexible. You can specify different <a href="https://support.atlassian.com/jira-software-cloud/docs/advanced-search-reference-jql-fields/">fields</a> or metadata about the ticket such as ticket author, title, create time, update time, priority, etc. You can also apply different <a href="https://support.atlassian.com/jira-software-cloud/docs/advanced-search-reference-jql-operators/">operators</a> such as &lsquo;equals&rsquo;, &lsquo;contains&rsquo;, &lsquo;was in&rsquo;, etc to make very specific searches with the fields.</p>
+<h2 id="send-get-request">Send GET request</h2>
+<p>We need to send a <a href="https://rapidapi.com/blog/api-glossary/get/"><code>GET</code> request</a> to JIRA&rsquo;s /search/ endpoint.</p>
+<h4 id="first-create-a-url">First, create a URL:</h4>
+<p>The url consists of your company&rsquo;s base jira url, search endpoint, and a jql parameter.</p>
+<p>For example the below url searches for tickets that belong to the &lsquo;TEST&rsquo; project and have &lsquo;DEPLOYED&rsquo; status.</p>
+<pre><code>https://jira.my_company.com/rest/api/2/search?jql=(project=TEST and status in (DEPLOYED))
+</code></pre><p>In detail:</p>
+<ul>
+<li><code>https://jira.my_company.com</code> is company&rsquo;s base jira url.
+<ul>
+<li>This should be the url to access company&rsquo;s jira home page. You can confirm the url by contacting your JIRA administrator.</li>
+</ul>
+</li>
+<li><code>/rest/api/2/search</code> specifies that you want to interact with JIRA&rsquo;s search endpoint.</li>
+<li><code>?jql=</code> specifies the start of a JQL query</li>
+<li><code>(project=TEST and status in (DEPLOYED))</code> is a specific JQL query to run</li>
+</ul>
+<h4 id="second-second-request-with-proc-http">Second, second request with proc http</h4>
+<p>We send HTTP requests in SAS with <a href="https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/proc/n0bdg5vmrpyi7jn1pbgbje2atoov.htm"><code>proc http</code></a>. At a high level, we send the request and JIRA sends us back a response.</p>
+<ol>
+<li>Create macro variable with url</li>
+</ol>
+<pre><code class="language-sas" data-lang="sas">%let URL = &quot;https://jira.my_company.com/rest/api/2/search?jql=(project=TEST and status in (DEPLOYED))&quot;;
+</code></pre><ol start="2">
+<li>Create a file to store JIRA&rsquo;s response. You can create a temporary or physical file.</li>
+</ol>
+<pre><code class="language-sas" data-lang="sas">filename resp temp;
+</code></pre><ol start="3">
+<li>Run http procedure</li>
+</ol>
+<p>This sends to GET request and stores JIRA&rsquo;s response to the <code>resp</code> file.</p>
+<p>Note that this example uses <a href="https://en.wikipedia.org/wiki/Basic_access_authentication"><code>basic authorization</code></a> because I directly provide the username and password. Your JIRA implementation may require different authorization settings so adjust as needed. This <a href="https://www.sas.com/content/dam/SAS/support/en/sas-global-forum-proceedings/2019/3232-2019.pdf">recent paper</a> provides different ways to authenticate with <code>proc http</code>.</p>
+<pre><code class="language-sas" data-lang="sas">proc http 
+    method=&quot;GET&quot;
+    auth_basic
+    url=&amp;URL.
+    WEBUSERNAME= &quot;USERNAME&quot;
+    WEBPASSWORD= &quot;PASSWORD&quot;
+    out=resp;
+run;
+</code></pre><h2 id="parse-json-request">Parse JSON request</h2>
+<p>We stored JIRA&rsquo;s response in the <code>resp</code> file. JIRA <em>should</em> send us a JSON response, so we can use <a href="https://documentation.sas.com/doc/en/vdmmlcdc/8.1/lestmtsref/n1jfdetszx99ban1rl4zll6tej7j.htm">JSON libname engine</a> to parse it.</p>
+<pre><code>libname results JSON fileref=resp;
+title &quot;JSON library structure&quot;;
+proc datasets lib=results;quit;
+</code></pre><p>The above code creates tabular datasets for each section of the json file. All datasets are stored in the <code>results</code> libname.</p>
+<p>The amount of datasets in the results libname depends on your JIRA implementation and how many custom fields are added to each ticket. My implementation returns 89 datasets. The <code>results.issues</code> dataset contains each ticket id for your search and the other datasets contain different metadatas associated with each ticket.</p>
+<p>Few datasets in the <code>results</code> libname from <code>proc datasets</code>:</p>
+<p><img src="/img/jira_sas_09172021/results_libname.png" alt="partial output from proc datasets on results libname" title="partial output from proc datasets on results libname"></p>
+<p>Now with the datasets, you can explore the tickets and their corresponding metadata!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>You leanred how to:</p>
+<ul>
+<li>Create a <code>JQL</code> query</li>
+<li>Send GET requests to JIRA api using <code>proc http</code></li>
+<li>Prase JIRA results using the json libname engine.</li>
+</ul>
+<hr>
+<p>Resources</p>
+<ul>
+<li><a href="https://www.atlassian.com/software/jira/guides/expand-jira/jql">https://www.atlassian.com/software/jira/guides/expand-jira/jql</a></li>
+<li><a href="https://developer.atlassian.com/server/jira/platform/jira-rest-api-examples/#searching-for-issues-examples">https://developer.atlassian.com/server/jira/platform/jira-rest-api-examples/#searching-for-issues-examples</a></li>
+<li><a href="https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/proc/n0bdg5vmrpyi7jn1pbgbje2atoov.htm">https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/proc/n0bdg5vmrpyi7jn1pbgbje2atoov.htm</a></li>
+<li><a href="https://www.sas.com/content/dam/SAS/support/en/sas-global-forum-proceedings/2019/3232-2019.pdf">https://www.sas.com/content/dam/SAS/support/en/sas-global-forum-proceedings/2019/3232-2019.pdf</a></li>
+<li><a href="https://documentation.sas.com/doc/en/vdmmlcdc/8.1/lestmtsref/n1jfdetszx99ban1rl4zll6tej7j.htm">https://documentation.sas.com/doc/en/vdmmlcdc/8.1/lestmtsref/n1jfdetszx99ban1rl4zll6tej7j.htm</a></li>
 </ul>
 
-<div class="page-footer"></div>
+        </p>
+    </div>
+    
+
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/sas">#sas</a>
+        
+            <a class="tag" href="/tags/jira">#jira</a>
+        
+      
+    </div>
+
 
         
 

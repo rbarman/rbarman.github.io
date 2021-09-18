@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Use JIRA API with SAS to retrieve tickets</title>
+      <link>https://rbarman.github.io/posts/jira_sas_09172021/</link>
+      <pubDate>Fri, 17 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/jira_sas_09172021/</guid>
+      <description>Walkthrough on how to leverage the JIRA Rest API with SAS to retrieve JIRA tickets</description>
+    </item>
+    
+    <item>
       <title>Pandas dataframe from S3 data using boto3 or smart_open</title>
       <link>https://rbarman.github.io/posts/aws_s3_with_python_09132021/</link>
       <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
