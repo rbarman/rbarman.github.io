@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Kivy - how to handle single and double touch events</title>
+      <link>https://rbarman.github.io/posts/kivy_multitouch_button_09292021/</link>
+      <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/kivy_multitouch_button_09292021/</guid>
+      <description>Intro Kivy is a python library to make cross platform applications.</description>
+    </item>
+    
+    <item>
       <title>Use JIRA API with SAS to retrieve tickets</title>
       <link>https://rbarman.github.io/posts/jira_sas_09172021/</link>
       <pubDate>Fri, 17 Sep 2021 00:00:00 +0000</pubDate>

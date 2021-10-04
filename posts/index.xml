@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Sep 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kivy - how to handle single and double touch events</title>
+      <link>https://rbarman.github.io/posts/kivy_multitouch_button_09292021/</link>
+      <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/kivy_multitouch_button_09292021/</guid>
+      <description>Intro Kivy is a python library to make cross platform applications.</description>
+    </item>
     
     <item>
       <title>Use JIRA API with SAS to retrieve tickets</title>
