@@ -14,10 +14,10 @@
     <item>
       <title>Kivy - how to handle single and double touch events</title>
       <link>https://rbarman.github.io/posts/kivy_multitouch_button_09292021/</link>
-      <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 29 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/posts/kivy_multitouch_button_09292021/</guid>
-      <description>Intro Kivy is a python library to make cross platform applications.</description>
+      <description>Create a custom Kivy Button to handle single and double tap events.</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Fri, 10 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/about/</guid>
-      <description>Collection of data engineering and data science ideas and tutorials.</description>
+      <description>Collection of development articles with an emphasis on data engineering and machine learning.</description>
     </item>
     
     <item>
