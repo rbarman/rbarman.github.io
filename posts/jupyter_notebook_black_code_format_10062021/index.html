@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Auto format Jupyter Notebook code with jupyter-black | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,83 +158,58 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/">
-                    1NF, 2NF, and 3NF Normalization
-                </a>
-            </h2>
-            <div>
-                <p>Database normalization is a crucial step in designing database systems.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 12, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/normalization">#normalization</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/apache_spark_standalone_cluster_09102021/">
-                    Create an Apache Spark standalone cluster
-                </a>
-            </h2>
-            <div>
-                <p>This tutorial covers how to set up a standalone spark cluster on your local machine and submit a spark job to your cluster</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 10, 2021</time>
+<h1 class="post-title">Auto format Jupyter Notebook code with jupyter-black</h1>
+    
+    <time>October 6, 2021</time>
+    
+    <div>
+        <p>
+        <p>Automatic code formatting in a Jupyter Notebook.</p>
+<h1 id="steps">Steps</h1>
+<h2 id="install-blackhttpsgithubcompsfblack">Install <a href="https://github.com/psf/black">black</a></h2>
+<p><a href="https://github.com/psf/black">Black</a> is a PEP 8 compliant opinionated formatter. How is Black different from other Python formatters like <a href="https://github.com/hhatto/autopep8">autopep8</a> and <a href="https://github.com/google/yapf">yapf</a>? Black offers very little configuration which leads to Black formatted code to look the same regardless of project. Developers can focus on writing code rather than tweaking code formatter settings.</p>
+<p><code>pip install black</code></p>
+<hr>
+<h2 id="install-jupyter-contrib-nbextensionshttpsgithubcomipython-contribjupyter_contrib_nbextensions">Install <a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions">jupyter-contrib-nbextensions</a></h2>
+<p><a href="https://github.com/ipython-contrib/jupyter_contrib_nbextensions">Jupyter-contrib-nbextensions</a> is the platform that allows you to add nbextensions (notebook extensions) to your jupyter-notebook environment.</p>
+<p><code>pip install jupyter_contrib_nbextensions</code></p>
+<p><code>jupyter contrib nbextension install --user</code></p>
+<hr>
+<h2 id="install-jupyter-nbextensions-configuratorhttpsgithubcomjupyter-contribjupyter_nbextensions_configurator">Install <a href="https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator">Jupyter Nbextensions Configurator</a></h2>
+<p><a href="https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator">Jupyter Nbextensions Configurator</a> is a jupyter notebook serverextension that allows you to easily enable and configure other nbextensions.</p>
+<p><code>pip install jupyter_nbextensions_configurator</code></p>
+<p><code>jupyter nbextensions_configurator enable --user</code></p>
+<p>Restart your notebook server and you should see a tab called &ldquo;Nbextensions&rdquo;</p>
+<p><img src="/img/jupyter_notebook_black_code_format_10062021/ntextensions_tab.png" alt="Notebook server with nbextensions tab" title="Notebook server with nbextensions tab"></p>
+<p>Click on the &ldquo;Nbextensions&rdquo; tab to see all installed extensions</p>
+<p><img src="/img/jupyter_notebook_black_code_format_10062021/list_of_nbextensions.png" alt="nbextensions tab" title="nbextensions tab"></p>
+<hr>
+<h2 id="install-jupyter-blackhttpsgithubcomdrillanjupyter-black">Install <a href="https://github.com/drillan/jupyter-black">jupyter-black</a></h2>
+<p><a href="https://github.com/drillan/jupyter-black">Jupyter-black</a> is a nbextension that uses the <code>black</code> formatter to format notebook cells.</p>
+<p><code>jupyter nbextension install https://github.com/drillan/jupyter-black/archive/master.zip --sys-prefix</code></p>
+<p>Refresh the &ldquo;Nbextensions&rdquo; tab and you should see a &ldquo;Jupyter Black&rdquo; installed nbextension</p>
+<p><img src="/img/jupyter_notebook_black_code_format_10062021/jupyter_black_installed.png" alt="jupyter black nbextension in list of installed nbextensions" title="jupyter black nbextension in list of installed nbextensions"></p>
+<p>Click on &ldquo;Jupyter Black&rdquo; and scroll down to see all the possible settings for the nbextension. Make sure to click on the blue &ldquo;Enable&rdquo; button to enable the extension</p>
+<p><img src="/img/jupyter_notebook_black_code_format_10062021/jupyter_black_settings.png" alt="jupyter black settings" title="jupyter black settings"></p>
+<p>By default, <code>Ctrl-B</code> will prettify the current cell and <code>Ctrl-Shift-B</code> will pretify the whole notebook.</p>
+<h2 id="try-it-in-a-notebook-with-real-code">Try it in a notebook with real code!</h2>
 
-            
-            
-                
-                    <a class="tag" href="/tags/apache-spark">#apache spark</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
         
-        <p>Page 2 of 2</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-        </div>
-        
+      
     </div>
+
 
         
 

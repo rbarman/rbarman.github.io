@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>jupyter-notebook</title>
+      <link>https://rbarman.github.io/tags/jupyter-notebook/</link>
+      <pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/jupyter-notebook/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>kivy</title>
