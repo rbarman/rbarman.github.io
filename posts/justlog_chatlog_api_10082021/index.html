@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Tags | Noteworthy</title>
+    <title>First look at justlog api | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -38,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/tags/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,40 +159,99 @@
         <div id="content" class="content-container">
         
 
-<h1>Tags</h1>
+<h1 class="post-title">First look at justlog api</h1>
+    
+    <time>October 8, 2021</time>
+    
+    <div>
+        <p>
+        <p>First attempt at pulling twitch chatlogs with the <code>justlog</code> rest api</p>
+<h1 id="intro">Intro</h1>
+<p><a href="https://github.com/gempir/justlog">justlog</a> is a twitch irc bot that focuses on logging and providing an api for the logs. One can create their own bot instance and query chatlog information. This post focuses querying chat logs with the rest api. We will use a public instance at <a href="https://logs.ivr.fi/">https://logs.ivr.fi/</a></p>
+<h1 id="channel-endpoint">Channel endpoint</h1>
+<p>The channel GET endpoint retrieves channel logs for the entire day</p>
+<p>There are currently 5 params:</p>
 <ul>
-    
-        <li><a href="https://rbarman.github.io/tags/apache-spark/">apache spark</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/boto3/">boto3</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/docker/">Docker</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/jira/">jira</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/jupyter-notebook/">jupyter-notebook</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/kivy/">kivy</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/normalization/">normalization</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/pandas/">pandas</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/python/">python</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/rhel/">RHEL</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/s3/">S3</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/sas/">sas</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/smart_open/">smart_open</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/twitch/">twitch</a> 1</li>
-    
+<li>channel
+<ul>
+<li>Required. Name of the twitch channel</li>
 </ul>
+</li>
+<li>reverse
+<ul>
+<li>String to specify if messages should be in time descending order</li>
+<li>Initially thought this would be a boolean, but any value results in descending order of messages. No value results in ascending order</li>
+</ul>
+</li>
+<li>from
+<ul>
+<li>Unix timestamp that represents the starting time range. If from is 5pm, then we get all messages from 5pm to current time.</li>
+</ul>
+</li>
+<li>to
+<ul>
+<li>Unix timestamp that represents the ending time range. If to is 5pm, then we get all messages from the start of the day to 5pm.</li>
+</ul>
+</li>
+<li>json
+<ul>
+<li>It could determine if the output is json because I currently get raw text output from calling the endpoint. However, I have not had any luck with this parameter.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/justlog_chatlog_api_10082021/swagger-params.png" alt="channel GET endpoint parameters" title="channel GET endpoint parameters"></p>
+<p>The expected output from this endpoint is a json list of messages with different attributes such as text, username, and time. However, I only get raw text output.</p>
+<p><img src="/img/justlog_chatlog_api_10082021/swagger-response.png" alt="channel GET endpoint response" title="channel GET endpoint response"></p>
+<h1 id="python-implementation">Python implementation</h1>
+<p>Quick python function to get chatlogs. This implementation uses the optional <code>from</code> api parameter.</p>
+<p>For example if we pass <code>minutes_ago = 5</code> to the below <code>get_logs</code> function, it pulls all chat messages from the specified channel that occured 5 minutes from now to the current time.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+<span style="color:#f92672">import</span> time
 
-<div class="page-footer"></div>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_logs</span>(
+    channel: str,
+    minutes_ago: int <span style="color:#f92672">=</span> None,
+    base_url: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://logs.ivr.fi&#34;</span>,
+):
+    <span style="color:#e6db74">&#34;&#34;&#34;Get channel logs of current day.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    If minutes_ago is specified, then get channel logs from n minutes ago&#34;&#34;&#34;</span>
+
+    endpoint_url <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;{base_url}/channel&#34;</span>
+    url <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;{endpoint_url}/{channel}&#34;</span>
+    params <span style="color:#f92672">=</span> {}
+
+    <span style="color:#66d9ef">if</span> minutes_ago:
+        current_time <span style="color:#f92672">=</span> int(time<span style="color:#f92672">.</span>time())
+        seconds_ago <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> minutes_ago
+        params[<span style="color:#e6db74">&#34;from&#34;</span>] <span style="color:#f92672">=</span> current_time <span style="color:#f92672">-</span> seconds_ago
+
+    resp <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(url, params<span style="color:#f92672">=</span>params)
+    messages <span style="color:#f92672">=</span> resp<span style="color:#f92672">.</span>text
+    <span style="color:#66d9ef">return</span> messages
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># sample usage</span>
+messages <span style="color:#f92672">=</span> get_logs(<span style="color:#e6db74">&#39;forsen&#39;</span>,minutes_ago <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
+<span style="color:#66d9ef">print</span>(messages) 
+</code></pre></div><p>The output is raw text. Ideally I want to get a JSON collection of messages to easily parse out the message and chatter username. I probably need to explore the source code to better understand  <code>json</code> api parameter &hellip;</p>
+
+        </p>
+    </div>
+    
+
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/twitch">#twitch</a>
+        
+            <a class="tag" href="/tags/python">#python</a>
+        
+      
+    </div>
+
 
         
 
