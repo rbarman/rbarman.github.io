@@ -3,22 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rbarman.github.io/tags/docker/</loc>
+    <lastmod>2021-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/posts/docker_on_rhel_10072021/</loc>
+    <lastmod>2021-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/posts/</loc>
+    <lastmod>2021-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/rhel/</loc>
+    <lastmod>2021-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/</loc>
+    <lastmod>2021-10-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rbarman.github.io/posts/jupyter_notebook_black_code_format_10062021/</loc>
     <lastmod>2021-10-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://rbarman.github.io/tags/jupyter-notebook/</loc>
-    <lastmod>2021-10-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rbarman.github.io/posts/</loc>
-    <lastmod>2021-10-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rbarman.github.io/tags/</loc>
     <lastmod>2021-10-06T00:00:00+00:00</lastmod>
   </url>
   

@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Docker on RHEL server</title>
+      <link>https://rbarman.github.io/posts/docker_on_rhel_10072021/</link>
+      <pubDate>Thu, 07 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/docker_on_rhel_10072021/</guid>
+      <description>How to install and setup Docker on a RHEL based server</description>
+    </item>
+    
+    <item>
       <title>Auto format Jupyter Notebook code with jupyter-black</title>
       <link>https://rbarman.github.io/posts/jupyter_notebook_black_code_format_10062021/</link>
       <pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate>
