@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title> | Noteworthy</title>
+    <title>How to setup Saspy | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -159,95 +159,84 @@
         <div id="content" class="content-container">
         
 
-  <h1>
-    Archives
-  </h1>
-  <div>
-     
-      
-      
-          <h3>2021</h3> 
+<h1 class="post-title">How to setup Saspy</h1>
+    
+    <time>October 9, 2021</time>
+    
+    <div>
+        <p>
+        <p>How to setup saspy to start a SAS session with Python</p>
+<p><a href="https://github.com/sassoftware/saspy"><code>saspy</code></a> is a python package that enables you to interact with the SAS grid from python. This is useful if you want to integrate your SAS data pipelines with tools that do not support SAS.</p>
+<h3 id="install-saspy">Install saspy</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install saspy
+</code></pre></div><h3 id="optional-create-authinfo-file">(Optional) Create authinfo file</h3>
+<p>Authinfo file is where you store your username and password. If you don&rsquo;t create a file then you will need to enter your credentials everytime you interact with saspy.</p>
+<p>If you are on a linux machine, create an empty file in home directory called .authinfo. If on windows, name it _ authinfo.</p>
+<p>The authinfo file can contain many different credentials; each line corresponds to one credential. Each line has the format of</p>
+<pre><code>&lt;credential_id&gt; user &lt;username&gt; password &lt;password&gt;
+</code></pre><p>ex) My username is &lsquo;michael&rsquo; and password is &lsquo;fish123&rsquo;. I want to label this credential as &lsquo;superuser&rsquo;. I add this line to the .authinfo file:</p>
+<pre><code>superuser user michael password fish123
+</code></pre><p>Read more about the authinfo file at <a href="https://sassoftware.github.io/saspy/configuration.html#the-authinfo-file-authinfo-on-windows">https://sassoftware.github.io/saspy/configuration.html#the-authinfo-file-authinfo-on-windows</a></p>
+<h3 id="create-sascfg_personalpy">Create sascfg_personal.py</h3>
+<p>You configure your sas session settings in sascfg_personal.py. Full details are in <a href="https://sassoftware.github.io/saspy/configuration.html#">https://sassoftware.github.io/saspy/configuration.html#</a></p>
+<p>There are many ways to connect your machine to the SAS machine. I will focus on the <a href="https://sassoftware.github.io/saspy/configuration.html#iom-using-java">IOM using java</a> approach because it is the easiest and meets my usecase. Review the different connections and pick which fits your scenario</p>
+<p>Sample sascfg_personal.py</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+SAS_config_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;iomlinux&#39;</span>]
+SAS_config_options <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;lock_down&#39;</span>:False,
+    <span style="color:#e6db74">&#39;verbose&#39;</span>:True,
+    <span style="color:#e6db74">&#39;prompt&#39;</span>:True
+}
+SAS_output_options <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;output&#39;</span>:<span style="color:#e6db74">&#39;html5&#39;</span>}
 
-          <ul class="archives-list"> 
-            
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 9</span>
-                    <span>
-                      <a href="/posts/saspy_setup_10092021/">How to setup Saspy</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 8</span>
-                    <span>
-                      <a href="/posts/justlog_chatlog_api_10082021/">First look at justlog api</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 7</span>
-                    <span>
-                      <a href="/posts/docker_on_rhel_10072021/">Docker on RHEL server</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 6</span>
-                    <span>
-                      <a href="/posts/jupyter_notebook_black_code_format_10062021/">Auto format Jupyter Notebook code with jupyter-black</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 29</span>
-                    <span>
-                      <a href="/posts/kivy_multitouch_button_09292021/">Kivy - how to handle single and double touch events</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 17</span>
-                    <span>
-                      <a href="/posts/jira_sas_09172021/">Use JIRA API with SAS to retrieve tickets</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 13</span>
-                    <span>
-                      <a href="/posts/aws_s3_with_python_09132021/">Pandas dataframe from S3 data using boto3 or smart_open</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 12</span>
-                    <span>
-                      <a href="/posts/1fn-2fn-3fn_09122021/">1NF, 2NF, and 3NF Normalization</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 10</span>
-                    <span>
-                      <a href="/posts/apache_spark_standalone_cluster_09102021/">Create an Apache Spark standalone cluster</a>
-                    </span>
-                  </li>
-              
-          </ul>
-      
-  </div>
+<span style="color:#75715e"># configuration definitions</span>
+iomlinux <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;java&#39;</span>:<span style="color:#e6db74">&#39;/usr/bin/java&#39;</span>,
+    <span style="color:#e6db74">&#39;iomhost&#39;</span>:<span style="color:#e6db74">&#39;YOUR HOST&#39;</span>,
+    <span style="color:#e6db74">&#39;iomport&#39;</span>: YOUR_PORT,
+    <span style="color:#e6db74">&#39;authkey&#39;</span>:<span style="color:#e6db74">&#39;YOUR CREDENTIAL ID IN AUTHINFO FILE&#39;</span>
+}
+</code></pre></div><p>Contact your SAS admin to get iomhost and iomport or follow instructions here <a href="https://sassoftware.github.io/saspy/advanced-topics.html#using-proc-iomoperate-to-find-object-spawner-hosts-and-workspace-server-ports">https://sassoftware.github.io/saspy/advanced-topics.html#using-proc-iomoperate-to-find-object-spawner-hosts-and-workspace-server-ports</a></p>
+<p>Review <a href="https://sassoftware.github.io/saspy/configuration.html#iom-using-java">https://sassoftware.github.io/saspy/configuration.html#iom-using-java</a> for all possible iom parameters</p>
+<h3 id="create-saspy-program">Create saspy program</h3>
+<p>In same directory that you placed the sascfg_personal.py, create a new main.py:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#f92672">import</span> saspy
 
-  <div class="page-footer"></div>
+sas <span style="color:#f92672">=</span> saspy<span style="color:#f92672">.</span>SASsession(cfgfile<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sascfg_personal.py&#34;</span>)
+code <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    proc print
+</span><span style="color:#e6db74">        data = sashelp.baseball(obs=10);
+</span><span style="color:#e6db74">    run;
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+results <span style="color:#f92672">=</span> sas<span style="color:#f92672">.</span>submit(code)
+<span style="color:#66d9ef">print</span>(results[<span style="color:#e6db74">&#34;LST&#34;</span>])
+
+sas<span style="color:#f92672">.</span>endsas()
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python main.py
+</code></pre></div><hr>
+<p>Sascfg_personal.py is critical to setting up saspy. Thoroughly review <a href="https://sassoftware.github.io/saspy/configuration.html#">https://sassoftware.github.io/saspy/configuration.html#</a></p>
+
+        </p>
+    </div>
+    
+
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/sas">#sas</a>
+        
+            <a class="tag" href="/tags/python">#python</a>
+        
+            <a class="tag" href="/tags/saspy">#saspy</a>
+        
+      
+    </div>
 
 
         
