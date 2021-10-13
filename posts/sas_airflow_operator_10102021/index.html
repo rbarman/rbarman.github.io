@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>saspy | Noteworthy</title>
+    <title>Custom airflow operator for SAS | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -38,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/tags/saspy/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,42 +159,87 @@
         <div id="content" class="content-container">
         
 
-  <h1>Tagged "saspy"</h1>
-  
-  
+<h1 class="post-title">Custom airflow operator for SAS</h1>
     
-    <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/sas_airflow_operator_10102021/">
-                    Custom airflow operator for SAS
-                </a>
-            </h2>
-            <div>
-                <p>How to create a custom airflow Operator to submit SAS programs</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 9, 2021</time>
-            </div> 
-        </article>
+    <time>October 9, 2021</time>
     
-  
+    <div>
+        <p>
+        <p>How to create a custom airflow Operator to submit SAS programs</p>
+<p><code>SASOperator</code> is a subclass of airflow <a href="https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/baseoperator/index.html"><code>BaseOperator</code></a>. It accepts a string representation of a sas program file path. The <code>execute</code> function uses <a href="https://github.com/sassoftware/saspy"><code>saspy</code></a> to create a new SAS session and submit the job.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> saspy
+<span style="color:#f92672">from</span> airflow.models.baseoperator <span style="color:#f92672">import</span> BaseOperator
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_sas_connection</span>():
+    sas <span style="color:#f92672">=</span> saspy<span style="color:#f92672">.</span>SASsession(cfgfile<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sascfg_personal.py&#34;</span>)
+    <span style="color:#66d9ef">return</span> sas
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">submit_sas_code</span>(code: str) <span style="color:#f92672">-&gt;</span> dict:
+
+    sas <span style="color:#f92672">=</span> get_sas_connection()
+    results <span style="color:#f92672">=</span> sas<span style="color:#f92672">.</span>submit(code)
+    sas<span style="color:#f92672">.</span>endsas()
+    <span style="color:#66d9ef">return</span> results
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">submit_sas_program</span>(program_fp: str):
+
+    <span style="color:#66d9ef">with</span> open(program_fp) <span style="color:#66d9ef">as</span> f:
+        code <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+    results <span style="color:#f92672">=</span> submit_sas_code(code)
+    <span style="color:#66d9ef">return</span> results
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SASOperator</span>(BaseOperator):
+    <span style="color:#66d9ef">def</span> __init__(self, program_path: str, <span style="color:#f92672">**</span>kwargs) <span style="color:#f92672">-&gt;</span> None:
+
+        super()<span style="color:#f92672">.</span>__init__(<span style="color:#f92672">**</span>kwargs):
+            self<span style="color:#f92672">.</span>program_path <span style="color:#f92672">=</span> program_path
+
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute</span>(self, context):
+            results <span style="color:#f92672">=</span> submit_sas_program(self<span style="color:#f92672">.</span>program_path)
+            <span style="color:#66d9ef">return</span> results
+</code></pre></div><p>Create a DAG that uses the new SASOperator</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#f92672">from</span> airflow <span style="color:#f92672">import</span> DAG
+<span style="color:#f92672">from</span> airflow.utils.dates <span style="color:#f92672">import</span> days_ago
+
+default_args <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;owner&#34;</span>: <span style="color:#e6db74">&#34;airflow&#34;</span>}
+
+<span style="color:#66d9ef">with</span> DAG(
+    <span style="color:#e6db74">&#34;sas_test&#34;</span>,
+    default_args<span style="color:#f92672">=</span>default_args,
+    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;testing connection with saspy&#34;</span>,
+    tags<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;sas&#34;</span>],
+    schedule_interval<span style="color:#f92672">=</span>None,
+    start_date<span style="color:#f92672">=</span>days_ago(<span style="color:#ae81ff">2</span>),
+) <span style="color:#66d9ef">as</span> dag:
+
+    task_a <span style="color:#f92672">=</span> SASOperator(task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;job_a&#34;</span>, program_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;job_a.sas&#34;</span>)
+    task_b <span style="color:#f92672">=</span> SASOperator(task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;job_b&#34;</span>, program_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;job_b.sas&#34;</span>)
+
+    task_a <span style="color:#f92672">&gt;&gt;</span> task_b
+</code></pre></div>
+        </p>
+    </div>
     
-    <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/saspy_setup_10092021/">
-                    How to setup Saspy
-                </a>
-            </h2>
-            <div>
-                <p>How to setup saspy to start a SAS session with Python</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 9, 2021</time>
-            </div> 
-        </article>
+
     
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/sas">#sas</a>
+        
+            <a class="tag" href="/tags/airflow">#airflow</a>
+        
+            <a class="tag" href="/tags/saspy">#saspy</a>
+        
+      
+    </div>
 
 
         

@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rbarman.github.io/tags/airflow/</loc>
+    <lastmod>2021-10-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/posts/sas_airflow_operator_10102021/</loc>
+    <lastmod>2021-10-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rbarman.github.io/posts/saspy_setup_10092021/</loc>
     <lastmod>2021-10-09T00:00:00+00:00</lastmod>
   </url>
