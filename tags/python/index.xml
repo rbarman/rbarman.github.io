@@ -6,10 +6,19 @@
     <description>Recent content in python on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Shell script to create virtual environment</title>
+      <link>https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_shell_10272021/</link>
+      <pubDate>Wed, 27 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_shell_10272021/</guid>
+      <description>Shell script to create virtual environment for a jupyter notebook</description>
+    </item>
     
     <item>
       <title>How to setup Saspy</title>

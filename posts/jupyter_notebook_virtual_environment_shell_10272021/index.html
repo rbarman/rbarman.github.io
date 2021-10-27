@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Shell script to create virtual environment | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,140 +158,62 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_shell_10272021/">
-                    Shell script to create virtual environment
-                </a>
-            </h2>
-            <div>
-                <p>Shell script to create virtual environment for a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 27, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-                    <a class="tag" href="/tags/bash">#bash</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_10262021/">
-                    Activate virtual environments with Jupyter Notebook
-                </a>
-            </h2>
-            <div>
-                <p>How to use a virtual environment in a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 26, 2021</time>
+<h1 class="post-title">Shell script to create virtual environment</h1>
+    
+    <time>October 27, 2021</time>
+    
+    <div>
+        <p>
+        <p>Shell script to create virtual environment for a jupyter notebook</p>
+<h1 id="steps">Steps</h1>
+<h2 id="create-bash-script">Create bash script</h2>
+<p>Create <code>~/bin/cve.bash</code></p>
+<p>The first user parameter is the virtual environment name that you want to create.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># USAGE:</span>
+<span style="color:#75715e"># . cve.sh &lt;env_name&gt;</span>
+<span style="color:#75715e"># $1 stores &lt;env_name&gt;</span>
 
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/successful_algorithmic_trading_chap3_102012021/">
-                    Successful Algorithmic Trading - Summary of Chapter 3: Successful Backtesting
-                </a>
-            </h2>
-            <div>
-                <p>Successful Algorithm Trading Chapter 3 summary</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 21, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/chapter-summary">#chapter summary</a>
-                
-                    <a class="tag" href="/tags/successful-algorithmic-trading">#Successful Algorithmic Trading</a>
-                
-                    <a class="tag" href="/tags/backtesting">#backtesting</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/successful_algorithmic_trading_chap2_10202021/">
-                    Successful Algorithmic Trading - Summary of Chapter 2: What is Algorithmic Trading?
-                </a>
-            </h2>
-            <div>
-                <p>Successful Algorithm Trading Chapter 2 summary</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 20, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/chapter-summary">#chapter summary</a>
-                
-                    <a class="tag" href="/tags/successful-algorithmic-trading">#Successful Algorithmic Trading</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+<span style="color:#75715e"># create virtual environment in current dir</span>
+python -m venv $1
+<span style="color:#75715e"># activate</span>
+source $1/bin/activate
+<span style="color:#75715e"># install ipykernel</span>
+pip install ipykernel
+<span style="color:#75715e"># install virtual environment to kernel</span>
+python -m ipykernel install --user --name<span style="color:#f92672">=</span>$1
+</code></pre></div><p>If you want to create a virtual environment called <em>test_env</em>, then run</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">. cve.bash test_env
+</code></pre></div><h2 id="create-an-alias-for-script-in-bashrc">Create an alias for script in .bashrc</h2>
+<p>Add below line to <code>.bashrc</code> file. It creates an alias - typing <code>cve</code> will actually run <code>. cve.sh</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alias cve<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;. cve.sh&#39;</span>
+</code></pre></div><p>Source bash.rc</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">source ~/.bashrc
+</code></pre></div><h2 id="use-script">Use script</h2>
+<p>To create a virtual environment called <code>test_env</code> run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cve test_env
+</code></pre></div>
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
         
-        <p>Page 1 of 4</p>
-        <div class="paginator-group">
-            
-            
-                <a class="color-link older" href="/page/2/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
+            <a class="tag" href="/tags/bash">#bash</a>
         
+            <a class="tag" href="/tags/python">#python</a>
+        
+      
     </div>
+
 
         
 
