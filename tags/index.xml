@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>jupyter-notebook</title>
+      <link>https://rbarman.github.io/tags/jupyter-notebook/</link>
+      <pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/jupyter-notebook/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>backtesting</title>
@@ -35,15 +44,6 @@
       <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/successful-algorithmic-trading/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>book summary</title>
-      <link>https://rbarman.github.io/tags/book-summary/</link>
-      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rbarman.github.io/tags/book-summary/</guid>
       <description></description>
     </item>
     
@@ -107,15 +107,6 @@
       <pubDate>Thu, 07 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/rhel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>jupyter-notebook</title>
-      <link>https://rbarman.github.io/tags/jupyter-notebook/</link>
-      <pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rbarman.github.io/tags/jupyter-notebook/</guid>
       <description></description>
     </item>
     

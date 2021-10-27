@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Activate virtual environments with Jupyter Notebook</title>
+      <link>https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_10262021/</link>
+      <pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_10262021/</guid>
+      <description>How to use a virtual environment in a jupyter notebook</description>
+    </item>
+    
+    <item>
       <title>Successful Algorithmic Trading - Summary of Chapter 3: Successful Backtesting</title>
       <link>https://rbarman.github.io/posts/successful_algorithmic_trading_chap3_102012021/</link>
       <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>

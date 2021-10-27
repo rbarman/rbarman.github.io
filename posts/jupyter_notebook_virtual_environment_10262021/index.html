@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Activate virtual environments with Jupyter Notebook | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,140 +158,51 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_10262021/">
-                    Activate virtual environments with Jupyter Notebook
-                </a>
-            </h2>
-            <div>
-                <p>How to use a virtual environment in a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 26, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/successful_algorithmic_trading_chap3_102012021/">
-                    Successful Algorithmic Trading - Summary of Chapter 3: Successful Backtesting
-                </a>
-            </h2>
-            <div>
-                <p>Successful Algorithm Trading Chapter 3 summary</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 21, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/chapter-summary">#chapter summary</a>
-                
-                    <a class="tag" href="/tags/successful-algorithmic-trading">#Successful Algorithmic Trading</a>
-                
-                    <a class="tag" href="/tags/backtesting">#backtesting</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/successful_algorithmic_trading_chap2_10202021/">
-                    Successful Algorithmic Trading - Summary of Chapter 2: What is Algorithmic Trading?
-                </a>
-            </h2>
-            <div>
-                <p>Successful Algorithm Trading Chapter 2 summary</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 20, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/chapter-summary">#chapter summary</a>
-                
-                    <a class="tag" href="/tags/successful-algorithmic-trading">#Successful Algorithmic Trading</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/sas_airflow_operator_10102021/">
-                    Custom airflow operator for SAS
-                </a>
-            </h2>
-            <div>
-                <p>How to create a custom airflow Operator to submit SAS programs</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 10, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/sas">#sas</a>
-                
-                    <a class="tag" href="/tags/airflow">#airflow</a>
-                
-                    <a class="tag" href="/tags/saspy">#saspy</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+<h1 class="post-title">Activate virtual environments with Jupyter Notebook</h1>
+    
+    <time>October 26, 2021</time>
+    
+    <div>
+        <p>
+        <p>How to use a virtual environment in a jupyter notebook</p>
+<h1 id="steps">Steps</h1>
+<h2 id="create-virtual-environment">Create virtual environment</h2>
+<p>I use <a href="https://docs.python.org/3/library/venv.html">venv</a> to create virtual environments. In this example I create a virtual environment called <em>my_environment</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3 -m venv my_environment
+</code></pre></div><h2 id="activate-virtual-environment">Activate virtual environment</h2>
+<p>The above command should create a directory called <em>my_environment</em>. Activate the virtual environment with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">source my_environment/bin/activate
+</code></pre></div><p>Run <code>pip list</code> to verify a new virtual environment. We should only see very basic pip packages.</p>
+<h2 id="install-ipykernel">Install ipykernel</h2>
+<p><a href="https://pypi.org/project/ipykernel/">ipykernel</a> handles communication with jupyter notebook kernel.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install ipykernel
+</code></pre></div><h2 id="install-virtual-environment-to-kernel">Install virtual environment to kernel</h2>
+<p>We need to install our virtual environment, <em>my_environment</em>, to the jupyter kernel</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">python <span style="color:#f92672">-</span>m ipykernel install <span style="color:#f92672">--</span>user <span style="color:#f92672">--</span>name<span style="color:#f92672">=</span>my_environment
+</code></pre></div><h2 id="create-a-notebook-with-virtual-environment">Create a notebook with virtual environment</h2>
+<p>Launch jupyter notebook and click on the &ldquo;new&rdquo; button to create a new jupyter notebook. We should now see a new option to create a jupyter notebook with the <em>my_environment</em> environment.</p>
+<p>As before, run <code>!pip list</code> to verify a new virtual environment. Note that there will be some dependencies for the ipykernel package.</p>
+<h2 id="uninstall-virtual-environment-from-notebook">Uninstall virtual environment from notebook</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">jupyter kernelspec uninstall my_environment
+</code></pre></div><p>To see all currently installed</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">jupyter kernelspec list
+</code></pre></div>
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
         
-        <p>Page 1 of 4</p>
-        <div class="paginator-group">
-            
-            
-                <a class="color-link older" href="/page/2/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
-        
+      
     </div>
+
 
         
 
