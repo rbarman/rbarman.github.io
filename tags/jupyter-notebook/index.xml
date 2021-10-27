@@ -17,8 +17,7 @@
       <pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/posts/jupyter_notebook_black_code_format_10062021/</guid>
-      <description>Automatic code formatting in a Jupyter Notebook.
-Steps Install black Black is a PEP 8 compliant opinionated formatter.</description>
+      <description>Automatic code formatting in a Jupyter Notebook.</description>
     </item>
     
   </channel>

@@ -6,17 +6,71 @@
     <description>Recent content in Tags on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>backtesting</title>
+      <link>https://rbarman.github.io/tags/backtesting/</link>
+      <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/backtesting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chapter summary</title>
+      <link>https://rbarman.github.io/tags/chapter-summary/</link>
+      <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/chapter-summary/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Successful Algorithmic Trading</title>
+      <link>https://rbarman.github.io/tags/successful-algorithmic-trading/</link>
+      <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/successful-algorithmic-trading/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>book summary</title>
+      <link>https://rbarman.github.io/tags/book-summary/</link>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/book-summary/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>airflow</title>
       <link>https://rbarman.github.io/tags/airflow/</link>
-      <pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 10 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/airflow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sas</title>
+      <link>https://rbarman.github.io/tags/sas/</link>
+      <pubDate>Sun, 10 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/sas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>saspy</title>
+      <link>https://rbarman.github.io/tags/saspy/</link>
+      <pubDate>Sun, 10 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/saspy/</guid>
       <description></description>
     </item>
     
@@ -26,24 +80,6 @@
       <pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sas</title>
-      <link>https://rbarman.github.io/tags/sas/</link>
-      <pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rbarman.github.io/tags/sas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>saspy</title>
-      <link>https://rbarman.github.io/tags/saspy/</link>
-      <pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rbarman.github.io/tags/saspy/</guid>
       <description></description>
     </item>
     

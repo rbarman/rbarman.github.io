@@ -3,13 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rbarman.github.io/tags/backtesting/</loc>
+    <lastmod>2021-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/chapter-summary/</loc>
+    <lastmod>2021-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/posts/</loc>
+    <lastmod>2021-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/successful-algorithmic-trading/</loc>
+    <lastmod>2021-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/posts/successful_algorithmic_trading_chap3_102012021/</loc>
+    <lastmod>2021-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/</loc>
+    <lastmod>2021-10-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/book-summary/</loc>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/posts/successful_algorithmic_trading_chap2_10202021/</loc>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rbarman.github.io/tags/airflow/</loc>
-    <lastmod>2021-10-09T00:00:00+00:00</lastmod>
+    <lastmod>2021-10-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://rbarman.github.io/posts/sas_airflow_operator_10102021/</loc>
-    <lastmod>2021-10-09T00:00:00+00:00</lastmod>
+    <lastmod>2021-10-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/sas/</loc>
+    <lastmod>2021-10-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/saspy/</loc>
+    <lastmod>2021-10-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -18,27 +68,7 @@
   </url>
   
   <url>
-    <loc>https://rbarman.github.io/posts/</loc>
-    <lastmod>2021-10-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://rbarman.github.io/tags/python/</loc>
-    <lastmod>2021-10-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rbarman.github.io/tags/sas/</loc>
-    <lastmod>2021-10-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rbarman.github.io/tags/saspy/</loc>
-    <lastmod>2021-10-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rbarman.github.io/tags/</loc>
     <lastmod>2021-10-09T00:00:00+00:00</lastmod>
   </url>
   

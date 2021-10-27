@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>book summary on Noteworthy</title>
+    <link>https://rbarman.github.io/tags/book-summary/</link>
+    <description>Recent content in book summary on Noteworthy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://rbarman.github.io/tags/book-summary/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Successful Algorithmic Trading - Summary of Chapter 2: What is Algorithmic Trading?</title>
+      <link>https://rbarman.github.io/posts/successful_algorithmic_trading_chap2_10202021/</link>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/successful_algorithmic_trading_chap2_10202021/</guid>
+      <description>Successful Algorithm Trading Chapter 2 summary</description>
+    </item>
+    
+  </channel>
+</rss>

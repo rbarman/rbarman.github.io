@@ -12,9 +12,27 @@
     
     
     <item>
+      <title>Successful Algorithmic Trading - Summary of Chapter 3: Successful Backtesting</title>
+      <link>https://rbarman.github.io/posts/successful_algorithmic_trading_chap3_102012021/</link>
+      <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/successful_algorithmic_trading_chap3_102012021/</guid>
+      <description>Successful Algorithm Trading Chapter 3 summary</description>
+    </item>
+    
+    <item>
+      <title>Successful Algorithmic Trading - Summary of Chapter 2: What is Algorithmic Trading?</title>
+      <link>https://rbarman.github.io/posts/successful_algorithmic_trading_chap2_10202021/</link>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/successful_algorithmic_trading_chap2_10202021/</guid>
+      <description>Successful Algorithm Trading Chapter 2 summary</description>
+    </item>
+    
+    <item>
       <title>Custom airflow operator for SAS</title>
       <link>https://rbarman.github.io/posts/sas_airflow_operator_10102021/</link>
-      <pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 10 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/posts/sas_airflow_operator_10102021/</guid>
       <description>How to create a custom airflow Operator to submit SAS programs</description>
@@ -53,8 +71,7 @@
       <pubDate>Wed, 06 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/posts/jupyter_notebook_black_code_format_10062021/</guid>
-      <description>Automatic code formatting in a Jupyter Notebook.
-Steps Install black Black is a PEP 8 compliant opinionated formatter.</description>
+      <description>Automatic code formatting in a Jupyter Notebook.</description>
     </item>
     
     <item>

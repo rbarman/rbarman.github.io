@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Successful Algorithmic Trading - Summary of Chapter 2: What is Algorithmic Trading? | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,137 +158,88 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jira_sas_09172021/">
-                    Use JIRA API with SAS to retrieve tickets
-                </a>
-            </h2>
-            <div>
-                <p>Walkthrough on how to leverage the JIRA Rest API with SAS to retrieve JIRA tickets</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 17, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/sas">#sas</a>
-                
-                    <a class="tag" href="/tags/jira">#jira</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/aws_s3_with_python_09132021/">
-                    Pandas dataframe from S3 data using boto3 or smart_open
-                </a>
-            </h2>
-            <div>
-                <p>Walkthrough on how to create a Pandas dataframe from data stored in Amazon S3 data using boto3 or smart_open library.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 13, 2021</time>
+<h1 class="post-title">Successful Algorithmic Trading - Summary of Chapter 2: What is Algorithmic Trading?</h1>
+    
+    <time>October 20, 2021</time>
+    
+    <div>
+        <p>
+        <p>Successful Algorithm Trading Chapter 2 summary</p>
+<hr>
+<p>Successful Algorithmic Trading by Michael L. Halls-Moore, PHD. Purchase a copy at <a href="https://www.quantstart.com/successful-algorithmic-trading-ebook/">https://www.quantstart.com/successful-algorithmic-trading-ebook/</a></p>
+<h1 id="what-is-it">What is it?</h1>
+<p><strong>Algorithmic trading</strong> is the use of an automated system for carrying out trades, which are executed in a pre-determined manner via an algorithm <em>specically without any human intervention</em>.  Algorithmic strategies are designed prior to the commencement of trading and are executed without discretionary input from human</p>
+<h1 id="advantages-of-algorithmic-trading">Advantages of algorithmic trading</h1>
+<ul>
+<li><strong>Historical Assessment</strong>
+&ndash; Historical market data is hopefully representative of future market data
+&ndash; We can apply <strong>backtesting</strong> to test strategies on historical data</li>
+<li><strong>Efficiency</strong>
+&ndash; Do not need to constantly monitor for price action and news input; developer has more time to research and deploy more strategies
+&ndash; Certain strategies require adjusting to market conditions in real time. It is not possible for a manual / discretionary trader to continually compute risks and monitor markets.</li>
+<li><strong>Comparison</strong>
+&ndash; Systematic strategies provide statistical information on historic and current performance
+&ndash; Easily compare strategies with common metrics.</li>
+<li><strong>Higher Frequencies</strong>
+&ndash; Automated setups make it easier to execute strategies that operate at higher frequencies.</li>
+</ul>
+<h1 id="disadvantages-of-algorithmic-trading">Disadvantages of algorithmic trading</h1>
+<ul>
+<li>Capital Requirements
+&ndash; The few brokers that allow automatic trading tend to require large account minimums
+&ndash; High quality data feeds can be expensive for retail traders</li>
+<li>Programming / Scientific Expertise
+&ndash; Need to be proficient in scientific modeling and programming.</li>
+</ul>
+<h1 id="scientific-method">Scientific Method</h1>
+<p>Trading strategies are based on the <strong>scientific method</strong>.</p>
+<p>Create a <em>question</em></p>
+<ul>
+<li>&ldquo;Is there a relationship between GLD and GDX?&rdquo;</li>
+</ul>
+<p>Form a <em>hypothesis</em> to explain the observed behavior</p>
+<ul>
+<li>&ldquo;Does the spread between GLD and GDX have mean reverting behavior?&rdquo;</li>
+<li><em>Null Hypothesis</em> -&gt; &ldquo;there is <strong>no</strong> mean reverting behavior, i.e. the price spread is a <em>random walk</em>&rdquo;</li>
+</ul>
+<p>Run statistic tests to test the null hypothesis</p>
+<ul>
+<li>In this example we can apply stationary tests such as Augmented Dickey-Fuller.</li>
+</ul>
+<p>The tests tell us if are able/unable to reject the null hypothesis with a certain level of confidence</p>
+<ul>
+<li>If the null hypothesis is rejected, then there appears to be no discernible relationship between GLD and GDX.</li>
+<li><em>However</em>, we can continue analysis with more historical data or new market information.</li>
+</ul>
+<p>One major benefit of the scientific method is that we can revisit the null hypothesis if a strategy is no longer profitable in production.</p>
+<h1 id="can-retail-traders-still-compete">Can retail traders still compete?</h1>
+<p>Can the retail trader compete with the institutional quant funds? Yes&hellip; and no.</p>
+<ul>
+<li>Retail traders have access to fewer data and news feeds</li>
+<li>Retail traders have more freedom to explore smaller markets</li>
+<li>Retail traders do not have access to prime brokerages ; liquidity is limited</li>
+<li>Institutional firms have specific risk management budgets and departments enforcing oversight. Retail traders do not have same regulations and are free to deviate from industry standards</li>
+<li>Retail traders only care about absolute return while firms have to keep up with high-water marks, capital deployment rules, performance reports, and regulatory reporting constraints.</li>
+</ul>
 
-            
-            
-                
-                    <a class="tag" href="/tags/pandas">#pandas</a>
-                
-                    <a class="tag" href="/tags/s3">#S3</a>
-                
-                    <a class="tag" href="/tags/boto3">#boto3</a>
-                
-                    <a class="tag" href="/tags/smart_open">#smart_open</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/">
-                    1NF, 2NF, and 3NF Normalization
-                </a>
-            </h2>
-            <div>
-                <p>Database normalization is a crucial step in designing database systems.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 12, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/normalization">#normalization</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/apache_spark_standalone_cluster_09102021/">
-                    Create an Apache Spark standalone cluster
-                </a>
-            </h2>
-            <div>
-                <p>This tutorial covers how to set up a standalone spark cluster on your local machine and submit a spark job to your cluster</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 10, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/apache-spark">#apache spark</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/book-summary">#book summary</a>
         
-        <p>Page 3 of 3</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/page/2/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-        </div>
+            <a class="tag" href="/tags/successful-algorithmic-trading">#Successful Algorithmic Trading</a>
         
+      
     </div>
+
 
         
 
