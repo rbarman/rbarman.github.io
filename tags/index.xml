@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 29 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>quandl</title>
+      <link>https://rbarman.github.io/tags/quandl/</link>
+      <pubDate>Fri, 29 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/quandl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zipline-reloaded</title>
+      <link>https://rbarman.github.io/tags/zipline-reloaded/</link>
+      <pubDate>Fri, 29 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/zipline-reloaded/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>bash</title>
