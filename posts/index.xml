@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 30 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pretrained TTS models with Mozilla TTS library</title>
+      <link>https://rbarman.github.io/posts/tts_mozilla_10302021/</link>
+      <pubDate>Sat, 30 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/tts_mozilla_10302021/</guid>
+      <description>How to use pre trained deep learning text to speech models</description>
+    </item>
     
     <item>
       <title>Zipline - ingest default Quandl data bundle</title>

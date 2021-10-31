@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Pretrained TTS models with Mozilla TTS library</title>
+      <link>https://rbarman.github.io/posts/tts_mozilla_10302021/</link>
+      <pubDate>Sat, 30 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/tts_mozilla_10302021/</guid>
+      <description>How to use pre trained deep learning text to speech models</description>
+    </item>
+    
+    <item>
       <title>Zipline - ingest default Quandl data bundle</title>
       <link>https://rbarman.github.io/posts/zipline_ingest_bundle_10292021/</link>
       <pubDate>Fri, 29 Oct 2021 00:00:00 +0000</pubDate>

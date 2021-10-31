@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Tags | Noteworthy</title>
+    <title>Pretrained TTS models with Mozilla TTS library | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -38,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/tags/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,58 +159,78 @@
         <div id="content" class="content-container">
         
 
-<h1>Tags</h1>
-<ul>
+<h1 class="post-title">Pretrained TTS models with Mozilla TTS library</h1>
     
-        <li><a href="https://rbarman.github.io/tags/airflow/">airflow</a> 1</li>
+    <time>October 30, 2021</time>
     
-        <li><a href="https://rbarman.github.io/tags/apache-spark/">apache spark</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/backtesting/">backtesting</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/bash/">bash</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/boto3/">boto3</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/chapter-summary/">chapter summary</a> 2</li>
-    
-        <li><a href="https://rbarman.github.io/tags/docker/">Docker</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/jira/">jira</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/jupyter-notebook/">jupyter-notebook</a> 3</li>
-    
-        <li><a href="https://rbarman.github.io/tags/kivy/">kivy</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/normalization/">normalization</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/pandas/">pandas</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/python/">python</a> 4</li>
-    
-        <li><a href="https://rbarman.github.io/tags/quandl/">quandl</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/rhel/">RHEL</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/s3/">S3</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/sas/">sas</a> 3</li>
-    
-        <li><a href="https://rbarman.github.io/tags/saspy/">saspy</a> 2</li>
-    
-        <li><a href="https://rbarman.github.io/tags/smart_open/">smart_open</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/successful-algorithmic-trading/">Successful Algorithmic Trading</a> 2</li>
-    
-        <li><a href="https://rbarman.github.io/tags/tts/">tts</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/twitch/">twitch</a> 1</li>
-    
-        <li><a href="https://rbarman.github.io/tags/zipline-reloaded/">zipline-reloaded</a> 1</li>
-    
-</ul>
+    <div>
+        <p>
+        <p>How to use pre trained deep learning text to speech models</p>
+<p>This post is based on Mozilla&rsquo;s open source text to speech framework, <a href="https://github.com/mozilla/TTS"><code>TTS</code></a></p>
+<p>Install package through pip. Make sure to use a virtual environment because <code>TTS</code> has a lot of dependencies!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python3 -m venv tts_env
+pip install tts
+</code></pre></div><p>List out all available tts models and vocoders. You will need to pick a specific tts model and vocoder when synthesising speech.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tts --list_models
+</code></pre></div><p>My output:</p>
+<pre><code>Name format: type/language/dataset/model
+1: tts_models/en/ek1/tacotron2
+2: tts_models/en/ljspeech/tacotron2-DDC
+3: tts_models/en/ljspeech/tacotron2-DDC_ph
+4: tts_models/en/ljspeech/glow-tts
+5: tts_models/en/ljspeech/speedy-speech
+6: tts_models/en/ljspeech/tacotron2-DCA
+7: tts_models/en/ljspeech/vits
+8: tts_models/en/ljspeech/fast_pitch
+9: tts_models/en/vctk/sc-glow-tts
+10: tts_models/en/vctk/vits
+11: tts_models/en/vctk/fast_pitch
+12: tts_models/en/sam/tacotron-DDC
+13: tts_models/es/mai/tacotron2-DDC
+14: tts_models/fr/mai/tacotron2-DDC
+15: tts_models/uk/mai/glow-tts
+16: tts_models/zh-CN/baker/tacotron2-DDC-GST
+17: tts_models/nl/mai/tacotron2-DDC
+18: tts_models/de/thorsten/tacotron2-DCA
+19: tts_models/ja/kokoro/tacotron2-DDC
+20: vocoder_models/universal/libri-tts/wavegrad
+21: vocoder_models/universal/libri-tts/fullband-melgan
+22: vocoder_models/en/ek1/wavegrad
+23: vocoder_models/en/ljspeech/multiband-melgan
+24: vocoder_models/en/ljspeech/hifigan_v2
+25: vocoder_models/en/ljspeech/univnet
+26: vocoder_models/en/vctk/hifigan_v2
+27: vocoder_models/en/sam/hifigan_v2
+28: vocoder_models/nl/mai/parallel-wavegan
+29: vocoder_models/de/thorsten/wavegrad
+30: vocoder_models/de/thorsten/fullband-melgan
+31: vocoder_models/ja/kokoro/hifigan_v1
+</code></pre><p>Synthesise speech! Specify the text to convert, tts model, vocoder, and filepath for generated audio.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tts --text <span style="color:#e6db74">&#34;Hello World!&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --model_name <span style="color:#e6db74">&#34;tts_models/en/ek1/tacotron2&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --vocoder_name <span style="color:#e6db74">&#34;vocoder_models/universal/libri-tts/wavegrad&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    --out_path speech.wav
+</code></pre></div><p>The vocoder or tts model will install if it is your first time using it.</p>
+<hr>
+<p>There are a lot of released tts models and vocoders (<a href="https://github.com/mozilla/TTS/wiki/Released-Models)">https://github.com/mozilla/TTS/wiki/Released-Models)</a>. I need to better understand the role of tts model vs vocoder and compare tts performance&hellip;</p>
 
-<div class="page-footer"></div>
+        </p>
+    </div>
+    
+
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/tts">#tts</a>
+        
+            <a class="tag" href="/tags/python">#python</a>
+        
+      
+    </div>
+
 
         
 
