@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Map Wacom tablet to specific monitor</title>
+      <link>https://rbarman.github.io/posts/xsetwacom_monitor_10312021/</link>
+      <pubDate>Sun, 31 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/xsetwacom_monitor_10312021/</guid>
+      <description>How to use xsetwacom to map tablet and stylus to specific monitor.</description>
+    </item>
+    
+    <item>
       <title>Pretrained TTS models with Mozilla TTS library</title>
       <link>https://rbarman.github.io/posts/tts_mozilla_10302021/</link>
       <pubDate>Sat, 30 Oct 2021 00:00:00 +0000</pubDate>
