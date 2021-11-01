@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Map Wacom tablet to specific monitor | Noteworthy</title>
+    <title>Map Huion tablet to specific monitor | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -159,7 +159,7 @@
         <div id="content" class="content-container">
         
 
-<h1 class="post-title">Map Wacom tablet to specific monitor</h1>
+<h1 class="post-title">Map Huion tablet to specific monitor</h1>
     
     <time>October 31, 2021</time>
     
@@ -174,7 +174,7 @@
 HID 256c:006d stylus                id: 19  type: STYLUS    
 HID 256c:006d Touch Strip pad       id: 20  type: PAD 
 </code></pre><p>My connected devices are &ldquo;HID 256c:006d Pad pad&rdquo;, &ldquo;HID 256c:006d stylus&rdquo;, and &ldquo;HID 256c:006d Touch Strip pad&rdquo;</p>
-<p>If you do not get any output, you need to install the tablet driver. See the (<code>digimend</code>)[https://digimend.github.io/tablets/] project to install a driver that works for your tablet.</p>
+<p>If you do not get any output, you need to install the tablet driver. See the <a href="https://digimend.github.io/tablets/"><code>digimend</code></a> project to install a driver that works for your tablet.</p>
 <h2 id="find-all-possible-displays">Find all possible displays</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xrandr --listactivemonitors
 </code></pre></div><p>My output is:</p>
@@ -195,7 +195,145 @@ xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d stylus&#34;</span
 xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Touch Strip pad&#34;</span> MapToOutput next
 xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> MapToOutput next
 xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d stylus&#34;</span> MapToOutput next
-</code></pre></div>
+</code></pre></div><h2 id="view-all-possible-key-modifiers">View all possible key modifiers</h2>
+<p>Key modifiers are words that correspond to different keyboard keys. For example &ldquo;up&rdquo; corresponds to pressing the down arrow.</p>
+<p>Find all key modifiers that are relevant to your keyboard shortcut.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --list modifiers
+</code></pre></div><p>21 modifiers are supported:
+ctrl
+ctl
+control
+lctrl
+rctrl
+meta
+lmeta
+rmeta
+alt
+lalt
+ralt
+shift
+lshift
+rshift
+super
+lsuper
+rsuper
+hyper
+lhyper
+rhyper
+altgr</p>
+<p>83 specialkeys are supported:
+f1
+f2
+f3
+f4
+f5
+f6
+f7
+f8
+f9
+f10
+f11
+f12
+f13
+f14
+f15
+f16
+f17
+f18
+f19
+f20
+f21
+f22
+f23
+f24
+f25
+f26
+f27
+f28
+f29
+f30
+f31
+f32
+f33
+f34
+f35
+esc
+Esc
+up
+down
+left
+right
+backspace
+Backspace
+return
+tab
+PgUp
+PgDn
+del
+home
+end
+insert
+`
+-
+=
+[
+]
+<br>
+;
+'
+,
+.
+/
+~
+!
+@
+#
+$
+%
+^
+&amp;
+*
+(
+)
+_
++
+{
+}
+|
+:
+&quot;
+&lt;
+&gt;
+?
+Keys not listed above can be specified via their KeySyms. See the man page for details.</p>
+<pre><code>
+## Map buttons to keyboard shortcuts
+
+My tablet has 6 buttons. For now I want to map the 1st button to press the up arrow and map the 2nd button to press the down arrow. 
+
+The top 2 buttons are named &quot;Button 1&quot; and &quot;Button 2&quot;. The button names seem to be &quot;Button &lt;n&gt;&quot;, but the &lt;n&gt; is not incremental. You will need to experiment with different numbers if your tablet has a lot of buttons. 
+
+Also notice that I set the key to &quot;+up&quot; and &quot;+down&quot;. The plus sign mimics a long press. I can hold down the top button to continuously scroll. If I did not include the &quot;+&quot;, I would need to continually press/release the button to scroll. See the reference links for more information.
+
+```bash
+xsetwacom --set &quot;HID 256c:006d Pad pad&quot; Button 1 &quot;key +up&quot;
+xsetwacom --set &quot;HID 256c:006d Pad pad&quot; Button 2 &quot;key +down&quot;
+</code></pre><h2 id="create-an-auto-start-bash-script">Create an auto start bash script</h2>
+<p>The button mappings will reset once you restart your computer. You need to put the xsetwacom commands in a script that runs everytime the machine starts.</p>
+<p>Script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;key +up&#34;</span>
+xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">2</span> <span style="color:#e6db74">&#34;key +down&#34;</span>
+
+</code></pre></div><p>Each linux distribution / desktop environment has simple methods to setup auto start scripts.</p>
+<hr>
+<p>References</p>
+<ul>
+<li><a href="https://github.com/DIGImend/digimend-kernel-drivers/issues/26">https://github.com/DIGImend/digimend-kernel-drivers/issues/26</a></li>
+<li><a href="https://unix.stackexchange.com/questions/364892/xsetwacom-button-press-repeat">https://unix.stackexchange.com/questions/364892/xsetwacom-button-press-repeat</a></li>
+</ul>
+
         </p>
     </div>
     

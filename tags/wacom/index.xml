@@ -6,13 +6,22 @@
     <description>Recent content in wacom on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/wacom/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Map Wacom tablet to specific monitor</title>
+      <title>Map Huion tablet buttons with xsetwacom</title>
+      <link>https://rbarman.github.io/posts/xsetwacom_buttons_11012021/</link>
+      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/xsetwacom_buttons_11012021/</guid>
+      <description>How to use xsetwacom to map tablet buttons to specific keyboard shortcuts</description>
+    </item>
+    
+    <item>
+      <title>Map Huion tablet to specific monitor</title>
       <link>https://rbarman.github.io/posts/xsetwacom_monitor_10312021/</link>
       <pubDate>Sun, 31 Oct 2021 00:00:00 +0000</pubDate>
       

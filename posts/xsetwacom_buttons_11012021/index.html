@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Map Huion tablet buttons with xsetwacom | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,148 +158,179 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_black_code_format_10062021/">
-                    Auto format Jupyter Notebook code with jupyter-black
-                </a>
-            </h2>
-            <div>
-                <p>Automatic code formatting in a Jupyter Notebook.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 6, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/kivy_multitouch_button_09292021/">
-                    Kivy - how to handle single and double touch events
-                </a>
-            </h2>
-            <div>
-                <p>Create a custom Kivy Button to handle single and double tap events.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 29, 2021</time>
+<h1 class="post-title">Map Huion tablet buttons with xsetwacom</h1>
+    
+    <time>November 1, 2021</time>
+    
+    <div>
+        <p>
+        <p>How to use xsetwacom to map tablet buttons to specific keyboard shortcuts</p>
+<h1 id="steps">Steps</h1>
+<h2 id="check-if-system-recognizes-tablet">Check if system recognizes tablet</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --list devices
+</code></pre></div><p>My output is:</p>
+<pre><code>HID 256c:006d Pad pad               id: 18  type: PAD       
+HID 256c:006d stylus                id: 19  type: STYLUS    
+HID 256c:006d Touch Strip pad       id: 20  type: PAD 
+</code></pre><p>My connected devices are &ldquo;HID 256c:006d Pad pad&rdquo;, &ldquo;HID 256c:006d stylus&rdquo;, and &ldquo;HID 256c:006d Touch Strip pad&rdquo;</p>
+<p>If you do not get any output, you need to install the tablet driver. See the <a href="https://digimend.github.io/tablets/"><code>digimend</code></a> project to install a driver that works for your tablet.</p>
+<p>I will now focus on the &ldquo;HID 256c:006d Pad pad&rdquo; device because it is the device with physical buttons.</p>
+<h2 id="map-buttons-to-keyboard-shortcuts">Map buttons to keyboard shortcuts</h2>
+<h2 id="view-all-possible-key-modifiers">View all possible key modifiers</h2>
+<p>Key modifiers are words that correspond to different keyboard keys. For example &ldquo;up&rdquo; corresponds to pressing the down arrow.</p>
+<p>Find all key modifiers that are relevant to your keyboard shortcut.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --list modifiers
+</code></pre></div><p>My output:</p>
+<pre><code>21 modifiers are supported:
+    ctrl
+    ctl
+    control
+    lctrl
+    rctrl
+    meta
+    lmeta
+    rmeta
+    alt
+    lalt
+    ralt
+    shift
+    lshift
+    rshift
+    super
+    lsuper
+    rsuper
+    hyper
+    lhyper
+    rhyper
+    altgr
 
-            
-            
-                
-                    <a class="tag" href="/tags/kivy">#kivy</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jira_sas_09172021/">
-                    Use JIRA API with SAS to retrieve tickets
-                </a>
-            </h2>
-            <div>
-                <p>Walkthrough on how to leverage the JIRA Rest API with SAS to retrieve JIRA tickets</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 17, 2021</time>
+83 specialkeys are supported:
+    f1
+    f2
+    f3
+    f4
+    f5
+    f6
+    f7
+    f8
+    f9
+    f10
+    f11
+    f12
+    f13
+    f14
+    f15
+    f16
+    f17
+    f18
+    f19
+    f20
+    f21
+    f22
+    f23
+    f24
+    f25
+    f26
+    f27
+    f28
+    f29
+    f30
+    f31
+    f32
+    f33
+    f34
+    f35
+    esc
+    Esc
+    up
+    down
+    left
+    right
+    backspace
+    Backspace
+    return
+    tab
+    PgUp
+    PgDn
+    del
+    home
+    end
+    insert
+    -
+    =
+    [
+    ]
+    \
+    ;
+    '
+    ,
+    .
+    /
+    ~
+    !
+    @
+    #
+    $
+    %
+    ^
+    &amp;
+    *
+    (
+    )
+    _
+    +
+    {
+    }
+    |
+    :
+    &quot;
+    &lt;
+    &gt;
+    ?
+Keys not listed above can be specified via their KeySyms. See the man page for details.
 
-            
-            
-                
-                    <a class="tag" href="/tags/sas">#sas</a>
-                
-                    <a class="tag" href="/tags/jira">#jira</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/aws_s3_with_python_09132021/">
-                    Pandas dataframe from S3 data using boto3 or smart_open
-                </a>
-            </h2>
-            <div>
-                <p>Walkthrough on how to create a Pandas dataframe from data stored in Amazon S3 data using boto3 or smart_open library.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>September 13, 2021</time>
+</code></pre><h2 id="map-buttons-to-keyboard-shortcuts-1">Map buttons to keyboard shortcuts</h2>
+<p>My tablet has 6 buttons. For now I want to map the 1st button to press the up arrow and map the 2nd button to press the down arrow.</p>
+<p>The top 2 buttons are named &ldquo;Button 1&rdquo; and &ldquo;Button 2&rdquo;. The button names seem to be &ldquo;Button <n>&rdquo;, but the <n> is not incremental. You will need to experiment with different numbers if your tablet has a lot of buttons.</p>
+<p>Also notice that I set the key to &ldquo;+up&rdquo; and &ldquo;+down&rdquo;. The plus sign mimics a long press. I can hold down the top button to continuously scroll. If I did not include the &ldquo;+&rdquo;, I would need to continually press/release the button to scroll. See the reference links for more information.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;key +up&#34;</span>
+xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">2</span> <span style="color:#e6db74">&#34;key +down&#34;</span>
+</code></pre></div><h2 id="create-an-auto-start-bash-script">Create an auto start bash script</h2>
+<p>The button mappings will reset once you restart your computer. You need to put the xsetwacom commands in a script that runs everytime the machine starts.</p>
+<p>Script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>
+xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;key +up&#34;</span>
+xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">2</span> <span style="color:#e6db74">&#34;key +down&#34;</span>
 
-            
-            
-                
-                    <a class="tag" href="/tags/pandas">#pandas</a>
-                
-                    <a class="tag" href="/tags/s3">#S3</a>
-                
-                    <a class="tag" href="/tags/boto3">#boto3</a>
-                
-                    <a class="tag" href="/tags/smart_open">#smart_open</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+</code></pre></div><p>Each linux distribution / desktop environment has simple methods to setup auto start scripts.</p>
+<hr>
+<p>References</p>
+<ul>
+<li><a href="https://github.com/DIGImend/digimend-kernel-drivers/issues/26">https://github.com/DIGImend/digimend-kernel-drivers/issues/26</a></li>
+<li><a href="https://unix.stackexchange.com/questions/364892/xsetwacom-button-press-repeat">https://unix.stackexchange.com/questions/364892/xsetwacom-button-press-repeat</a></li>
+</ul>
+
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/bash">#bash</a>
         
-        <p>Page 4 of 5</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/page/3/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-                <a class="color-link older" href="/page/5/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
+            <a class="tag" href="/tags/linux">#linux</a>
         
+            <a class="tag" href="/tags/wacom">#wacom</a>
+        
+      
     </div>
+
 
         
 
