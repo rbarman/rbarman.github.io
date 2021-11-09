@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title> | Noteworthy</title>
+    <title>Chrome extension - inject drawable canvas | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -159,175 +159,153 @@
         <div id="content" class="content-container">
         
 
-  <h1>
-    Archives
-  </h1>
-  <div>
-     
-      
-      
-          <h3>2021</h3> 
+<h1 class="post-title">Chrome extension - inject drawable canvas</h1>
+    
+    <time>November 8, 2021</time>
+    
+    <div>
+        <p>
+        <p>Chrome extension that injects a drawable canvas on entire web page</p>
+<p>I am working on a chrome extension that lets me annotate a web page with my drawing tablet. The first major component is to create a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>canvas</code></a> element that handles different touch events to draw. This post describes how I created a chrome extension that inserts a drawable canvas element.</p>
+<hr>
+<h1 id="manifest">Manifest</h1>
+<p><code>Manifest.json</code> is a standard file to setup a chrome extension. I have a content script</p>
+<p>I set matches to <code>https://*/*&quot;****</code> so the extension loads on every web page. In practice I probably want the extension to run if user clicks on the extension icon.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
 
-          <ul class="archives-list"> 
-            
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Nov 8</span>
-                    <span>
-                      <a href="/posts/chrome_extension_canvas_11082021/">Chrome extension - inject drawable canvas</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Nov 1</span>
-                    <span>
-                      <a href="/posts/xsetwacom_buttons_11012021/">Map Huion tablet buttons with xsetwacom</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 31</span>
-                    <span>
-                      <a href="/posts/xsetwacom_monitor_10312021/">Map Huion tablet to specific monitor</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 30</span>
-                    <span>
-                      <a href="/posts/tts_mozilla_10302021/">Pretrained TTS models with Mozilla TTS library</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 29</span>
-                    <span>
-                      <a href="/posts/zipline_ingest_bundle_10292021/">Zipline - ingest default Quandl data bundle</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 27</span>
-                    <span>
-                      <a href="/posts/jupyter_notebook_virtual_environment_shell_10272021/">Shell script to create virtual environment</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 26</span>
-                    <span>
-                      <a href="/posts/jupyter_notebook_virtual_environment_10262021/">Activate virtual environments with Jupyter Notebook</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 21</span>
-                    <span>
-                      <a href="/posts/successful_algorithmic_trading_chap3_102012021/">Successful Algorithmic Trading - Summary of Chapter 3: Successful Backtesting</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 20</span>
-                    <span>
-                      <a href="/posts/successful_algorithmic_trading_chap2_10202021/">Successful Algorithmic Trading - Summary of Chapter 2: What is Algorithmic Trading?</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 10</span>
-                    <span>
-                      <a href="/posts/sas_airflow_operator_10102021/">Custom airflow operator for SAS</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 9</span>
-                    <span>
-                      <a href="/posts/saspy_setup_10092021/">How to setup Saspy</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 8</span>
-                    <span>
-                      <a href="/posts/justlog_chatlog_api_10082021/">First look at justlog api</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 7</span>
-                    <span>
-                      <a href="/posts/docker_on_rhel_10072021/">Docker on RHEL server</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Oct 6</span>
-                    <span>
-                      <a href="/posts/jupyter_notebook_black_code_format_10062021/">Auto format Jupyter Notebook code with jupyter-black</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 29</span>
-                    <span>
-                      <a href="/posts/kivy_multitouch_button_09292021/">Kivy - how to handle single and double touch events</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 17</span>
-                    <span>
-                      <a href="/posts/jira_sas_09172021/">Use JIRA API with SAS to retrieve tickets</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 13</span>
-                    <span>
-                      <a href="/posts/aws_s3_with_python_09132021/">Pandas dataframe from S3 data using boto3 or smart_open</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 12</span>
-                    <span>
-                      <a href="/posts/1fn-2fn-3fn_09122021/">1NF, 2NF, and 3NF Normalization</a>
-                    </span>
-                  </li>
-              
-             
-                  <li class="archives-list-item">
-                    <span class="archives-list-item-date">Sep 10</span>
-                    <span>
-                      <a href="/posts/apache_spark_standalone_cluster_09102021/">Create an Apache Spark standalone cluster</a>
-                    </span>
-                  </li>
-              
-          </ul>
-      
-  </div>
+<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Getting Started Example&#34;</span>,
 
-  <div class="page-footer"></div>
+<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Build an Extension!&#34;</span>,
+
+<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>,
+
+<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;manifest_version&#34;</span>: <span style="color:#ae81ff">3</span>,
+
+<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;permissions&#34;</span>: [
+
+<span style="color:#960050;background-color:#1e0010">​</span>        <span style="color:#e6db74">&#34;activeTab&#34;</span>
+
+<span style="color:#960050;background-color:#1e0010">​</span>    ],
+
+<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;content_scripts&#34;</span>: [
+
+<span style="color:#960050;background-color:#1e0010">​</span>        {
+
+<span style="color:#960050;background-color:#1e0010">​</span>            <span style="color:#f92672">&#34;matches&#34;</span>: [
+
+<span style="color:#960050;background-color:#1e0010">​</span>                <span style="color:#e6db74">&#34;https://*/*&#34;</span>
+
+<span style="color:#960050;background-color:#1e0010">​</span>            ],
+
+<span style="color:#960050;background-color:#1e0010">​</span>            <span style="color:#f92672">&#34;js&#34;</span>: [
+
+<span style="color:#960050;background-color:#1e0010">​</span>                <span style="color:#e6db74">&#34;content-script.js&#34;</span>
+
+<span style="color:#960050;background-color:#1e0010">​</span>            ],
+
+<span style="color:#960050;background-color:#1e0010">​</span>            <span style="color:#f92672">&#34;css&#34;</span>: [
+
+<span style="color:#960050;background-color:#1e0010">​</span>                <span style="color:#e6db74">&#34;style.css&#34;</span>
+
+<span style="color:#960050;background-color:#1e0010">​</span>            ]
+
+<span style="color:#960050;background-color:#1e0010">​</span>        }
+
+<span style="color:#960050;background-color:#1e0010">​</span>    ]
+
+}
+</code></pre></div><hr>
+<h1 id="content-script">Content script</h1>
+<p><em>content-script.js</em> contains most of the logic</p>
+<h2 id="create-a-canvas-element">Create a canvas element</h2>
+<p>Use javascript to create a custom <code>canvas</code> element.</p>
+<p>The canvas height and width match the entire web page. The canvas&rsquo;s id is <em>paint-canvas</em>; this is important for future style sheets.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">CANVAS_ID</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;paint-canvas&#39;</span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">canvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#34;canvas&#34;</span>)
+<span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">CANVAS_ID</span>
+<span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">documentElement</span>.<span style="color:#a6e22e">scrollHeight</span>;
+<span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">documentElement</span>.<span style="color:#a6e22e">scrollWidth</span>;
+</code></pre></div><h2 id="create-variables-to-store-state">Create variables to store state</h2>
+<p><em>context</em> stores information about how we draw.</p>
+<p><em>mouseX</em> and <em>mouseY</em> store the cursor&rsquo;s x and y coordinates.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">mouseX</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">mouseY</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">context</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#34;2d&#34;</span>);
+<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">strokeStyle</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>;
+<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">lineWidth</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">isDrawing</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</code></pre></div><h2 id="add-event-listeners-to-canvas">Add event listeners to canvas</h2>
+<p>User will draw on the canvas so we need to handle <code>mousedown</code>, <code>mouseup</code>, and <code>mousemove</code></p>
+<p>A mouse left click or touch to drawing pad triggers a mousedown event. The extension starts drawing when it receives a mousedown event.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mousedown&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
+    <span style="color:#a6e22e">setMouseCoordinates</span>(<span style="color:#a6e22e">canvas</span>, <span style="color:#a6e22e">event</span>);
+    <span style="color:#a6e22e">isDrawing</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+
+    <span style="color:#75715e">// Start Drawing
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">beginPath</span>();
+    <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">moveTo</span>(<span style="color:#a6e22e">mouseX</span>, <span style="color:#a6e22e">mouseY</span>);
+});
+</code></pre></div><p>Any mouse movement triggers a mousemove event. If the user is still drawing (holding down left mouse button or pressing drawing tablet pen on pad), then continue drawing new lines on the canvas.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mousemove&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
+    <span style="color:#a6e22e">setMouseCoordinates</span>(<span style="color:#a6e22e">canvas</span>, <span style="color:#a6e22e">event</span>);
+
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isDrawing</span>) {
+        <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">lineTo</span>(<span style="color:#a6e22e">mouseX</span>, <span style="color:#a6e22e">mouseY</span>);
+        <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">stroke</span>();
+    }
+});
+</code></pre></div><p>The extension receives a mouseup event when the user lets go of the left mouse button or lifts drawing tablet pen. The extension stops drawing on the canvas.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mouseup&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
+    <span style="color:#a6e22e">setMouseCoordinates</span>(<span style="color:#a6e22e">canvas</span>, <span style="color:#a6e22e">event</span>);
+    <span style="color:#a6e22e">isDrawing</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+});
+</code></pre></div><h2 id="keep-track-of-cursor-coordinates">Keep track of cursor coordinates</h2>
+<p>All event handlers call <code>setMouseCoordinates</code> to get true coordinates. <code>canvas.getBoundingClientRect()</code> is critical.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setMouseCoordinates</span>(<span style="color:#a6e22e">canvas</span>, <span style="color:#a6e22e">event</span>) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rect</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">getBoundingClientRect</span>()
+    <span style="color:#a6e22e">mouseX</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">clientX</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">left</span>;
+    <span style="color:#a6e22e">mouseY</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">clientY</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">top</span>;
+}
+</code></pre></div><h2 id="add-custom-canvas-to-document">Add custom canvas to document</h2>
+<p>User can only interact with the canvas if it is added to the current webpage!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">canvas</span>);
+</code></pre></div><hr>
+<h1 id="style-sheet">Style sheet</h1>
+<p>The canvas should be <strong>on top</strong> of all other elements.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#paint-canvas {
+    <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
+    <span style="color:#66d9ef">top</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">z-index</span>: <span style="color:#ae81ff">1</span>;
+}
+</code></pre></div><hr>
+<p>The extension is far from complete! Nonetheless, the injected canvas is a good milestone</p>
+<h1 id="resources">Resources</h1>
+<ul>
+<li>Core canvas event logic - <a href="https://codepen.io/alperentalaslioglu/pen/yPGgvP">https://codepen.io/alperentalaslioglu/pen/yPGgvP</a></li>
+<li>True click coords on a canvas - <a href="https://stackoverflow.com/a/18053642/2475380">https://stackoverflow.com/a/18053642/2475380</a></li>
+</ul>
+
+        </p>
+    </div>
+    
+
+    
+
+    <div class="page-footer">
+        
+        <hr class="footer-divider">
+        
+            <a class="tag" href="/tags/chrome-extension">#chrome-extension</a>
+        
+            <a class="tag" href="/tags/wacom">#wacom</a>
+        
+            <a class="tag" href="/tags/canvas">#canvas</a>
+        
+            <a class="tag" href="/tags/web-annotation-project">#web-annotation-project</a>
+        
+      
+    </div>
 
 
         

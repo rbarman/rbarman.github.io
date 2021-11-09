@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>canvas</title>
+      <link>https://rbarman.github.io/tags/canvas/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/canvas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chrome-extension</title>
+      <link>https://rbarman.github.io/tags/chrome-extension/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/chrome-extension/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wacom</title>
+      <link>https://rbarman.github.io/tags/wacom/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/wacom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web-annotation-project</title>
+      <link>https://rbarman.github.io/tags/web-annotation-project/</link>
+      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/web-annotation-project/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>bash</title>
@@ -26,15 +62,6 @@
       <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>wacom</title>
-      <link>https://rbarman.github.io/tags/wacom/</link>
-      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rbarman.github.io/tags/wacom/</guid>
       <description></description>
     </item>
     
