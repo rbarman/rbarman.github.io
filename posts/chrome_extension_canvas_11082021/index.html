@@ -169,50 +169,29 @@
 <p>I am working on a chrome extension that lets me annotate a web page with my drawing tablet. The first major component is to create a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>canvas</code></a> element that handles different touch events to draw. This post describes how I created a chrome extension that inserts a drawable canvas element.</p>
 <hr>
 <h1 id="manifest">Manifest</h1>
-<p><code>Manifest.json</code> is a standard file to setup a chrome extension. I have a content script</p>
-<p>I set matches to <code>https://*/*&quot;****</code> so the extension loads on every web page. In practice I probably want the extension to run if user clicks on the extension icon.</p>
+<p><code>Manifest.json</code> is a standard file to setup a chrome extension. I have a content script and stylesheet for now.</p>
+<p>I set matches to <code>https://*/*&quot;****</code> so the extension loads on every web page. In practice I want to run the extension if user clicks on the extension icon.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-
-<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Getting Started Example&#34;</span>,
-
-<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Build an Extension!&#34;</span>,
-
-<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>,
-
-<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;manifest_version&#34;</span>: <span style="color:#ae81ff">3</span>,
-
-<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;permissions&#34;</span>: [
-
-<span style="color:#960050;background-color:#1e0010">​</span>        <span style="color:#e6db74">&#34;activeTab&#34;</span>
-
-<span style="color:#960050;background-color:#1e0010">​</span>    ],
-
-<span style="color:#960050;background-color:#1e0010">​</span>    <span style="color:#f92672">&#34;content_scripts&#34;</span>: [
-
-<span style="color:#960050;background-color:#1e0010">​</span>        {
-
-<span style="color:#960050;background-color:#1e0010">​</span>            <span style="color:#f92672">&#34;matches&#34;</span>: [
-
-<span style="color:#960050;background-color:#1e0010">​</span>                <span style="color:#e6db74">&#34;https://*/*&#34;</span>
-
-<span style="color:#960050;background-color:#1e0010">​</span>            ],
-
-<span style="color:#960050;background-color:#1e0010">​</span>            <span style="color:#f92672">&#34;js&#34;</span>: [
-
-<span style="color:#960050;background-color:#1e0010">​</span>                <span style="color:#e6db74">&#34;content-script.js&#34;</span>
-
-<span style="color:#960050;background-color:#1e0010">​</span>            ],
-
-<span style="color:#960050;background-color:#1e0010">​</span>            <span style="color:#f92672">&#34;css&#34;</span>: [
-
-<span style="color:#960050;background-color:#1e0010">​</span>                <span style="color:#e6db74">&#34;style.css&#34;</span>
-
-<span style="color:#960050;background-color:#1e0010">​</span>            ]
-
-<span style="color:#960050;background-color:#1e0010">​</span>        }
-
-<span style="color:#960050;background-color:#1e0010">​</span>    ]
-
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Getting Started Example&#34;</span>,
+    <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Build an Extension!&#34;</span>,
+    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>,
+    <span style="color:#f92672">&#34;manifest_version&#34;</span>: <span style="color:#ae81ff">3</span>,
+    <span style="color:#f92672">&#34;permissions&#34;</span>: [
+        <span style="color:#e6db74">&#34;activeTab&#34;</span>
+    ],
+    <span style="color:#f92672">&#34;content_scripts&#34;</span>: [
+        {
+            <span style="color:#f92672">&#34;matches&#34;</span>: [
+                <span style="color:#e6db74">&#34;https://*/*&#34;</span>
+            ],
+            <span style="color:#f92672">&#34;js&#34;</span>: [
+                <span style="color:#e6db74">&#34;content-script.js&#34;</span>
+            ],
+            <span style="color:#f92672">&#34;css&#34;</span>: [
+                <span style="color:#e6db74">&#34;style.css&#34;</span>
+            ]
+        }
+    ]
 }
 </code></pre></div><hr>
 <h1 id="content-script">Content script</h1>
@@ -226,7 +205,7 @@
 <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">documentElement</span>.<span style="color:#a6e22e">scrollHeight</span>;
 <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">documentElement</span>.<span style="color:#a6e22e">scrollWidth</span>;
 </code></pre></div><h2 id="create-variables-to-store-state">Create variables to store state</h2>
-<p><em>context</em> stores information about how we draw.</p>
+<p><em>context</em> stores drawing information</p>
 <p><em>mouseX</em> and <em>mouseY</em> store the cursor&rsquo;s x and y coordinates.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">mouseX</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">mouseY</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
@@ -278,12 +257,12 @@
     <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span>;
     <span style="color:#66d9ef">z-index</span>: <span style="color:#ae81ff">1</span>;
 }
-</code></pre></div><hr>
-<p>The extension is far from complete! Nonetheless, the injected canvas is a good milestone</p>
+</code></pre></div><p>The extension is far from complete! Nonetheless, the injected canvas is a good milestone</p>
 <h1 id="resources">Resources</h1>
 <ul>
+<li>HTML5 Canvas - <a href="https://simon.html5.org/dump/html5-canvas-cheat-sheet.html">https://simon.html5.org/dump/html5-canvas-cheat-sheet.html</a></li>
 <li>Core canvas event logic - <a href="https://codepen.io/alperentalaslioglu/pen/yPGgvP">https://codepen.io/alperentalaslioglu/pen/yPGgvP</a></li>
-<li>True click coords on a canvas - <a href="https://stackoverflow.com/a/18053642/2475380">https://stackoverflow.com/a/18053642/2475380</a></li>
+<li>True click coordinates on a canvas - <a href="https://stackoverflow.com/a/18053642/2475380">https://stackoverflow.com/a/18053642/2475380</a></li>
 </ul>
 
         </p>
@@ -303,6 +282,8 @@
             <a class="tag" href="/tags/canvas">#canvas</a>
         
             <a class="tag" href="/tags/web-annotation-project">#web-annotation-project</a>
+        
+            <a class="tag" href="/tags/javascript">#javascript</a>
         
       
     </div>

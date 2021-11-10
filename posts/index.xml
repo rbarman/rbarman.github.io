@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>First attempt at scene detection with PySceneDetect</title>
+      <link>https://rbarman.github.io/posts/pyscenedetect_11092021/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/pyscenedetect_11092021/</guid>
+      <description>First attempt at scene detection with PySceneDetect</description>
+    </item>
     
     <item>
       <title>Chrome extension - inject drawable canvas</title>

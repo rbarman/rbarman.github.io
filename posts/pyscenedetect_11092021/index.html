@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>First attempt at scene detection with PySceneDetect | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,148 +158,62 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/tts_mozilla_10302021/">
-                    Pretrained TTS models with Mozilla TTS library
-                </a>
-            </h2>
-            <div>
-                <p>How to use pre trained deep learning text to speech models</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 30, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/tts">#tts</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/zipline_ingest_bundle_10292021/">
-                    Zipline - ingest default Quandl data bundle
-                </a>
-            </h2>
-            <div>
-                <p>How to ingest the default Quandl data bundle in the zipline-reloaded framework</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 29, 2021</time>
+<h1 class="post-title">First attempt at scene detection with PySceneDetect</h1>
+    
+    <time>November 9, 2021</time>
+    
+    <div>
+        <p>
+        <p>First attempt at scene detection with <a href="https://github.com/Breakthrough/PySceneDetect">PySceneDetect</a></p>
+<p><a href="https://numfocus.org/">NumFOCUS</a> recently started an <a href="https://github.com/numfocus/YouTubeVideoTimestamps">initiative</a> for the community members to add time-stamp data to NumFOCUS and PyData Youtube videos. People create a pull request for each video with timestamps and corresponding description.</p>
+<p>One must obviously watch an entire video to create high quality time-stamp annotations. However, I want to apply basic computer vision to detect different scenes. For example if a video consists of a full screen PowerPoint presentation, we can easily detect different scenes by comparing adjacent video frames.</p>
+<p>PySceneDetect is a great package to detect scenes. It implements different scene detection algorithms with <a href="https://github.com/opencv/opencv-python">OpenCV</a>. I am currently exploring with PySceneDetect&rsquo;s command line interface.</p>
+<hr>
+<p>The below line runs the <code>detect-content</code> algorithm on video.webm. It creates a csv file with information for all detected scenes and creates images for each detected scene.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scenedetect --input video.webm  detect-content list-scenes save-images
+</code></pre></div><p>Example csv output:</p>
+<pre><code>Scene Number,Start Frame,Start Timecode,Start Time (seconds),End Frame,End Timecode,End Time (seconds),Length (frames),Length (timecode),Length (seconds)
+1,0,00:00:00.000,0.000,1497,00:00:59.880,59.880,1497,00:00:59.880,59.880
+2,1497,00:00:59.880,59.880,30773,00:20:30.920,1230.920,29276,00:19:31.040,1171.040
+3,30773,00:20:30.920,1230.920,31378,00:20:55.120,1255.120,605,00:00:24.200,24.200
+4,31378,00:20:55.120,1255.120,31735,00:21:09.400,1269.400,357,00:00:14.280,14.280
+5,31735,00:21:09.400,1269.400,31825,00:21:13.000,1273.000,90,00:00:03.600,3.600
+6,31825,00:21:13.000,1273.000,36845,00:24:33.800,1473.800,5020,00:03:20.800,200.800
+7,36845,00:24:33.800,1473.800,37437,00:24:57.480,1497.480,592,00:00:23.680,23.680
+8,37437,00:24:57.480,1497.480,46642,00:31:05.680,1865.680,9205,00:06:08.200,368.200
+9,46642,00:31:05.680,1865.680,47656,00:31:46.240,1906.240,1014,00:00:40.560,40.560
+10,47656,00:31:46.240,1906.240,47674,00:31:46.960,1906.960,18,00:00:00.720,0.720
+11,47674,00:31:46.960,1906.960,47803,00:31:52.120,1912.120,129,00:00:05.160,5.160
+12,47803,00:31:52.120,1912.120,47820,00:31:52.800,1912.800,17,00:00:00.680,0.680
+13,47820,00:31:52.800,1912.800,47867,00:31:54.680,1914.680,47,00:00:01.880,1.880
+14,47867,00:31:54.680,1914.680,48159,00:32:06.360,1926.360,292,00:00:11.680,11.680
+15,48159,00:32:06.360,1926.360,49649,00:33:05.960,1985.960,1490,00:00:59.600,59.600
+</code></pre><p>The <code>detect-content</code> compares adjacent frames and detects a new scene if the difference in frames meets a specific threshold. Default threshold is 30; we can change the threshold with -t parameter:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scenedetect --input video.webm  detect-content -t <span style="color:#ae81ff">50</span> list-scenes save-images
+</code></pre></div><hr>
+<p>Unfortunately the numfocus/pydata videos show the speaker. The algorithm detects new scenes when the speaker moves a lot. A PySceneDetect specific solution is to use a higher threshold value or try to use the <code>detect-adaptive</code> algorithm to compare a rolling average of adjacent frames (see <a href="https://pyscenedetect.readthedocs.io/en/latest/reference/detection-methods/)">https://pyscenedetect.readthedocs.io/en/latest/reference/detection-methods/)</a>.</p>
+<p>A better solution is to create a bounding box for the speaker and fill it with a solid color. PySceneDetect then creates a new scene when a new slide is presented.</p>
 
-            
-            
-                
-                    <a class="tag" href="/tags/zipline-reloaded">#zipline-reloaded</a>
-                
-                    <a class="tag" href="/tags/quandl">#quandl</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_shell_10272021/">
-                    Shell script to create virtual environment
-                </a>
-            </h2>
-            <div>
-                <p>Shell script to create virtual environment for a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 27, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-                    <a class="tag" href="/tags/bash">#bash</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_10262021/">
-                    Activate virtual environments with Jupyter Notebook
-                </a>
-            </h2>
-            <div>
-                <p>How to use a virtual environment in a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 26, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/python">#python</a>
         
-        <p>Page 2 of 5</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-                <a class="color-link older" href="/page/3/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
+            <a class="tag" href="/tags/pyscenedetect">#PySceneDetect</a>
         
+            <a class="tag" href="/tags/scene-detection">#scene detection</a>
+        
+      
     </div>
+
 
         
 
