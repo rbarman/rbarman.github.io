@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Scene detection with DVR-Scan</title>
+      <link>https://rbarman.github.io/posts/dvrscan_11102021/</link>
+      <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/dvrscan_11102021/</guid>
+      <description>​ Scene detection with DVR-Scan</description>
+    </item>
+    
+    <item>
       <title>First attempt at scene detection with PySceneDetect</title>
       <link>https://rbarman.github.io/posts/pyscenedetect_11092021/</link>
       <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>

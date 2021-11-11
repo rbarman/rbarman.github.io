@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Scene detection with DVR-Scan | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,152 +158,54 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/xsetwacom_monitor_10312021/">
-                    Map Huion tablet to specific monitor
-                </a>
-            </h2>
-            <div>
-                <p>How to use xsetwacom to map tablet and stylus to specific monitor.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 31, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/bash">#bash</a>
-                
-                    <a class="tag" href="/tags/linux">#linux</a>
-                
-                    <a class="tag" href="/tags/wacom">#wacom</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/tts_mozilla_10302021/">
-                    Pretrained TTS models with Mozilla TTS library
-                </a>
-            </h2>
-            <div>
-                <p>How to use pre trained deep learning text to speech models</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 30, 2021</time>
+<h1 class="post-title">Scene detection with DVR-Scan</h1>
+    
+    <time>November 10, 2021</time>
+    
+    <div>
+        <p>
+        <p>​       Scene detection with <a href="https://github.com/Breakthrough/DVR-Scan">DVR-Scan</a></p>
+<p><a href="https://numfocus.org/">NumFOCUS</a> recently started an <a href="https://github.com/numfocus/YouTubeVideoTimestamps">initiative</a> for the community members to add time-stamp data to NumFOCUS and PyData Youtube videos. People create a pull request for each video with timestamps and corresponding description.</p>
+<p>One must obviously watch an entire video to create high quality time-stamp annotations. However, I want to apply basic computer vision to detect different scenes. For example if a video consists of a full screen PowerPoint presentation, we can easily detect different scenes by comparing adjacent video frames. If a video lecture contains a moving speaker, then we focus on a region of interest in the video that does not include the speaker.</p>
+<p>I recently explored <a href="https://github.com/Breakthrough/PySceneDetect">PySceneDetect</a>, but it unfortunately does not let you natively select a <em>region of interest</em> in a video. I need to crop the video and pass it to PySceneDetect.</p>
+<p><a href="https://github.com/Breakthrough/DVR-Scan">DVR-Scan</a> is an alternative library to extract scenes <strong>and</strong> it lets you select a region of interest!</p>
+<p>Example cli usage:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dvr-scan -i video.webm -so -df <span style="color:#ae81ff">3</span> -roi
+</code></pre></div><ul>
+<li>
+<p><code>-i </code>: input video</p>
+</li>
+<li>
+<p><code>-so</code>: triggers <em>scan-only</em> mode and prints out time codes for each detected scene. DVR-scan saves a video clip of each scene if <code>-so</code> is <strong>not</strong> included</p>
+</li>
+<li>
+<p><code>-df</code>: downscale factor. Downscales the video before processing. This improves computation performance but sacrifices scene detection accuracy</p>
+</li>
+<li>
+<p><code>-roi</code>: region of interest. Opens the first frame and I select a region of interest by drawing a bounding box and pressing enter. Alternatively I could directly pass the x,y,w,h values of the bounding box like <code>-roi 100 110 50 75</code></p>
+</li>
+</ul>
 
-            
-            
-                
-                    <a class="tag" href="/tags/tts">#tts</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/zipline_ingest_bundle_10292021/">
-                    Zipline - ingest default Quandl data bundle
-                </a>
-            </h2>
-            <div>
-                <p>How to ingest the default Quandl data bundle in the zipline-reloaded framework</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 29, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/zipline-reloaded">#zipline-reloaded</a>
-                
-                    <a class="tag" href="/tags/quandl">#quandl</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_shell_10272021/">
-                    Shell script to create virtual environment
-                </a>
-            </h2>
-            <div>
-                <p>Shell script to create virtual environment for a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 27, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-                    <a class="tag" href="/tags/bash">#bash</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/python">#python</a>
         
-        <p>Page 2 of 6</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-                <a class="color-link older" href="/page/3/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
+            <a class="tag" href="/tags/dvr-scan">#dvr-scan</a>
         
+            <a class="tag" href="/tags/scene-detection">#scene detection</a>
+        
+      
     </div>
+
 
         
 

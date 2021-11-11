@@ -3,32 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://rbarman.github.io/tags/dvr-scan/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/posts/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/python/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/scene-detection/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/posts/dvrscan_11102021/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/</loc>
+    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://rbarman.github.io/posts/pyscenedetect_11092021/</loc>
     <lastmod>2021-11-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://rbarman.github.io/posts/</loc>
-    <lastmod>2021-11-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://rbarman.github.io/tags/pyscenedetect/</loc>
-    <lastmod>2021-11-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rbarman.github.io/tags/python/</loc>
-    <lastmod>2021-11-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rbarman.github.io/tags/scene-detection/</loc>
-    <lastmod>2021-11-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rbarman.github.io/tags/</loc>
     <lastmod>2021-11-09T00:00:00+00:00</lastmod>
   </url>
   

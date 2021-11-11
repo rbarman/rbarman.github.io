@@ -6,24 +6,24 @@
     <description>Recent content in Tags on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>PySceneDetect</title>
-      <link>https://rbarman.github.io/tags/pyscenedetect/</link>
-      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      <title>dvr-scan</title>
+      <link>https://rbarman.github.io/tags/dvr-scan/</link>
+      <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://rbarman.github.io/tags/pyscenedetect/</guid>
+      <guid>https://rbarman.github.io/tags/dvr-scan/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
       <link>https://rbarman.github.io/tags/python/</link>
-      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/python/</guid>
       <description></description>
@@ -32,9 +32,18 @@
     <item>
       <title>scene detection</title>
       <link>https://rbarman.github.io/tags/scene-detection/</link>
-      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/scene-detection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PySceneDetect</title>
+      <link>https://rbarman.github.io/tags/pyscenedetect/</link>
+      <pubDate>Tue, 09 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/pyscenedetect/</guid>
       <description></description>
     </item>
     

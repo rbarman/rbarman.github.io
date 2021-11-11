@@ -6,10 +6,19 @@
     <description>Recent content in python on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Scene detection with DVR-Scan</title>
+      <link>https://rbarman.github.io/posts/dvrscan_11102021/</link>
+      <pubDate>Wed, 10 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/dvrscan_11102021/</guid>
+      <description>​ Scene detection with DVR-Scan</description>
+    </item>
     
     <item>
       <title>First attempt at scene detection with PySceneDetect</title>
