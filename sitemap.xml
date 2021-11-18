@@ -3,12 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://rbarman.github.io/tags/dvr-scan/</loc>
-    <lastmod>2021-11-10T00:00:00+00:00</lastmod>
+    <loc>https://rbarman.github.io/posts/</loc>
+    <lastmod>2021-11-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://rbarman.github.io/posts/</loc>
+    <loc>https://rbarman.github.io/tags/solidity/</loc>
+    <lastmod>2021-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/posts/solidity_simple_storage_1172021/</loc>
+    <lastmod>2021-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/</loc>
+    <lastmod>2021-11-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://rbarman.github.io/tags/dvr-scan/</loc>
     <lastmod>2021-11-10T00:00:00+00:00</lastmod>
   </url>
   
@@ -28,7 +43,7 @@
   </url>
   
   <url>
-    <loc>https://rbarman.github.io/tags/</loc>
+    <loc>https://rbarman.github.io/posts/solidity_simple_storage_11172021/</loc>
     <lastmod>2021-11-10T00:00:00+00:00</lastmod>
   </url>
   
