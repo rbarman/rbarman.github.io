@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Solidity - payable function</title>
+      <link>https://rbarman.github.io/posts/solidity_payable_11192021/</link>
+      <pubDate>Fri, 19 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/solidity_payable_11192021/</guid>
+      <description>Solidity example with payable functions</description>
+    </item>
+    
+    <item>
       <title>Solidity - storage factory example</title>
       <link>https://rbarman.github.io/posts/solidity_storage_factory_11182021/</link>
       <pubDate>Thu, 18 Nov 2021 00:00:00 +0000</pubDate>

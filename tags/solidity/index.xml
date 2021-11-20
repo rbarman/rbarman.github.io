@@ -6,10 +6,19 @@
     <description>Recent content in solidity on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/solidity/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Solidity - payable function</title>
+      <link>https://rbarman.github.io/posts/solidity_payable_11192021/</link>
+      <pubDate>Fri, 19 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/solidity_payable_11192021/</guid>
+      <description>Solidity example with payable functions</description>
+    </item>
     
     <item>
       <title>Solidity - storage factory example</title>

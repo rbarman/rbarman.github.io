@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Solidity - payable function | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,148 +158,110 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/tts_mozilla_10302021/">
-                    Pretrained TTS models with Mozilla TTS library
-                </a>
-            </h2>
-            <div>
-                <p>How to use pre trained deep learning text to speech models</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 30, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/tts">#tts</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/zipline_ingest_bundle_10292021/">
-                    Zipline - ingest default Quandl data bundle
-                </a>
-            </h2>
-            <div>
-                <p>How to ingest the default Quandl data bundle in the zipline-reloaded framework</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 29, 2021</time>
+<h1 class="post-title">Solidity - payable function</h1>
+    
+    <time>November 19, 2021</time>
+    
+    <div>
+        <p>
+        <p>Solidity example with payable functions</p>
+<p>Quick example that follows <a href="https://github.com/smartcontractkit/full-blockchain-solidity-course-py#lesson-3-fund-me">https://github.com/smartcontractkit/full-blockchain-solidity-course-py#lesson-3-fund-me</a></p>
+<p>Simple contract that mimics a political campaign fund. Main ideas:</p>
+<ul>
+<li>
+<p>The political candidate creates a contract to fund their campaign. The <code>constructor</code> sets the owner to the candidate&rsquo;s address</p>
+</li>
+<li>
+<p>We create several <code>modifiers</code> to limit execution of contraction functions.  <code>onlyCandidate</code> checks if the executor&rsquo;s address matches the candidate&rsquo;s (contract creator) address. <code>campaignIsOpen</code> checks if the campaign is currently open.</p>
+</li>
+<li>
+<p>Anyone can donate to the campaign with the <code>donate</code> function.</p>
+<ul>
+<li>The <code>payable</code> keyword means that the funds go to the contract.</li>
+<li>Meta data about all donations are publicly available (total donation, addresses, amount donated by address)</li>
+<li>Everyone except the candidate can donate to the fund and they can only donate if the fund is running.</li>
+</ul>
+</li>
+<li>
+<p>The candidate withdraws the campaign funds and ends the campaign with the <code>withdraw</code> function. All funds in the contract are sent to the candidate. No one can contribute to the campaign once it is closed.</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-solidity" data-lang="solidity"><span style="color:#75715e">// SPDX-License-Identifier: MIT
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">8</span>.<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">9</span>.<span style="color:#ae81ff">0</span>;
 
-            
-            
-                
-                    <a class="tag" href="/tags/zipline-reloaded">#zipline-reloaded</a>
-                
-                    <a class="tag" href="/tags/quandl">#quandl</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_shell_10272021/">
-                    Shell script to create virtual environment
-                </a>
-            </h2>
-            <div>
-                <p>Shell script to create virtual environment for a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 27, 2021</time>
+<span style="color:#66d9ef">contract</span> Campaign{
+    
+    <span style="color:#75715e">/*
+</span><span style="color:#75715e">    campaign contract requirements: 
+</span><span style="color:#75715e">        - candidate creates funding campaign
+</span><span style="color:#75715e">        - the candidate can not donate
+</span><span style="color:#75715e">        - only the candidate can withdraw
+</span><span style="color:#75715e">        - all donations and donators are public
+</span><span style="color:#75715e">        - total amount of donations is public
+</span><span style="color:#75715e">        - campaign ends once the candidate withdraws
+</span><span style="color:#75715e">    */</span>
+    
+    <span style="color:#66d9ef">address</span> <span style="color:#66d9ef">public</span> owner;
+    <span style="color:#66d9ef">address</span>[] <span style="color:#66d9ef">public</span> donators;
+    <span style="color:#66d9ef">uint256</span> <span style="color:#66d9ef">public</span> total_donation;
+    <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">public</span> campaign_open <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+    <span style="color:#66d9ef">mapping</span>(<span style="color:#66d9ef">address</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">uint256</span>) <span style="color:#66d9ef">public</span> addressToAmountFunded;
 
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-                    <a class="tag" href="/tags/bash">#bash</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
+    <span style="color:#75715e">// Set owner = address of contract creater
+</span><span style="color:#75715e"></span>    constructor() {
+        owner <span style="color:#f92672">=</span> msg.sender;
+    }
+    
+    <span style="color:#75715e">// modifiers
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">modifier</span> onlyCandidate {
+        require(msg.sender <span style="color:#f92672">==</span> owner, <span style="color:#e6db74">&#34;only campain owner can execute this action&#34;</span>);
+        <span style="color:#66d9ef">_</span>;
+    }
+    <span style="color:#66d9ef">modifier</span> onlyDonator {
+        require(msg.sender <span style="color:#f92672">!=</span> owner, <span style="color:#e6db74">&#34;only donators can execute this action&#34;</span>);
+        <span style="color:#66d9ef">_</span>;
+    }
+    <span style="color:#66d9ef">modifier</span> campaignIsOpen {
+        require(campaign_open <span style="color:#f92672">==</span> <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">&#34;campaign is closed&#34;</span>);
+        <span style="color:#66d9ef">_</span>;
+    }
+    
+    <span style="color:#75715e">// only donators can donate
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> donate() <span style="color:#66d9ef">public</span> onlyDonator campaignIsOpen <span style="color:#66d9ef">payable</span> {
         
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_10262021/">
-                    Activate virtual environments with Jupyter Notebook
-                </a>
-            </h2>
-            <div>
-                <p>How to use a virtual environment in a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 26, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+        <span style="color:#75715e">// keep track of who donated and how much 
+</span><span style="color:#75715e"></span>        donators.push(msg.sender);
+        addressToAmountFunded[msg.sender] <span style="color:#f92672">+=</span> msg.value;
+        total_donation <span style="color:#f92672">+=</span> msg.value;
+    }
+    
+    <span style="color:#75715e">// only the candidate can withdraw funds
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> withdraw() <span style="color:#66d9ef">payable</span> onlyCandidate campaignIsOpen <span style="color:#66d9ef">public</span> {
+        <span style="color:#75715e">// send entire balance in contract to candidate
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">payable</span>(msg.sender).transfer(<span style="color:#66d9ef">address</span>(this).balance);
+        <span style="color:#75715e">// close the campaign
+</span><span style="color:#75715e"></span>        campaign_open <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+    }
+    
+}
+</code></pre></div>
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/solidity">#solidity</a>
         
-        <p>Page 3 of 6</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/page/2/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-                <a class="color-link older" href="/page/4/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
-        
+      
     </div>
+
 
         
 
