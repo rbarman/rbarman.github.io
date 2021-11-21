@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deploy solidity contract with web3</title>
+      <link>https://rbarman.github.io/posts/web3_deployment_11202021/</link>
+      <pubDate>Sat, 20 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/web3_deployment_11202021/</guid>
+      <description>Example of deploying a solidity contract with web3 on a test Ganache blockchain.</description>
+    </item>
     
     <item>
       <title>Solidity - payable function</title>
@@ -17,7 +26,7 @@
       <pubDate>Fri, 19 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/posts/solidity_payable_11192021/</guid>
-      <description>Solidity example with payable functions</description>
+      <description>Solidity example that mimics a political campaign fund.</description>
     </item>
     
     <item>
@@ -26,7 +35,7 @@
       <pubDate>Thu, 18 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/posts/solidity_storage_factory_11182021/</guid>
-      <description>​ Simple storage factory solidity example</description>
+      <description>​ Solidity storage factory example.</description>
     </item>
     
     <item>
@@ -35,7 +44,7 @@
       <pubDate>Wed, 17 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/posts/solidity_simple_storage_11172021/</guid>
-      <description>​ Simple storage solidity example</description>
+      <description>Solidity storage example that mimics a store inventory.</description>
     </item>
     
     <item>
