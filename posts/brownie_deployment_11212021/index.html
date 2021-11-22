@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Deploy solidity contract with brownie | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,156 +158,74 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/solidity_simple_storage_11172021/">
-                    Solidity - Simple Storage example
-                </a>
-            </h2>
-            <div>
-                <p>Solidity storage example that mimics a store inventory.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>November 17, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/solidity">#solidity</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/dvrscan_11102021/">
-                    Scene detection with DVR-Scan
-                </a>
-            </h2>
-            <div>
-                <p>​ Scene detection with DVR-Scan</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>November 10, 2021</time>
+<h1 class="post-title">Deploy solidity contract with brownie</h1>
+    
+    <time>November 21, 2021</time>
+    
+    <div>
+        <p>
+        <p>Example of deploying a solidity contract with brownie on a rinkeby test chain</p>
+<p>Quick example that follows <a href="https://github.com/smartcontractkit/full-blockchain-solidity-course-py#lesson-5-brownie-simple-storage">https://github.com/smartcontractkit/full-blockchain-solidity-course-py#lesson-5-brownie-simple-storage</a></p>
+<p>I previously created a simple contract that mimics a store inventory. I now need to deploy the contract to a rinkeby test chain with the brownie python package.</p>
+<hr>
+<h1 id="create-project">Create project</h1>
+<p>init command creates folder structure for build, contracts, scripts, and tests.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brownie init
+</code></pre></div><h1 id="compile-contract">Compile contract</h1>
+<p>Added my contract to contracts directory and compile:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brownie compile
+</code></pre></div><h1 id="add-account-to-brownie">Add account to brownie</h1>
+<p>Created a new account called &ldquo;testing&rdquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brownie account new testing
+</code></pre></div><h1 id="env-file">.env file</h1>
+<p>I created an <a href="https://infura.io/">infurna</a> project. Fortunately brownie easily integrates with infurna projects.</p>
+<pre><code>export WEB3_INFURA_PROJECT_ID=&lt;&gt;
+</code></pre><h1 id="deployment-script">Deployment script</h1>
+<p>imports:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> brownie <span style="color:#f92672">import</span> accounts, Store, network
+</code></pre></div><p>Brownie uses temporary accounts from ganache-cli by default.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_account</span>():
+    <span style="color:#75715e"># use auto generated ganache-cli accounts</span>
+    <span style="color:#75715e"># or use own testnet account</span>
+    <span style="color:#66d9ef">if</span> network<span style="color:#f92672">.</span>show_active() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;development&#34;</span>:
+        <span style="color:#66d9ef">return</span> accounts[<span style="color:#ae81ff">0</span>]
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">return</span> accounts<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;testing&#34;</span>)
 
-            
-            
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-                    <a class="tag" href="/tags/dvr-scan">#dvr-scan</a>
-                
-                    <a class="tag" href="/tags/scene-detection">#scene detection</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/pyscenedetect_11092021/">
-                    First attempt at scene detection with PySceneDetect
-                </a>
-            </h2>
-            <div>
-                <p>First attempt at scene detection with PySceneDetect</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>November 9, 2021</time>
+</code></pre></div><p>Brownie executes the <code>main</code> function. Deploy the store contract and add a new product to store inventory</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    account <span style="color:#f92672">=</span> get_account()
 
-            
-            
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-                    <a class="tag" href="/tags/pyscenedetect">#PySceneDetect</a>
-                
-                    <a class="tag" href="/tags/scene-detection">#scene detection</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/chrome_extension_canvas_11082021/">
-                    Chrome extension - inject drawable canvas
-                </a>
-            </h2>
-            <div>
-                <p>Chrome extension that injects a drawable canvas on entire web page</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>November 8, 2021</time>
+    contract <span style="color:#f92672">=</span> Store<span style="color:#f92672">.</span>deploy({<span style="color:#e6db74">&#34;from&#34;</span>: account})
+    transaction <span style="color:#f92672">=</span> contract<span style="color:#f92672">.</span>addProduct(<span style="color:#e6db74">&#34;bed&#34;</span>, <span style="color:#ae81ff">100</span>, {<span style="color:#e6db74">&#34;from&#34;</span>: account})
+    transaction<span style="color:#f92672">.</span>wait(<span style="color:#ae81ff">1</span>)
 
-            
-            
-                
-                    <a class="tag" href="/tags/chrome-extension">#chrome-extension</a>
-                
-                    <a class="tag" href="/tags/wacom">#wacom</a>
-                
-                    <a class="tag" href="/tags/canvas">#canvas</a>
-                
-                    <a class="tag" href="/tags/web-annotation-project">#web-annotation-project</a>
-                
-                    <a class="tag" href="/tags/javascript">#javascript</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+    item <span style="color:#f92672">=</span> contract<span style="color:#f92672">.</span>products(<span style="color:#ae81ff">0</span>)
+    <span style="color:#66d9ef">print</span>(item)
+</code></pre></div><p>Execute with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brownie run scripts/deploy.py --network rinkeby
+</code></pre></div><p>Search transaction hashes in <a href="https://rinkeby.etherscan.io/">https://rinkeby.etherscan.io/</a></p>
+
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/python">#python</a>
         
-        <p>Page 2 of 7</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-                <a class="color-link older" href="/page/3/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
+            <a class="tag" href="/tags/solidity">#solidity</a>
         
+            <a class="tag" href="/tags/brownie">#brownie</a>
+        
+      
     </div>
+
 
         
 
