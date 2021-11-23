@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Spark SQL - explode | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,150 +158,141 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/zipline_ingest_bundle_10292021/">
-                    Zipline - ingest default Quandl data bundle
-                </a>
-            </h2>
-            <div>
-                <p>How to ingest the default Quandl data bundle in the zipline-reloaded framework</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 29, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/zipline-reloaded">#zipline-reloaded</a>
-                
-                    <a class="tag" href="/tags/quandl">#quandl</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_shell_10272021/">
-                    Shell script to create virtual environment
-                </a>
-            </h2>
-            <div>
-                <p>Shell script to create virtual environment for a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 27, 2021</time>
+<h1 class="post-title">Spark SQL - explode</h1>
+    
+    <time>November 22, 2021</time>
+    
+    <div>
+        <p>
+        <p>Quick example of explode and posexplode</p>
+<hr>
+<p>Suppose we have a table of products. Each product has a list of stores that it is sold in. For example, product 1 is sold in stores &lsquo;A&rsquo; and &lsquo;B&rsquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>createDataFrame([
+    Row(product_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, store_ids <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;A&#39;</span>,<span style="color:#e6db74">&#39;B&#39;</span>]),
+    Row(product_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, store_ids <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;C&#39;</span>,<span style="color:#e6db74">&#39;D&#39;</span>]),
+    Row(product_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, store_ids <span style="color:#f92672">=</span> []),
+])
+df<span style="color:#f92672">.</span>show()
+</code></pre></div><table>
+<thead>
+<tr>
+<th>product_id</th>
+<th>store_ids</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[&lsquo;A&rsquo;, &lsquo;B&rsquo;]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[&lsquo;C&rsquo;, &lsquo;D&rsquo;]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>[]</td>
+</tr>
+</tbody>
+</table>
+<p>We want to <a href="https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.functions.explode.html"><code>explode</code></a> the store_ids column so that each row contains one store_id. Since I am using spark sql, I need to use a <a href="https://spark.apache.org/docs/latest/sql-ref-syntax-qry-select-lateral-view.html"><code>LATERAL VIEW</code></a> clause.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df<span style="color:#f92672">.</span>createTempView(<span style="color:#e6db74">&#34;my_table&#34;</span>)
 
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-                    <a class="tag" href="/tags/bash">#bash</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_10262021/">
-                    Activate virtual environments with Jupyter Notebook
-                </a>
-            </h2>
-            <div>
-                <p>How to use a virtual environment in a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 26, 2021</time>
+sql_query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">SELECT 
+</span><span style="color:#e6db74">    product_id,
+</span><span style="color:#e6db74">    store_id
+</span><span style="color:#e6db74">FROM my_table
+</span><span style="color:#e6db74">LATERAL VIEW EXPLODE(store_ids) as store_id
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+results <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>sql(sql_query)
+results<span style="color:#f92672">.</span>show()
+</code></pre></div><table>
+<thead>
+<tr>
+<th>product_id</th>
+<th>store_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>&lsquo;A&rsquo;</td>
+</tr>
+<tr>
+<td>1</td>
+<td>&lsquo;B&rsquo;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&lsquo;C&rsquo;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&lsquo;C&rsquo;</td>
+</tr>
+</tbody>
+</table>
+<p>Note that the result does not include product_id 3.</p>
+<p>Suppose we want to include the index of each list element we explode. Use <code>posexplode</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sql_query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">SELECT 
+</span><span style="color:#e6db74">    product_id,
+</span><span style="color:#e6db74">    seq,
+</span><span style="color:#e6db74">    store_id
+</span><span style="color:#e6db74">FROM my_table
+</span><span style="color:#e6db74">LATERAL VIEW posexplode(store_ids) as seq,store_id
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+results <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>sql(sql_query)
+results<span style="color:#f92672">.</span>show()
+</code></pre></div><table>
+<thead>
+<tr>
+<th>product_id</th>
+<th>seq</th>
+<th>store_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>&lsquo;A&rsquo;</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>&lsquo;B&rsquo;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>&lsquo;C&rsquo;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>&lsquo;D&rsquo;</td>
+</tr>
+</tbody>
+</table>
 
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/successful_algorithmic_trading_chap3_102012021/">
-                    Successful Algorithmic Trading - Summary of Chapter 3: Successful Backtesting
-                </a>
-            </h2>
-            <div>
-                <p>Successful Algorithm Trading Chapter 3 summary</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 21, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/chapter-summary">#chapter summary</a>
-                
-                    <a class="tag" href="/tags/successful-algorithmic-trading">#Successful Algorithmic Trading</a>
-                
-                    <a class="tag" href="/tags/backtesting">#backtesting</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/pyspark">#pyspark</a>
         
-        <p>Page 4 of 7</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/page/3/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-                <a class="color-link older" href="/page/5/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
-        
+      
     </div>
+
 
         
 
