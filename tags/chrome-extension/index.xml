@@ -6,10 +6,19 @@
     <description>Recent content in chrome-extension on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/chrome-extension/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chrome extension &#43; flask server</title>
+      <link>https://rbarman.github.io/posts/chrome_extension_python_server_11232021.md/</link>
+      <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/chrome_extension_python_server_11232021.md/</guid>
+      <description>Quick example of chrome extension with python flask server</description>
+    </item>
     
     <item>
       <title>Chrome extension - inject drawable canvas</title>

@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Nov 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://rbarman.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>chrome-extension</title>
+      <link>https://rbarman.github.io/tags/chrome-extension/</link>
+      <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/chrome-extension/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flask</title>
+      <link>https://rbarman.github.io/tags/flask/</link>
+      <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/flask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://rbarman.github.io/tags/python/</link>
+      <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/tags/python/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>pyspark</title>
@@ -26,15 +53,6 @@
       <pubDate>Sun, 21 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/brownie/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>https://rbarman.github.io/tags/python/</link>
-      <pubDate>Sun, 21 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rbarman.github.io/tags/python/</guid>
       <description></description>
     </item>
     
@@ -89,15 +107,6 @@
       <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rbarman.github.io/tags/canvas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>chrome-extension</title>
-      <link>https://rbarman.github.io/tags/chrome-extension/</link>
-      <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://rbarman.github.io/tags/chrome-extension/</guid>
       <description></description>
     </item>
     

@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Chrome extension &#43; flask server</title>
+      <link>https://rbarman.github.io/posts/chrome_extension_python_server_11232021.md/</link>
+      <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/chrome_extension_python_server_11232021.md/</guid>
+      <description>Quick example of chrome extension with python flask server</description>
+    </item>
+    
+    <item>
       <title>Spark SQL - explode</title>
       <link>https://rbarman.github.io/posts/spark_sql_explode_11222021/</link>
       <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>

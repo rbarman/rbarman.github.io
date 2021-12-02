@@ -2,7 +2,6 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.68.3" />
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
     <script>
@@ -18,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Chrome extension &#43; flask server | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -39,8 +38,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -161,148 +158,113 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/tts_mozilla_10302021/">
-                    Pretrained TTS models with Mozilla TTS library
-                </a>
-            </h2>
-            <div>
-                <p>How to use pre trained deep learning text to speech models</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 30, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/tts">#tts</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/zipline_ingest_bundle_10292021/">
-                    Zipline - ingest default Quandl data bundle
-                </a>
-            </h2>
-            <div>
-                <p>How to ingest the default Quandl data bundle in the zipline-reloaded framework</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 29, 2021</time>
+<h1 class="post-title">Chrome extension &#43; flask server</h1>
+    
+    <time>November 23, 2021</time>
+    
+    <div>
+        <p>
+        <p>Quick example of chrome extension with python flask server</p>
+<hr>
+<p><strong>Manifest.json</strong></p>
+<p>The most important section is to add <em>http://127.0.0.1/</em> in the host_permissions section. The flask server will run on http://127.0.0.1/</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;name&#34;</span>,
+    <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;description&#34;</span>,
+    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>,
+    <span style="color:#f92672">&#34;manifest_version&#34;</span>: <span style="color:#ae81ff">3</span>,
+    <span style="color:#f92672">&#34;permissions&#34;</span>: [
+        <span style="color:#e6db74">&#34;activeTab&#34;</span>
+    ],
+    <span style="color:#f92672">&#34;action&#34;</span>: {
+        <span style="color:#f92672">&#34;default_title&#34;</span>: <span style="color:#e6db74">&#34;Click!&#34;</span>
+    },
+    <span style="color:#f92672">&#34;background&#34;</span>: {
+        <span style="color:#f92672">&#34;service_worker&#34;</span>: <span style="color:#e6db74">&#34;background.js&#34;</span>
+    },
+    <span style="color:#f92672">&#34;host_permissions&#34;</span>: [
+        <span style="color:#e6db74">&#34;http://127.0.0.1/&#34;</span>
+    ]
+}
+</code></pre></div><p><strong>background.js</strong></p>
+<p>The extension executes <em>send_tab_info()</em> when the user clicks on the extension. <em>Send_tab_info()</em> makes a post request to http://127.0.0.1:5000/collect with the tab&rsquo;s title and url. Note that this is an <code>async</code> function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">send_tab_info</span>(<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">title</span>) {
 
-            
-            
-                
-                    <a class="tag" href="/tags/zipline-reloaded">#zipline-reloaded</a>
-                
-                    <a class="tag" href="/tags/quandl">#quandl</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_shell_10272021/">
-                    Shell script to create virtual environment
-                </a>
-            </h2>
-            <div>
-                <p>Shell script to create virtual environment for a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 27, 2021</time>
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">endpoint_url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://127.0.0.1:5000/collect&#34;</span>
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tab_data</span> <span style="color:#f92672">=</span> {
+        <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">url</span>,
+        <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">title</span>,
+    };
 
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-                    <a class="tag" href="/tags/bash">#bash</a>
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_10262021/">
-                    Activate virtual environments with Jupyter Notebook
-                </a>
-            </h2>
-            <div>
-                <p>How to use a virtual environment in a jupyter notebook</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>October 26, 2021</time>
+    <span style="color:#66d9ef">try</span> {
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">endpoint_url</span>, {
+            <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;POST&#34;</span>,
+            <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">tab_data</span>),
+            <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+                <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;application/json&#39;</span>
+            }
+        });
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>();
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>)
+    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">error</span>);
+    }
+}
 
-            
-            
-                
-                    <a class="tag" href="/tags/jupyter-notebook">#jupyter-notebook</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+<span style="color:#75715e">// when user clicks on tooltip icon
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">chrome</span>.<span style="color:#a6e22e">action</span>.<span style="color:#a6e22e">onClicked</span>.<span style="color:#a6e22e">addListener</span>((<span style="color:#a6e22e">tab</span>) =&gt; {
+   
+    <span style="color:#75715e">// create request to server
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">send_tab_info</span>(<span style="color:#a6e22e">tab</span>.<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">tab</span>.<span style="color:#a6e22e">title</span>)
+});
+
+</code></pre></div><p><strong>server.py</strong></p>
+<p>The flask server has a POST /collect endpoint. It gets the url and title from the chrome extension post request and sends back a simple response.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, jsonify, request
+<span style="color:#f92672">import</span> os
+
+app <span style="color:#f92672">=</span> Flask(__name__)
+
+<span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/collect&#34;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;POST&#34;</span>])
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect_web_info</span>():
+
+    <span style="color:#75715e"># request contains url and title</span>
+    req <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>get_json()
+    url <span style="color:#f92672">=</span> req[<span style="color:#e6db74">&#34;url&#34;</span>]
+    title <span style="color:#f92672">=</span> req[<span style="color:#e6db74">&#34;title&#34;</span>]
+   
+	<span style="color:#75715e"># send response back to the chrome extension</span>
+    response <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Collected precious web data!&#34;</span>}
+    <span style="color:#66d9ef">return</span> jsonify(response)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    app<span style="color:#f92672">.</span>run()
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python server.py
+</code></pre></div><hr>
+<p>One practical use case for this pattern is to run a trained ml model on a local server and make requests from the browser.</p>
+
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/chrome-extension">#chrome-extension</a>
         
-        <p>Page 4 of 7</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/page/3/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-                <a class="color-link older" href="/page/5/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
+            <a class="tag" href="/tags/python">#python</a>
         
+            <a class="tag" href="/tags/flask">#flask</a>
+        
+      
     </div>
+
 
         
 
