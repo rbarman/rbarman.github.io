@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -168,9 +158,9 @@
         <p>How to use xsetwacom to map tablet buttons to specific keyboard shortcuts</p>
 <h1 id="steps">Steps</h1>
 <h2 id="check-if-system-recognizes-tablet">Check if system recognizes tablet</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --list devices
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --list devices
 </code></pre></div><p>My output is:</p>
-<pre><code>HID 256c:006d Pad pad               id: 18  type: PAD       
+<pre tabindex="0"><code>HID 256c:006d Pad pad               id: 18  type: PAD       
 HID 256c:006d stylus                id: 19  type: STYLUS    
 HID 256c:006d Touch Strip pad       id: 20  type: PAD 
 </code></pre><p>My connected devices are &ldquo;HID 256c:006d Pad pad&rdquo;, &ldquo;HID 256c:006d stylus&rdquo;, and &ldquo;HID 256c:006d Touch Strip pad&rdquo;</p>
@@ -180,9 +170,9 @@ HID 256c:006d Touch Strip pad       id: 20  type: PAD
 <h2 id="view-all-possible-key-modifiers">View all possible key modifiers</h2>
 <p>Key modifiers are words that correspond to different keyboard keys. For example &ldquo;up&rdquo; corresponds to pressing the down arrow.</p>
 <p>Find all key modifiers that are relevant to your keyboard shortcut.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --list modifiers
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --list modifiers
 </code></pre></div><p>My output:</p>
-<pre><code>21 modifiers are supported:
+<pre tabindex="0"><code>21 modifiers are supported:
     ctrl
     ctl
     control
@@ -294,12 +284,12 @@ Keys not listed above can be specified via their KeySyms. See the man page for d
 <p>My tablet has 6 buttons. For now I want to map the 1st button to press the up arrow and map the 2nd button to press the down arrow.</p>
 <p>The top 2 buttons are named &ldquo;Button 1&rdquo; and &ldquo;Button 2&rdquo;. The button names seem to be &ldquo;Button <n>&rdquo;, but the <n> is not incremental. You will need to experiment with different numbers if your tablet has a lot of buttons.</p>
 <p>Also notice that I set the key to &ldquo;+up&rdquo; and &ldquo;+down&rdquo;. The plus sign mimics a long press. I can hold down the top button to continuously scroll. If I did not include the &ldquo;+&rdquo;, I would need to continually press/release the button to scroll. See the reference links for more information.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;key +up&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;key +up&#34;</span>
 xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">2</span> <span style="color:#e6db74">&#34;key +down&#34;</span>
 </code></pre></div><h2 id="create-an-auto-start-bash-script">Create an auto start bash script</h2>
 <p>The button mappings will reset once you restart your computer. You need to put the xsetwacom commands in a script that runs everytime the machine starts.</p>
 <p>Script:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
 </span><span style="color:#75715e"></span>
 xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">1</span> <span style="color:#e6db74">&#34;key +up&#34;</span>
 xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</span> Button <span style="color:#ae81ff">2</span> <span style="color:#e6db74">&#34;key +down&#34;</span>
@@ -434,7 +424,7 @@ xsetwacom --set <span style="color:#e6db74">&#34;HID 256c:006d Pad pad&#34;</spa
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

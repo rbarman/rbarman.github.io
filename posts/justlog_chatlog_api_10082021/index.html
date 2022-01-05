@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -205,20 +195,20 @@
 <h1 id="python-implementation">Python implementation</h1>
 <p>Quick python function to get chatlogs. This implementation uses the optional <code>from</code> api parameter.</p>
 <p>For example if we pass <code>minutes_ago = 5</code> to the below <code>get_logs</code> function, it pulls all chat messages from the specified channel that occured 5 minutes from now to the current time.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
 <span style="color:#f92672">import</span> time
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_logs</span>(
     channel: str,
-    minutes_ago: int <span style="color:#f92672">=</span> None,
+    minutes_ago: int <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>,
     base_url: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://logs.ivr.fi&#34;</span>,
 ):
     <span style="color:#e6db74">&#34;&#34;&#34;Get channel logs of current day.
 </span><span style="color:#e6db74">
 </span><span style="color:#e6db74">    If minutes_ago is specified, then get channel logs from n minutes ago&#34;&#34;&#34;</span>
 
-    endpoint_url <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;{base_url}/channel&#34;</span>
-    url <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#34;{endpoint_url}/{channel}&#34;</span>
+    endpoint_url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>base_url<span style="color:#e6db74">}</span><span style="color:#e6db74">/channel&#34;</span>
+    url <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>endpoint_url<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{</span>channel<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
     params <span style="color:#f92672">=</span> {}
 
     <span style="color:#66d9ef">if</span> minutes_ago:
@@ -230,9 +220,9 @@
     messages <span style="color:#f92672">=</span> resp<span style="color:#f92672">.</span>text
     <span style="color:#66d9ef">return</span> messages
 
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># sample usage</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># sample usage</span>
 messages <span style="color:#f92672">=</span> get_logs(<span style="color:#e6db74">&#39;forsen&#39;</span>,minutes_ago <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
-<span style="color:#66d9ef">print</span>(messages) 
+print(messages) 
 </code></pre></div><p>The output is raw text. Ideally I want to get a JSON collection of messages to easily parse out the message and chatter username. I probably need to explore the source code to better understand  <code>json</code> api parameter &hellip;</p>
 
         </p>
@@ -355,7 +345,7 @@ messages <span style="color:#f92672">=</span> get_logs(<span style="color:#e6db7
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

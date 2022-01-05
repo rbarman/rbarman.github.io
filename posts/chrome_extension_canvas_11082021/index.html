@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -171,7 +161,7 @@
 <h1 id="manifest">Manifest</h1>
 <p><code>Manifest.json</code> is a standard file to setup a chrome extension. I have a content script and stylesheet for now.</p>
 <p>I set matches to <code>https://*/*&quot;****</code> so the extension loads on every web page. In practice I want to run the extension if user clicks on the extension icon.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Getting Started Example&#34;</span>,
     <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Build an Extension!&#34;</span>,
     <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>,
@@ -199,7 +189,7 @@
 <h2 id="create-a-canvas-element">Create a canvas element</h2>
 <p>Use javascript to create a custom <code>canvas</code> element.</p>
 <p>The canvas height and width match the entire web page. The canvas&rsquo;s id is <em>paint-canvas</em>; this is important for future style sheets.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">CANVAS_ID</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;paint-canvas&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">CANVAS_ID</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;paint-canvas&#39;</span>
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">canvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#34;canvas&#34;</span>)
 <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">CANVAS_ID</span>
 <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">documentElement</span>.<span style="color:#a6e22e">scrollHeight</span>;
@@ -207,7 +197,7 @@
 </code></pre></div><h2 id="create-variables-to-store-state">Create variables to store state</h2>
 <p><em>context</em> stores drawing information</p>
 <p><em>mouseX</em> and <em>mouseY</em> store the cursor&rsquo;s x and y coordinates.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">mouseX</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">mouseX</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">mouseY</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">context</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#34;2d&#34;</span>);
 <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">strokeStyle</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;black&#39;</span>;
@@ -216,7 +206,7 @@
 </code></pre></div><h2 id="add-event-listeners-to-canvas">Add event listeners to canvas</h2>
 <p>User will draw on the canvas so we need to handle <code>mousedown</code>, <code>mouseup</code>, and <code>mousemove</code></p>
 <p>A mouse left click or touch to drawing pad triggers a mousedown event. The extension starts drawing when it receives a mousedown event.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mousedown&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mousedown&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
     <span style="color:#a6e22e">setMouseCoordinates</span>(<span style="color:#a6e22e">canvas</span>, <span style="color:#a6e22e">event</span>);
     <span style="color:#a6e22e">isDrawing</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
 
@@ -225,7 +215,7 @@
     <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">moveTo</span>(<span style="color:#a6e22e">mouseX</span>, <span style="color:#a6e22e">mouseY</span>);
 });
 </code></pre></div><p>Any mouse movement triggers a mousemove event. If the user is still drawing (holding down left mouse button or pressing drawing tablet pen on pad), then continue drawing new lines on the canvas.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mousemove&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mousemove&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
     <span style="color:#a6e22e">setMouseCoordinates</span>(<span style="color:#a6e22e">canvas</span>, <span style="color:#a6e22e">event</span>);
 
     <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isDrawing</span>) {
@@ -234,24 +224,24 @@
     }
 });
 </code></pre></div><p>The extension receives a mouseup event when the user lets go of the left mouse button or lifts drawing tablet pen. The extension stops drawing on the canvas.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mouseup&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;mouseup&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
     <span style="color:#a6e22e">setMouseCoordinates</span>(<span style="color:#a6e22e">canvas</span>, <span style="color:#a6e22e">event</span>);
     <span style="color:#a6e22e">isDrawing</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
 });
 </code></pre></div><h2 id="keep-track-of-cursor-coordinates">Keep track of cursor coordinates</h2>
 <p>All event handlers call <code>setMouseCoordinates</code> to get true coordinates. <code>canvas.getBoundingClientRect()</code> is critical.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setMouseCoordinates</span>(<span style="color:#a6e22e">canvas</span>, <span style="color:#a6e22e">event</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setMouseCoordinates</span>(<span style="color:#a6e22e">canvas</span>, <span style="color:#a6e22e">event</span>) {
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rect</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">getBoundingClientRect</span>()
     <span style="color:#a6e22e">mouseX</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">clientX</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">left</span>;
     <span style="color:#a6e22e">mouseY</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">clientY</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">rect</span>.<span style="color:#a6e22e">top</span>;
 }
 </code></pre></div><h2 id="add-custom-canvas-to-document">Add custom canvas to document</h2>
 <p>User can only interact with the canvas if it is added to the current webpage!</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">canvas</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">canvas</span>);
 </code></pre></div><hr>
 <h1 id="style-sheet">Style sheet</h1>
 <p>The canvas should be <strong>on top</strong> of all other elements.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#paint-canvas {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#paint-canvas {
     <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
     <span style="color:#66d9ef">top</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span>;
     <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span>;
@@ -391,7 +381,7 @@
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

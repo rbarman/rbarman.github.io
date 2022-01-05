@@ -6,11 +6,7 @@
     <description>Recent content in S3 on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Sep 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://rbarman.github.io/tags/s3/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 13 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rbarman.github.io/tags/s3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pandas dataframe from S3 data using boto3 or smart_open</title>
       <link>https://rbarman.github.io/posts/aws_s3_with_python_09132021/</link>

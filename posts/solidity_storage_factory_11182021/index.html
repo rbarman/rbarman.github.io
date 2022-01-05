@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -173,7 +163,7 @@
 <li>We now manage multiple stores. <code>StoreFactory</code> contract creates and deploys other <code>Store</code> contracts. Each new <code>Store</code> contract is stored in a public array</li>
 <li>We can update a specific store&rsquo;s inventory with <code>update_store()</code></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-solidity" data-lang="solidity"><span style="color:#75715e">// SPDX-License-Identifier: MIT
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-solidity" data-lang="solidity"><span style="color:#75715e">// SPDX-License-Identifier: MIT
 </span><span style="color:#75715e"></span>
 <span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">6</span>.<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">9</span>.<span style="color:#ae81ff">0</span>;
 
@@ -181,19 +171,19 @@
 </span><span style="color:#75715e"></span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;./Store.sol&#34;</span>; 
 
 <span style="color:#75715e">// Manage all stores with this contract factory
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">contract</span> StoreFactory{
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">contract</span> <span style="color:#a6e22e">StoreFactory</span>{
     
     <span style="color:#75715e">// internally stores the address of each created Store contract
 </span><span style="color:#75715e"></span>    Store[] <span style="color:#66d9ef">public</span> stores;
     
     <span style="color:#75715e">// create and deploy a new Store contract
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> createStoreContract() <span style="color:#66d9ef">public</span> {
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createStoreContract</span>() <span style="color:#66d9ef">public</span> {
         Store store <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Store();
         stores.push(store);
     }
     
     <span style="color:#75715e">// add a new product to a specific store
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> update_store(<span style="color:#66d9ef">uint256</span> idx, <span style="color:#66d9ef">string</span> <span style="color:#66d9ef">memory</span> product_name, <span style="color:#66d9ef">uint256</span> product_price) <span style="color:#66d9ef">public</span> {
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">update_store</span>(<span style="color:#66d9ef">uint256</span> idx, <span style="color:#66d9ef">string</span> <span style="color:#66d9ef">memory</span> product_name, <span style="color:#66d9ef">uint256</span> product_price) <span style="color:#66d9ef">public</span> {
 
         <span style="color:#75715e">// get store by address
 </span><span style="color:#75715e"></span>        Store s <span style="color:#f92672">=</span> Store(<span style="color:#66d9ef">address</span>(stores[idx]));
@@ -319,7 +309,7 @@
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

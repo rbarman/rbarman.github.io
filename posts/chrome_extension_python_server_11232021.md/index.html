@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -169,7 +159,7 @@
 <hr>
 <p><strong>Manifest.json</strong></p>
 <p>The most important section is to add <em>http://127.0.0.1/</em> in the host_permissions section. The flask server will run on http://127.0.0.1/</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;name&#34;</span>,
     <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;description&#34;</span>,
     <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>,
@@ -189,7 +179,7 @@
 }
 </code></pre></div><p><strong>background.js</strong></p>
 <p>The extension executes <em>send_tab_info()</em> when the user clicks on the extension. <em>Send_tab_info()</em> makes a post request to http://127.0.0.1:5000/collect with the tab&rsquo;s title and url. Note that this is an <code>async</code> function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">send_tab_info</span>(<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">title</span>) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">send_tab_info</span>(<span style="color:#a6e22e">url</span>, <span style="color:#a6e22e">title</span>) {
 
     <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">endpoint_url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://127.0.0.1:5000/collect&#34;</span>
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tab_data</span> <span style="color:#f92672">=</span> {
@@ -198,14 +188,14 @@
     };
 
     <span style="color:#66d9ef">try</span> {
-        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">endpoint_url</span>, {
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">endpoint_url</span>, {
             <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;POST&#34;</span>,
             <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">tab_data</span>),
             <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
                 <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;application/json&#39;</span>
             }
         });
-        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>();
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>();
         <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>)
     } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
         <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">error</span>);
@@ -221,12 +211,12 @@
 
 </code></pre></div><p><strong>server.py</strong></p>
 <p>The flask server has a POST /collect endpoint. It gets the url and title from the chrome extension post request and sends back a simple response.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, jsonify, request
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, jsonify, request
 <span style="color:#f92672">import</span> os
 
 app <span style="color:#f92672">=</span> Flask(__name__)
 
-<span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/collect&#34;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;POST&#34;</span>])
+<span style="color:#a6e22e">@app</span><span style="color:#f92672">.</span>route(<span style="color:#e6db74">&#34;/collect&#34;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;POST&#34;</span>])
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">collect_web_info</span>():
 
     <span style="color:#75715e"># request contains url and title</span>
@@ -242,7 +232,7 @@ app <span style="color:#f92672">=</span> Flask(__name__)
 <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
     app<span style="color:#f92672">.</span>run()
 
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python server.py
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python server.py
 </code></pre></div><hr>
 <p>One practical use case for this pattern is to run a trained ml model on a local server and make requests from the browser.</p>
 
@@ -368,7 +358,7 @@ app <span style="color:#f92672">=</span> Flask(__name__)
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

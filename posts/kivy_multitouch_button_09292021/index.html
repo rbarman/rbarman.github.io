@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -175,13 +165,13 @@
 <p>Kivy widgets execute <a href="https://kivy.org/doc/stable/api-kivy.uix.widget.html#kivy.uix.widget.Widget.on_touch_down"><code>on_touch_down</code></a> when it receives a touch down event. We need to write custom code in the <code>on_touch_down</code> handler that can distinguish between single and double tap events.</p>
 <p>The <code>touch</code> parameter to <code>on_touch_down</code> is a <code>TouchEvent</code>, so we can easily call <code>is_double_tap</code> to confirm if it is a double tap event. We then call <code>self.on_double_tap</code> to execute the app specific logic.</p>
 <p>If the event is not a double tap event then schedule to run <code>self.on_single_tap</code> if the widget does not receive any new touch down event in the next <code>double_tap_wait_s</code> seconds. If the widget receives a new touch down event then the scheduled call to <code>self.on_single_tap</code> is canceled.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> kivy.uix.button <span style="color:#f92672">import</span> Button
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> kivy.uix.button <span style="color:#f92672">import</span> Button
 <span style="color:#f92672">from</span> kivy.clock <span style="color:#f92672">import</span> Clock
 
 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MultiTapButton</span>(Button):
 
-    scheduled_event <span style="color:#f92672">=</span> None
+    scheduled_event <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
     
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_single_tap</span>(self, <span style="color:#f92672">*</span>args):
         <span style="color:#66d9ef">pass</span>
@@ -197,9 +187,9 @@
         <span style="color:#75715e"># Call self.collide_point() to ensure widget responds to touch events on the widget</span>
         <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>collide_point(<span style="color:#f92672">*</span>touch<span style="color:#f92672">.</span>pos):
 
-            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>scheduled_event <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> None:
+            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>scheduled_event <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
                 self<span style="color:#f92672">.</span>scheduled_event<span style="color:#f92672">.</span>cancel()
-                self<span style="color:#f92672">.</span>scheduled_event <span style="color:#f92672">=</span> None
+                self<span style="color:#f92672">.</span>scheduled_event <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
             
             <span style="color:#66d9ef">if</span> touch<span style="color:#f92672">.</span>is_double_tap:
                 self<span style="color:#f92672">.</span>on_double_tap()
@@ -212,12 +202,12 @@
 </code></pre></div><h1 id="example">Example</h1>
 <p>Now subclass the <code>MultiTapButton</code> and implement the <code>on_single_tap</code> and <code>on_double_tap</code> functions.</p>
 <p>Below we create a button that prints &ldquo;single tap&rdquo; after a single tap event and prints &ldquo;double tap&rdquo; after a double tap event</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestButton</span>(MultiTapButton):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestButton</span>(MultiTapButton):
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_single_tap</span>(self, <span style="color:#f92672">*</span>args):
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;single tap&#34;</span>)
+        print(<span style="color:#e6db74">&#34;single tap&#34;</span>)
 
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_double_tap</span>(self, <span style="color:#f92672">*</span>args):
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;double tap&#34;</span>)
+        print(<span style="color:#e6db74">&#34;double tap&#34;</span>)
 </code></pre></div><hr>
 <p>Resources</p>
 <ul>
@@ -343,7 +333,7 @@
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -177,19 +167,19 @@
 <h2 id="boto3">boto3</h2>
 <p><a href="https://github.com/boto/boto3">Boto3</a> is the official AWS SDK. Install it with pip:</p>
 <p><code>pip install boto3</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
 <span style="color:#f92672">import</span> boto3
 </code></pre></div><p>Get your AWS access and secret keys from the <a href="https://console.aws.amazon.com/iamv2/home#/users">IAM console</a></p>
 <p>We are hard coding the keys here for simplicity. Later on I will show a better alternative.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">AWS_ACCESS_KEY_ID <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my_id&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">AWS_ACCESS_KEY_ID <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my_id&#39;</span>
 AWS_SECRET_ACCESS_KEY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my_secret&#39;</span>
 </code></pre></div><p>Create a <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/clients.html"><code>boto3 client</code></a> with your access and secret keys. The client allows us to read and write files in S3 buckets</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s3 <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">s3 <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(
     <span style="color:#e6db74">&#39;s3&#39;</span>,
     aws_access_key_id<span style="color:#f92672">=</span> AWS_ACCESS_KEY_ID,
     aws_secret_access_key<span style="color:#f92672">=</span>AWS_SECRET_ACCESS_KEY)
 </code></pre></div><p>Retrieve the file object with the <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_object"><code>get_object</code></a> function. Need to specify the bucket that contains the csv file and the key for the csv file. The key is generally the file name - you can confirm the key by looking at the file details in the S3 console</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bucket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;s3-demo-bucket-09132021&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bucket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;s3-demo-bucket-09132021&#39;</span>
 key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;supermarket_sales.csv&#39;</span>
 
 obj <span style="color:#f92672">=</span> s3<span style="color:#f92672">.</span>get_object(Bucket<span style="color:#f92672">=</span>bucket, Key<span style="color:#f92672">=</span>key)
@@ -216,7 +206,7 @@ obj
  'Body': &lt;botocore.response.StreamingBody at 0x7fde778f7850&gt;}
 </code></pre>
 <p>The returned <code>obj</code> contains metadata about our csv file. We are interested in the <code>'Body'</code> attribute - it contains a stream of our csv file. We can easily pass that into pandas&rsquo;s <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html"><code>read_csv</code></a> function to create a dataframe.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(obj[<span style="color:#e6db74">&#39;Body&#39;</span>])
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(obj[<span style="color:#e6db74">&#39;Body&#39;</span>])
 df<span style="color:#f92672">.</span>head()
 </code></pre></div><div>
 <style scoped>
@@ -365,11 +355,11 @@ df<span style="color:#f92672">.</span>head()
 <p>It is not safe to directly hardcode your AWS credentials in a program!</p>
 <p>One solution is to store the <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code> in a <a href="https://boto3.amazonaws.com/v1/documentation/api/1.9.42/guide/configuration.html#shared-credentials-file">shared credential file</a>.</p>
 <p>Create <code>~/.aws/credentials</code> with the contents:</p>
-<pre><code>[default]
+<pre tabindex="0"><code>[default]
 aws_access_key_id=my_id
 aws_secret_access_key=my_key
 </code></pre><p>You can now create a <code>boto3 client</code> without hardcoding the credentials. If you are using a jupyter-notebook, you may need to restart the kernel</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bucket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;s3-demo-bucket-09132021&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bucket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;s3-demo-bucket-09132021&#39;</span>
 key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;supermarket_sales.csv&#39;</span>
 
 s3 <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;s3&#39;</span>)
@@ -525,20 +515,20 @@ df<span style="color:#f92672">.</span>head()
 <p><code>pip install smart_open[s3]</code></p>
 <p>You can also download all dependencies if necessary:</p>
 <p><code>pip install smart_open[all]</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> smart_open <span style="color:#f92672">import</span> smart_open
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> smart_open <span style="color:#f92672">import</span> smart_open
+<span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
 </code></pre></div><p>Get your AWS access and secret keys from the <a href="https://console.aws.amazon.com/iamv2/home#/users">IAM console</a></p>
 <p>We are hard coding the keys here for simplicity. Later on I will show a better alternative.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">AWS_ACCESS_KEY_ID <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my_id&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">AWS_ACCESS_KEY_ID <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my_id&#39;</span>
 AWS_SECRET_ACCESS_KEY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my_secret&#39;</span>
 </code></pre></div><p>Create a S3 file path with the format: s3://AWS_ACCESS_KEY_ID:AWS_ACCESS_KEY@bucket/key</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bucket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;s3-demo-bucket-09132021&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bucket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;s3-demo-bucket-09132021&#39;</span>
 key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;supermarket_sales.csv&#39;</span>
 
-path <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;s3://{AWS_ACCESS_KEY_ID}:{AWS_SECRET_ACCESS_KEY}@{bucket}/{key}&#39;</span>
-</code></pre></div><p>In this case, the <code>smart_open</code> function returns a Reader object which can be passed to Pandas&rsquo; read_csv function</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">f <span style="color:#f92672">=</span> smart_open(path)
-<span style="color:#66d9ef">print</span>(type(f))
+path <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;s3://</span><span style="color:#e6db74">{</span>AWS_ACCESS_KEY_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">{</span>AWS_SECRET_ACCESS_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">@</span><span style="color:#e6db74">{</span>bucket<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{</span>key<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</code></pre></div><p>In this case, the <code>smart_open</code> function returns a Reader object which can be passed to Pandas' read_csv function</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">f <span style="color:#f92672">=</span> smart_open(path)
+print(type(f))
 f
 </code></pre></div><pre><code>&lt;class 'smart_open.s3.Reader'&gt;
 
@@ -548,7 +538,7 @@ f
 
 smart_open.s3.Reader(bucket='s3-demo-bucket-09132021', key='supermarket_sales.csv', version_id=None, buffer_size=131072, line_terminator=b'\n')
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(smart_open(path))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(smart_open(path))
 df<span style="color:#f92672">.</span>head()
 </code></pre></div><div>
 <style scoped>
@@ -695,16 +685,16 @@ df<span style="color:#f92672">.</span>head()
 <h3 id="optional-use-boto3-session-with-smart_open">Optional: Use boto3 Session with smart_open</h3>
 <p>It is not safe to directly hardcode your AWS credentials in a program!</p>
 <p>One solution is to use a <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html"><code>boto3 session</code></a>. This assumes that you followed the previous optional instructions of creating the <a href="https://boto3.amazonaws.com/v1/documentation/api/1.9.42/guide/configuration.html#shared-credentials-file">shared credential file</a> or created <a href="https://boto3.amazonaws.com/v1/documentation/api/1.9.42/guide/configuration.html#environment-variables">environment variables</a> for the AWS keys</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> smart_open <span style="color:#f92672">import</span> smart_open
-<span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> smart_open <span style="color:#f92672">import</span> smart_open
+<span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
 <span style="color:#f92672">import</span> boto3
 </code></pre></div><p>Create a <code>boto3 session</code>. We already created the shared credential file so no need to hardcode any keys</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">session <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>Session()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">session <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>Session()
 client <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>client(<span style="color:#e6db74">&#39;s3&#39;</span>)
 </code></pre></div><p>Create a path that only contains the bucket and key. Simply call pandas&rsquo;s read_csv</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bucket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;s3-demo-bucket-09132021&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">bucket <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;s3-demo-bucket-09132021&#39;</span>
 key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;supermarket_sales.csv&#39;</span>
-path <span style="color:#f92672">=</span> f<span style="color:#e6db74">&#39;s3://{bucket}/{key}&#39;</span>
+path <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;s3://</span><span style="color:#e6db74">{</span>bucket<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{</span>key<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
 
 
 df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(smart_open(path))
@@ -989,7 +979,7 @@ df<span style="color:#f92672">.</span>head()
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

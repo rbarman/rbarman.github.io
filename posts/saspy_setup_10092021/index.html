@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -168,25 +158,25 @@
         <p>How to setup saspy to start a SAS session with Python</p>
 <p><a href="https://github.com/sassoftware/saspy"><code>saspy</code></a> is a python package that enables you to interact with the SAS grid from python. This is useful if you want to integrate your SAS data pipelines with tools that do not support SAS.</p>
 <h3 id="install-saspy">Install saspy</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install saspy
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install saspy
 </code></pre></div><h3 id="optional-create-authinfo-file">(Optional) Create authinfo file</h3>
 <p>Authinfo file is where you store your username and password. If you don&rsquo;t create a file then you will need to enter your credentials everytime you interact with saspy.</p>
 <p>If you are on a linux machine, create an empty file in home directory called .authinfo. If on windows, name it _ authinfo.</p>
 <p>The authinfo file can contain many different credentials; each line corresponds to one credential. Each line has the format of</p>
-<pre><code>&lt;credential_id&gt; user &lt;username&gt; password &lt;password&gt;
+<pre tabindex="0"><code>&lt;credential_id&gt; user &lt;username&gt; password &lt;password&gt;
 </code></pre><p>ex) My username is &lsquo;michael&rsquo; and password is &lsquo;fish123&rsquo;. I want to label this credential as &lsquo;superuser&rsquo;. I add this line to the .authinfo file:</p>
-<pre><code>superuser user michael password fish123
+<pre tabindex="0"><code>superuser user michael password fish123
 </code></pre><p>Read more about the authinfo file at <a href="https://sassoftware.github.io/saspy/configuration.html#the-authinfo-file-authinfo-on-windows">https://sassoftware.github.io/saspy/configuration.html#the-authinfo-file-authinfo-on-windows</a></p>
 <h3 id="create-sascfg_personalpy">Create sascfg_personal.py</h3>
 <p>You configure your sas session settings in sascfg_personal.py. Full details are in <a href="https://sassoftware.github.io/saspy/configuration.html#">https://sassoftware.github.io/saspy/configuration.html#</a></p>
 <p>There are many ways to connect your machine to the SAS machine. I will focus on the <a href="https://sassoftware.github.io/saspy/configuration.html#iom-using-java">IOM using java</a> approach because it is the easiest and meets my usecase. Review the different connections and pick which fits your scenario</p>
 <p>Sample sascfg_personal.py</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
 SAS_config_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;iomlinux&#39;</span>]
 SAS_config_options <span style="color:#f92672">=</span> {
-    <span style="color:#e6db74">&#39;lock_down&#39;</span>:False,
-    <span style="color:#e6db74">&#39;verbose&#39;</span>:True,
-    <span style="color:#e6db74">&#39;prompt&#39;</span>:True
+    <span style="color:#e6db74">&#39;lock_down&#39;</span>:<span style="color:#66d9ef">False</span>,
+    <span style="color:#e6db74">&#39;verbose&#39;</span>:<span style="color:#66d9ef">True</span>,
+    <span style="color:#e6db74">&#39;prompt&#39;</span>:<span style="color:#66d9ef">True</span>
 }
 SAS_output_options <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;output&#39;</span>:<span style="color:#e6db74">&#39;html5&#39;</span>}
 
@@ -201,7 +191,7 @@ iomlinux <span style="color:#f92672">=</span> {
 <p>Review <a href="https://sassoftware.github.io/saspy/configuration.html#iom-using-java">https://sassoftware.github.io/saspy/configuration.html#iom-using-java</a> for all possible iom parameters</p>
 <h3 id="create-saspy-program">Create saspy program</h3>
 <p>In same directory that you placed the sascfg_personal.py, create a new main.py:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
 <span style="color:#f92672">import</span> saspy
 
 sas <span style="color:#f92672">=</span> saspy<span style="color:#f92672">.</span>SASsession(cfgfile<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sascfg_personal.py&#34;</span>)
@@ -211,11 +201,11 @@ code <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;
 </span><span style="color:#e6db74">    run;
 </span><span style="color:#e6db74">&#34;&#34;&#34;</span>
 results <span style="color:#f92672">=</span> sas<span style="color:#f92672">.</span>submit(code)
-<span style="color:#66d9ef">print</span>(results[<span style="color:#e6db74">&#34;LST&#34;</span>])
+print(results[<span style="color:#e6db74">&#34;LST&#34;</span>])
 
 sas<span style="color:#f92672">.</span>endsas()
 
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python main.py
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python main.py
 </code></pre></div><hr>
 <p>Sascfg_personal.py is critical to setting up saspy. Thoroughly review <a href="https://sassoftware.github.io/saspy/configuration.html#">https://sassoftware.github.io/saspy/configuration.html#</a></p>
 
@@ -341,7 +331,7 @@ sas<span style="color:#f92672">.</span>endsas()
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

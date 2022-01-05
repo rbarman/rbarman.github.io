@@ -6,11 +6,7 @@
     <description>Recent content in airflow on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Oct 2021 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://rbarman.github.io/tags/airflow/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 10 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rbarman.github.io/tags/airflow/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Custom airflow operator for SAS</title>
       <link>https://rbarman.github.io/posts/sas_airflow_operator_10102021/</link>

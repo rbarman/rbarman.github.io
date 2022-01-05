@@ -1,355 +1,217 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://rbarman.github.io/posts/chrome_extension_python_server_11232021.md/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/chrome-extension/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/flask/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://rbarman.github.io/</loc>
+    <lastmod>2021-11-23T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://rbarman.github.io/posts/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/python/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/pyspark/</loc>
     <lastmod>2021-11-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/spark_sql_explode_11222021/</loc>
     <lastmod>2021-11-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/brownie/</loc>
     <lastmod>2021-11-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/brownie_deployment_11212021/</loc>
     <lastmod>2021-11-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/solidity/</loc>
     <lastmod>2021-11-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/web3_deployment_11202021/</loc>
     <lastmod>2021-11-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/web3/</loc>
     <lastmod>2021-11-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/solidity_payable_11192021/</loc>
     <lastmod>2021-11-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/solidity_storage_factory_11182021/</loc>
     <lastmod>2021-11-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/solidity_simple_storage_11172021/</loc>
     <lastmod>2021-11-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/dvr-scan/</loc>
     <lastmod>2021-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/scene-detection/</loc>
     <lastmod>2021-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/dvrscan_11102021/</loc>
     <lastmod>2021-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/pyscenedetect_11092021/</loc>
     <lastmod>2021-11-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/pyscenedetect/</loc>
     <lastmod>2021-11-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/canvas/</loc>
     <lastmod>2021-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/chrome_extension_canvas_11082021/</loc>
     <lastmod>2021-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/javascript/</loc>
     <lastmod>2021-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/wacom/</loc>
     <lastmod>2021-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/web-annotation-project/</loc>
     <lastmod>2021-11-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/bash/</loc>
     <lastmod>2021-11-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/linux/</loc>
     <lastmod>2021-11-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/xsetwacom_buttons_11012021/</loc>
     <lastmod>2021-11-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/xsetwacom_monitor_10312021/</loc>
     <lastmod>2021-10-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/tts_mozilla_10302021/</loc>
     <lastmod>2021-10-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/tts/</loc>
     <lastmod>2021-10-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/quandl/</loc>
     <lastmod>2021-10-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/zipline_ingest_bundle_10292021/</loc>
     <lastmod>2021-10-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/zipline-reloaded/</loc>
     <lastmod>2021-10-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/jupyter-notebook/</loc>
     <lastmod>2021-10-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_shell_10272021/</loc>
     <lastmod>2021-10-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/jupyter_notebook_virtual_environment_10262021/</loc>
     <lastmod>2021-10-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/backtesting/</loc>
     <lastmod>2021-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/chapter-summary/</loc>
     <lastmod>2021-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/successful-algorithmic-trading/</loc>
     <lastmod>2021-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/successful_algorithmic_trading_chap3_102012021/</loc>
     <lastmod>2021-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/successful_algorithmic_trading_chap2_10202021/</loc>
     <lastmod>2021-10-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/airflow/</loc>
     <lastmod>2021-10-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/sas_airflow_operator_10102021/</loc>
     <lastmod>2021-10-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/sas/</loc>
     <lastmod>2021-10-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/saspy/</loc>
     <lastmod>2021-10-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/saspy_setup_10092021/</loc>
     <lastmod>2021-10-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/justlog_chatlog_api_10082021/</loc>
     <lastmod>2021-10-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/twitch/</loc>
     <lastmod>2021-10-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/docker/</loc>
     <lastmod>2021-10-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/docker_on_rhel_10072021/</loc>
     <lastmod>2021-10-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/rhel/</loc>
     <lastmod>2021-10-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/jupyter_notebook_black_code_format_10062021/</loc>
     <lastmod>2021-10-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/kivy/</loc>
     <lastmod>2021-09-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/kivy_multitouch_button_09292021/</loc>
     <lastmod>2021-09-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/jira/</loc>
     <lastmod>2021-09-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/jira_sas_09172021/</loc>
     <lastmod>2021-09-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/boto3/</loc>
     <lastmod>2021-09-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/pandas/</loc>
     <lastmod>2021-09-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/aws_s3_with_python_09132021/</loc>
     <lastmod>2021-09-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/s3/</loc>
     <lastmod>2021-09-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/smart_open/</loc>
     <lastmod>2021-09-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/1fn-2fn-3fn_09122021/</loc>
     <lastmod>2021-09-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/normalization/</loc>
     <lastmod>2021-09-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/about/</loc>
     <lastmod>2021-09-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/tags/apache-spark/</loc>
     <lastmod>2021-09-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/posts/apache_spark_standalone_cluster_09102021/</loc>
     <lastmod>2021-09-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://rbarman.github.io/</loc>
-    <lastmod>2021-09-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://rbarman.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rbarman.github.io/posts/pandas_explode_01042022/</loc>
   </url>
-  
 </urlset>

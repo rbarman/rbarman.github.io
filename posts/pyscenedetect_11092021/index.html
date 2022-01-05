@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -171,9 +161,9 @@
 <p>PySceneDetect is a great package to detect scenes. It implements different scene detection algorithms with <a href="https://github.com/opencv/opencv-python">OpenCV</a>. I am currently exploring with PySceneDetect&rsquo;s command line interface.</p>
 <hr>
 <p>The below line runs the <code>detect-content</code> algorithm on video.webm. It creates a csv file with information for all detected scenes and creates images for each detected scene.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scenedetect --input video.webm  detect-content list-scenes save-images
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scenedetect --input video.webm  detect-content list-scenes save-images
 </code></pre></div><p>Example csv output:</p>
-<pre><code>Scene Number,Start Frame,Start Timecode,Start Time (seconds),End Frame,End Timecode,End Time (seconds),Length (frames),Length (timecode),Length (seconds)
+<pre tabindex="0"><code>Scene Number,Start Frame,Start Timecode,Start Time (seconds),End Frame,End Timecode,End Time (seconds),Length (frames),Length (timecode),Length (seconds)
 1,0,00:00:00.000,0.000,1497,00:00:59.880,59.880,1497,00:00:59.880,59.880
 2,1497,00:00:59.880,59.880,30773,00:20:30.920,1230.920,29276,00:19:31.040,1171.040
 3,30773,00:20:30.920,1230.920,31378,00:20:55.120,1255.120,605,00:00:24.200,24.200
@@ -190,7 +180,7 @@
 14,47867,00:31:54.680,1914.680,48159,00:32:06.360,1926.360,292,00:00:11.680,11.680
 15,48159,00:32:06.360,1926.360,49649,00:33:05.960,1985.960,1490,00:00:59.600,59.600
 </code></pre><p>The <code>detect-content</code> compares adjacent frames and detects a new scene if the difference in frames meets a specific threshold. Default threshold is 30; we can change the threshold with -t parameter:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scenedetect --input video.webm  detect-content -t <span style="color:#ae81ff">50</span> list-scenes save-images
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">scenedetect --input video.webm  detect-content -t <span style="color:#ae81ff">50</span> list-scenes save-images
 </code></pre></div><hr>
 <p>Unfortunately the numfocus/pydata videos show the speaker. The algorithm detects new scenes when the speaker moves a lot. A PySceneDetect specific solution is to use a higher threshold value or try to use the <code>detect-adaptive</code> algorithm to compare a rolling average of adjacent frames (see <a href="https://pyscenedetect.readthedocs.io/en/latest/reference/detection-methods/)">https://pyscenedetect.readthedocs.io/en/latest/reference/detection-methods/)</a>.</p>
 <p>A better solution is to create a bounding box for the speaker and fill it with a solid color. PySceneDetect then creates a new scene when a new slide is presented.</p>
@@ -317,7 +307,7 @@
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

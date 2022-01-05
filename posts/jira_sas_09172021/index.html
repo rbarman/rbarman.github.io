@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -180,7 +170,7 @@
 <h2 id="create-a-jql-query">Create a JQL Query</h2>
 <p><a href="https://www.atlassian.com/software/jira/guides/expand-jira/jql">JQL</a> is JIRA internal scripting language to retrieve tickets. Similar to SQL, we use conditions to search for specific tickets.</p>
 <p>For example this JQL Query:</p>
-<pre><code>project=TEST and status in (RESOLVED,DEPLOYED)
+<pre tabindex="0"><code>project=TEST and status in (RESOLVED,DEPLOYED)
 </code></pre><p>returns all tickets associated with the &lsquo;TEST&rsquo; project that have a status of &lsquo;RESOLVED&rsquo; or &lsquo;DEPLOYED&rsquo;.</p>
 <p>JQL queries are very flexible. You can specify different <a href="https://support.atlassian.com/jira-software-cloud/docs/advanced-search-reference-jql-fields/">fields</a> or metadata about the ticket such as ticket author, title, create time, update time, priority, etc. You can also apply different <a href="https://support.atlassian.com/jira-software-cloud/docs/advanced-search-reference-jql-operators/">operators</a> such as &lsquo;equals&rsquo;, &lsquo;contains&rsquo;, &lsquo;was in&rsquo;, etc to make very specific searches with the fields.</p>
 <h2 id="send-get-request">Send GET request</h2>
@@ -188,7 +178,7 @@
 <h4 id="first-create-a-url">First, create a URL:</h4>
 <p>The url consists of your company&rsquo;s base jira url, search endpoint, and a jql parameter.</p>
 <p>For example the below url searches for tickets that belong to the &lsquo;TEST&rsquo; project and have &lsquo;DEPLOYED&rsquo; status.</p>
-<pre><code>https://jira.my_company.com/rest/api/2/search?jql=(project=TEST and status in (DEPLOYED))
+<pre tabindex="0"><code>https://jira.my_company.com/rest/api/2/search?jql=(project=TEST and status in (DEPLOYED))
 </code></pre><p>In detail:</p>
 <ul>
 <li><code>https://jira.my_company.com</code> is company&rsquo;s base jira url.
@@ -205,27 +195,27 @@
 <ol>
 <li>Create macro variable with url</li>
 </ol>
-<pre><code class="language-sas" data-lang="sas">%let URL = &quot;https://jira.my_company.com/rest/api/2/search?jql=(project=TEST and status in (DEPLOYED))&quot;;
-</code></pre><ol start="2">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sas" data-lang="sas">%let URL = <span style="color:#e6db74">&#34;https://jira.my_company.com/rest/api/2/search?jql=(project=TEST and status in (DEPLOYED))&#34;</span>;
+</code></pre></div><ol start="2">
 <li>Create a file to store JIRA&rsquo;s response. You can create a temporary or physical file.</li>
 </ol>
-<pre><code class="language-sas" data-lang="sas">filename resp temp;
-</code></pre><ol start="3">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sas" data-lang="sas"><span style="color:#66d9ef">filename</span> resp temp;
+</code></pre></div><ol start="3">
 <li>Run http procedure</li>
 </ol>
 <p>This sends to GET request and stores JIRA&rsquo;s response to the <code>resp</code> file.</p>
 <p>Note that this example uses <a href="https://en.wikipedia.org/wiki/Basic_access_authentication"><code>basic authorization</code></a> because I directly provide the username and password. Your JIRA implementation may require different authorization settings so adjust as needed. This <a href="https://www.sas.com/content/dam/SAS/support/en/sas-global-forum-proceedings/2019/3232-2019.pdf">recent paper</a> provides different ways to authenticate with <code>proc http</code>.</p>
-<pre><code class="language-sas" data-lang="sas">proc http 
-    method=&quot;GET&quot;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sas" data-lang="sas"><span style="color:#66d9ef">proc http </span>
+    method=<span style="color:#e6db74">&#34;GET&#34;</span>
     auth_basic
     url=&amp;URL.
-    WEBUSERNAME= &quot;USERNAME&quot;
-    WEBPASSWORD= &quot;PASSWORD&quot;
-    out=resp;
-run;
-</code></pre><h2 id="parse-json-request">Parse JSON request</h2>
+    WEBUSERNAME= <span style="color:#e6db74">&#34;USERNAME&#34;</span>
+    WEBPASSWORD= <span style="color:#e6db74">&#34;PASSWORD&#34;</span>
+    <span style="color:#66d9ef">out</span>=resp<span style="color:#66d9ef">;
+</span><span style="color:#66d9ef">run;</span>
+</code></pre></div><h2 id="parse-json-request">Parse JSON request</h2>
 <p>We stored JIRA&rsquo;s response in the <code>resp</code> file. JIRA <em>should</em> send us a JSON response, so we can use <a href="https://documentation.sas.com/doc/en/vdmmlcdc/8.1/lestmtsref/n1jfdetszx99ban1rl4zll6tej7j.htm">JSON libname engine</a> to parse it.</p>
-<pre><code>libname results JSON fileref=resp;
+<pre tabindex="0"><code>libname results JSON fileref=resp;
 title &quot;JSON library structure&quot;;
 proc datasets lib=results;quit;
 </code></pre><p>The above code creates tabular datasets for each section of the json file. All datasets are stored in the <code>results</code> libname.</p>
@@ -370,7 +360,7 @@ proc datasets lib=results;quit;
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

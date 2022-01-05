@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -168,7 +158,7 @@
         <p>Quick example of explode and posexplode</p>
 <hr>
 <p>Suppose we have a table of products. Each product has a list of stores that it is sold in. For example, product 1 is sold in stores &lsquo;A&rsquo; and &lsquo;B&rsquo;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>createDataFrame([
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> spark<span style="color:#f92672">.</span>createDataFrame([
     Row(product_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, store_ids <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;A&#39;</span>,<span style="color:#e6db74">&#39;B&#39;</span>]),
     Row(product_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, store_ids <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;C&#39;</span>,<span style="color:#e6db74">&#39;D&#39;</span>]),
     Row(product_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, store_ids <span style="color:#f92672">=</span> []),
@@ -197,7 +187,7 @@ df<span style="color:#f92672">.</span>show()
 </tbody>
 </table>
 <p>We want to <a href="https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.functions.explode.html"><code>explode</code></a> the store_ids column so that each row contains one store_id. Since I am using spark sql, I need to use a <a href="https://spark.apache.org/docs/latest/sql-ref-syntax-qry-select-lateral-view.html"><code>LATERAL VIEW</code></a> clause.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df<span style="color:#f92672">.</span>createTempView(<span style="color:#e6db74">&#34;my_table&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df<span style="color:#f92672">.</span>createTempView(<span style="color:#e6db74">&#34;my_table&#34;</span>)
 
 sql_query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
 </span><span style="color:#e6db74">SELECT 
@@ -236,7 +226,7 @@ results<span style="color:#f92672">.</span>show()
 </table>
 <p>Note that the result does not include product_id 3.</p>
 <p>Suppose we want to include the index of each list element we explode. Use <code>posexplode</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sql_query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sql_query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;
 </span><span style="color:#e6db74">SELECT 
 </span><span style="color:#e6db74">    product_id,
 </span><span style="color:#e6db74">    seq,
@@ -396,7 +386,7 @@ results<span style="color:#f92672">.</span>show()
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>

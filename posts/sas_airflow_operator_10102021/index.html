@@ -2,16 +2,6 @@
 
 <html lang="en-us">
     <head>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB1FNTGNKE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-LB1FNTGNKE');
-    </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +19,7 @@
     
     
     
-    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.7f48fb61d97a236c01a3d2327f63d7bc0f1b5da94c7eb37c0e7b8f0a7847b715.css"/>
+    <link rel="stylesheet" href="https://rbarman.github.io/css/main.min.e34415025514319010e741089e6920454053855755ba465f66943ad102d2cb08.css"/>
 
     
     
@@ -151,7 +141,7 @@
     <p><a href="https://github.com/kimcc/hugo-theme-noteworthy" target="_blank" rel="noopener">Noteworthy theme</a></p>
     <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
 </nav>
@@ -167,7 +157,7 @@
         <p>
         <p>How to create a custom airflow Operator to submit SAS programs</p>
 <p><code>SASOperator</code> is a subclass of airflow <a href="https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/baseoperator/index.html"><code>BaseOperator</code></a>. It accepts a string representation of a sas program file path. The <code>execute</code> function uses <a href="https://github.com/sassoftware/saspy"><code>saspy</code></a> to create a new SAS session and submit the job.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> saspy
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> saspy
 <span style="color:#f92672">from</span> airflow.models.baseoperator <span style="color:#f92672">import</span> BaseOperator
 
 
@@ -193,7 +183,7 @@
 
 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SASOperator</span>(BaseOperator):
-    <span style="color:#66d9ef">def</span> __init__(self, program_path: str, <span style="color:#f92672">**</span>kwargs) <span style="color:#f92672">-&gt;</span> None:
+    <span style="color:#66d9ef">def</span> __init__(self, program_path: str, <span style="color:#f92672">**</span>kwargs) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
 
         super()<span style="color:#f92672">.</span>__init__(<span style="color:#f92672">**</span>kwargs):
             self<span style="color:#f92672">.</span>program_path <span style="color:#f92672">=</span> program_path
@@ -202,7 +192,7 @@
             results <span style="color:#f92672">=</span> submit_sas_program(self<span style="color:#f92672">.</span>program_path)
             <span style="color:#66d9ef">return</span> results
 </code></pre></div><p>Create a DAG that uses the new SASOperator</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
 <span style="color:#f92672">from</span> airflow <span style="color:#f92672">import</span> DAG
 <span style="color:#f92672">from</span> airflow.utils.dates <span style="color:#f92672">import</span> days_ago
 
@@ -213,7 +203,7 @@ default_args <span style="color:#f92672">=</span> {<span style="color:#e6db74">&
     default_args<span style="color:#f92672">=</span>default_args,
     description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;testing connection with saspy&#34;</span>,
     tags<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;sas&#34;</span>],
-    schedule_interval<span style="color:#f92672">=</span>None,
+    schedule_interval<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>,
     start_date<span style="color:#f92672">=</span>days_ago(<span style="color:#ae81ff">2</span>),
 ) <span style="color:#66d9ef">as</span> dag:
 
@@ -344,7 +334,7 @@ default_args <span style="color:#f92672">=</span> {<span style="color:#e6db74">&
         <p><a href="https://gohugo.io" target="_blank" rel="noopener">Built with Hugo</a></p>
 	</div>
 
-	<script src="https://rbarman.github.io/js/main.min.fa5c2b23e07b5d9bfad267a52b4b24fdb053e6fb7524993383594926a3ac270c.js" integrity="sha256-+lwrI+B7XZv60melK0sk/bBT5vt1JJkzg1lJJqOsJww=" crossorigin="anonymous"></script>
+	<script src="https://rbarman.github.io/js/main.min.c1aee25a817e9beb1f9c4afd9d62311227a7f5e46720e404dc1dda97281f47f2.js" integrity="sha256-wa7iWoF+m+sfnEr9nWIxEien9eRnIOQE3B3alygfR/I=" crossorigin="anonymous"></script>
 </footer>
 
     </body>
