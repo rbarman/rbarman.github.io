@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://rbarman.github.io/</loc>
+    <lastmod>2022-04-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rbarman.github.io/tags/numpy/</loc>
+    <lastmod>2022-04-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rbarman.github.io/posts/numpy_broadcast_vector_distance_04132022/</loc>
+    <lastmod>2022-04-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rbarman.github.io/posts/</loc>
+    <lastmod>2022-04-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rbarman.github.io/tags/</loc>
+    <lastmod>2022-04-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rbarman.github.io/tags/brownie/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rbarman.github.io/posts/pandas_explode_01042022/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rbarman.github.io/tags/python/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://rbarman.github.io/tags/solidity/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://rbarman.github.io/posts/chrome_extension_python_server_11232021.md/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,31 +38,13 @@
     <loc>https://rbarman.github.io/tags/flask/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rbarman.github.io/</loc>
-    <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rbarman.github.io/posts/</loc>
-    <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rbarman.github.io/tags/python/</loc>
-    <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rbarman.github.io/tags/</loc>
-    <lastmod>2021-11-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rbarman.github.io/tags/pyspark/</loc>
     <lastmod>2021-11-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rbarman.github.io/posts/spark_sql_explode_11222021/</loc>
     <lastmod>2021-11-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://rbarman.github.io/tags/brownie/</loc>
-    <lastmod>2021-11-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://rbarman.github.io/posts/brownie_deployment_11212021/</loc>
-    <lastmod>2021-11-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rbarman.github.io/tags/solidity/</loc>
     <lastmod>2021-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://rbarman.github.io/posts/web3_deployment_11202021/</loc>
@@ -211,7 +220,5 @@
   </url><url>
     <loc>https://rbarman.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://rbarman.github.io/posts/pandas_explode_01042022/</loc>
   </url>
 </urlset>

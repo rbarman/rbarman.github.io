@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>numpy on Noteworthy</title>
+    <link>https://rbarman.github.io/tags/numpy/</link>
+    <description>Recent content in numpy on Noteworthy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rbarman.github.io/tags/numpy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Numpy - Find most similar vector</title>
+      <link>https://rbarman.github.io/posts/numpy_broadcast_vector_distance_04132022/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/numpy_broadcast_vector_distance_04132022/</guid>
+      <description>Simple soccer example to find the most similar vector in a matrix.</description>
+    </item>
+    
+  </channel>
+</rss>

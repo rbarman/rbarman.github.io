@@ -6,7 +6,16 @@
     <description>Recent content in python on Noteworthy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rbarman.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://rbarman.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pandas - explode a dataframe</title>
+      <link>https://rbarman.github.io/posts/pandas_explode_01042022/</link>
+      <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://rbarman.github.io/posts/pandas_explode_01042022/</guid>
+      <description>Quick example of pandas explode</description>
+    </item>
+    
     <item>
       <title>Chrome extension &#43; flask server</title>
       <link>https://rbarman.github.io/posts/chrome_extension_python_server_11232021.md/</link>
