@@ -2,13 +2,12 @@
 
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.91.2" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no"/>
 
-    <title>Noteworthy</title>
+    <title>Run Databricks notebook from another notebook | Noteworthy</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,8 +28,6 @@
     
     
  
-    
-    <link rel="alternate" type="application/rss+xml" href="https://rbarman.github.io/index.xml" title="Noteworthy" />
     </head>
 
     <body>
@@ -155,148 +152,59 @@
 
         <div id="content" class="content-container">
         
-<div class = "article-content">
-        
-        <div class="description">
-            <p>Dev journal with emphasis on data engineering and machine learning</p>
-        </div>
-        
-        
-        
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/spark_sql_explode_11222021/">
-                    Spark SQL - explode
-                </a>
-            </h2>
-            <div>
-                <p>Quick example of explode and posexplode</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>November 22, 2021</time>
 
-            
-            
-                
-                    <a class="tag" href="/tags/pyspark">#pyspark</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/brownie_deployment_11212021/">
-                    Deploy solidity contract with brownie
-                </a>
-            </h2>
-            <div>
-                <p>Example of deploying a solidity contract with brownie on a rinkeby test chain</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>November 21, 2021</time>
+<h1 class="post-title">Run Databricks notebook from another notebook</h1>
+    
+    <time>April 16, 2022</time>
+    
+    <div>
+        <p>
+        <p>Simple example to run a Databricks notebook from another notebook.</p>
+<p>A prevalent design pattern in Databricks is to call another notebook from one notebook. For example in enterprise environments, one may need to run a setup script to establish their access control.</p>
+<p>Below is a sample notebook called &ldquo;setup&rdquo; to mimic loading an environment. The notebook accepts one input parameter called &ldquo;env&rdquo;. It gets the value of &ldquo;env&rdquo; from <code>getArgument(&quot;env&quot;)</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#75715e"># Parameters:</span>
+<span style="color:#75715e">#  env (str): Environment to load</span>
 
-            
-            
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-                    <a class="tag" href="/tags/solidity">#solidity</a>
-                
-                    <a class="tag" href="/tags/brownie">#brownie</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/web3_deployment_11202021/">
-                    Deploy solidity contract with web3
-                </a>
-            </h2>
-            <div>
-                <p>Example of deploying a solidity contract with web3 on a test Ganache blockchain.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>November 20, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/python">#python</a>
-                
-                    <a class="tag" href="/tags/solidity">#solidity</a>
-                
-                    <a class="tag" href="/tags/web3">#web3</a>
-                
-            
-            </div> 
-           
-        </article>
-        
-        <article>
-            <h2>
-                <a href="https://rbarman.github.io/posts/solidity_payable_11192021/">
-                    Solidity - payable function
-                </a>
-            </h2>
-            <div>
-                <p>Solidity example that mimics a political campaign fund.</p>
-                
-            </div>
-            <div class="post-footer">
-            <time>November 19, 2021</time>
-
-            
-            
-                
-                    <a class="tag" href="/tags/solidity">#solidity</a>
-                
-            
-            </div> 
-           
-        </article>
-        
+valid_envs <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;qa&#34;</span>,<span style="color:#e6db74">&#34;prod&#34;</span>]
+<span style="color:#66d9ef">try</span>:
+    env <span style="color:#f92672">=</span> getArgument(<span style="color:#e6db74">&#34;env&#34;</span>)<span style="color:#f92672">.</span>lower()
+<span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e:
+    env <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;qa&#39;</span>
+<span style="color:#66d9ef">finally</span>:
+    <span style="color:#66d9ef">if</span> env <span style="color:#f92672">in</span> valid_envs:
+        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;loading </span><span style="color:#e6db74">{</span>env<span style="color:#e6db74">}</span><span style="color:#e6db74"> environment&#34;</span>)
+    <span style="color:#66d9ef">else</span>:
+        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Enter a valid environment.&#34;</span>)
+        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Current supported environments are </span><span style="color:#e6db74">{</span>valid_envs<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</code></pre></div><p>It is very simple to run the setup notebook in another notebook.</p>
+<ul>
+<li>%run [<em>path to notebook</em>]</li>
+<li>specify parameters with <em>$param</em> = <em>param value</em></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>run <span style="color:#f92672">./</span>setup <span style="color:#960050;background-color:#1e0010">$</span>env<span style="color:#f92672">=</span>prod
+</code></pre></div><pre tabindex="0"><code>loading prod environment
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>run <span style="color:#f92672">./</span>setup
+</code></pre></div><pre tabindex="0"><code>loading qa environment
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span>run <span style="color:#f92672">./</span>setup staging
+</code></pre></div><pre tabindex="0"><code>Enter a valid environment.
+Current supported environments are ['qa', 'prod']
+</code></pre>
+        </p>
     </div>
+    
+
+    
+
+    <div class="page-footer">
         
-        <div class="paginator">
+        <hr class="footer-divider">
         
+            <a class="tag" href="/tags/databricks">#databricks</a>
         
-        <p>Page 2 of 8</p>
-        <div class="paginator-group">
-            
-            <a class="color-link" href="/">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            
-            
-                <a class="color-link older" href="/page/3/">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                        
-                </a>
-            
-        </div>
-        
+      
     </div>
+
 
         
 
