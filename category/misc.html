@@ -4,15 +4,15 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>Dev log</title>
+        <title>example.com - misc</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">Dev log</a></h1>
+                <h1><a href="/">example.com</a></h1>
                 <nav><ul>
-                    <li><a href="/category/aws.html">AWS</a></li>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
@@ -27,7 +27,7 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/dev.html">dev</a>
         </address>
-<p>In <a href="/category/aws.html">AWS</a>.</p>
+<p>In <a href="/category/misc.html">misc</a>.</p>
 
 </footer><!-- /.post-info --><p>I want to create an AWS Lambda function that can extract the text from a web article. One way to do this is to create a Lambda Layer with the required package dependencies and then have a Lambda function connect to the Lambda Layer and execute the extraction code. </p>
 <p>I found three promising python libraries that can extract text:  <a href="https://github.com/adbar/trafilatura">trafilatura</a>, <a href="https://github.com/goose3/goose3">goose3</a>, and <a href="https://github.com/codelucas/newspaper">newspaper3k</a>. These libraries functionally work well locally, <em>however</em> I had difficulties in properly creating a lambda layer. In the end I was only successful with trafilatura. Below is a quick summary of how I built the lambda layer.</p>
@@ -55,12 +55,10 @@
 <p>5) Attach lambda layer to lambda function
 Make sure you attach the most recent lambda layer version! Also make sure that the lambda function python runtime matches with the layer's compatible runtimes.</p>
 <hr>
-<p>Relevant links</p>
-<ul>
-<li>https://repost.aws/knowledge-center/lambda-python-package-compatible </li>
-<li>https://repost.aws/knowledge-center/lambda-import-module-error-python</li>
-<li>https://docs.aws.amazon.com/cli/latest/reference/lambda/publish-layer-version.html</li>
-</ul>                </article>
+<p>Relevant links
+- https://repost.aws/knowledge-center/lambda-python-package-compatible 
+- https://repost.aws/knowledge-center/lambda-import-module-error-python
+- https://docs.aws.amazon.com/cli/latest/reference/lambda/publish-layer-version.html</p>                </article>
             </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">
