@@ -4,13 +4,13 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>example.com - misc</title>
+        <title>Dev log - misc</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">example.com</a></h1>
+                <h1><a href="/">Dev log</a></h1>
                 <nav><ul>
                     <li class="active"><a href="/category/misc.html">misc</a></li>
                 </ul></nav>
@@ -18,7 +18,86 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/trafilatura-aws-lambda-layer.html">Trafilatura AWS Lambda Layer</a></h1>
+                    <h1 class="entry-title"><a href="/creating-mock-api-outputs-in-an-expo-react-native-app.html">Creating mock API outputs in an Expo React Native app</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-09-09T00:00:00-05:00">
+                Published: Sat 09 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/expo.html">Expo</a> <a href="/tag/reactnative.html">ReactNative</a> </p>
+</footer><!-- /.post-info --><p>I am currently working on an Expo React Native app and need to call different paid APIs to get data. There are times when I want to update how the data is rendered in the application or the application logic flow. These develepment tasks, especially UI updates, can be a very iterative process and ultimately very expensive if I need to constantly call APIs to get the data. One work around I have found is to create flags in the application to specifiy if the API should be mocked.</p>
+<p>For example, suppose my application needs to call an AWS Lambda function to sport score related data. 
+In <code>app.json</code> I create a new field called 'local_mock' with a boolean field called 'sports_score'.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;expo&quot;</span><span class="p">:{</span>
+<span class="w">        </span><span class="err">...</span>
+
+<span class="w">       </span><span class="nt">&quot;local_mock&quot;</span><span class="p">:{</span>
+<span class="w">            </span><span class="nt">&quot;sports_score&quot;</span><span class="p">:</span><span class="kc">true</span>
+<span class="w">       </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>If <code>local_mock.sports_score</code> is true, then the application knows that whenever it is required to get sports score data, it should return mocked output. </p>
+<p>Suppose <code>api.js</code> has a function called <code>get_sports_score</code> which calls an AWS Lambda function.</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">Constants</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;expo-constants&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">get_sports_score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">Constants</span><span class="p">.</span><span class="nx">manifest</span><span class="p">.</span><span class="nx">local_mock</span><span class="p">.</span><span class="nx">sports_score</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">local_mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;score&quot;</span><span class="o">:</span><span class="s2">&quot;...&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">local_mock</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">call_lambda_function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This approach only works if the data structure of the local mock matches with the data structure of the output from the actual API output. </p>
+<p>I am still learning Expo and React Native development, so there may better ways to implement local mocks of API outputs.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/getting-started-with-osm.html" rel="bookmark"
+                           title="Permalink to Getting started with OSM">Getting started with OSM</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-02T00:00:00-05:00">
+                Published: Sat 02 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/osm.html">OSM</a> </p>
+</footer><!-- /.post-info -->                <p>I have recently been interested in open source mapping and started to contribute to Open Street Map.</p>
+<p><strong><a href="https://maproulette.org/">Map Roulette</a></strong> contains different challenges. Right now I do very basic challenges that fix metadata about a location such as phone numbers or websites. There are more complex channels where you need to …</p>
+                <a class="readmore" href="/getting-started-with-osm.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/trafilatura-aws-lambda-layer.html" rel="bookmark"
+                           title="Permalink to Trafilatura AWS Lambda Layer">Trafilatura AWS Lambda Layer</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-08-30T00:00:00-05:00">
                 Published: Wed 30 August 2023
@@ -28,38 +107,14 @@
                 By                         <a class="url fn" href="/author/dev.html">dev</a>
         </address>
 <p>In <a href="/category/misc.html">misc</a>.</p>
-
-</footer><!-- /.post-info --><p>I want to create an AWS Lambda function that can extract the text from a web article. One way to do this is to create a Lambda Layer with the required package dependencies and then have a Lambda function connect to the Lambda Layer and execute the extraction code. </p>
-<p>I found three promising python libraries that can extract text:  <a href="https://github.com/adbar/trafilatura">trafilatura</a>, <a href="https://github.com/goose3/goose3">goose3</a>, and <a href="https://github.com/codelucas/newspaper">newspaper3k</a>. These libraries functionally work well locally, <em>however</em> I had difficulties in properly creating a lambda layer. In the end I was only successful with trafilatura. Below is a quick summary of how I built the lambda layer.</p>
-<hr>
-<p>1) Create an EC2 instance</p>
-<p>In general, we should create the layer on the same operating system as the Lambda runtime. One easy way to do this is to create a small EC2 instance and then build all dependencies on the EC2 instance. Make sure that the EC2 instance has permissions to call the PublishLayerVersion API operation.</p>
-<p>2) Install library</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--platform<span class="w"> </span>manylinux2014_x86_64<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--target<span class="w"> </span>python<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--python-version<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--only-binary<span class="o">=</span>:all:<span class="w"> </span>--upgrade<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>trafilatura
-</code></pre></div>
-
-<p>3) Put everything in <code>layer.zip</code>.  The zip file will be used to create the lambda layer</p>
-<div class="highlight"><pre><span></span><code>zip<span class="w"> </span>-r<span class="w"> </span>layer.zip<span class="w"> </span>python
-</code></pre></div>
-
-<p>4) Publish as a lambda layer</p>
-<p>The below code creates lambda layer called trafilatura. If the layer already exists, then the code will create a new version of the lambda layer. </p>
-<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>publish-layer-version<span class="w">  </span>--layer-name<span class="w"> </span>trafilatura<span class="w"> </span>--zip-file<span class="w"> </span>fileb://layer.zip<span class="w"> </span>--compatible-runtimes<span class="w"> </span>python3.8<span class="w"> </span>python3.9<span class="w"> </span>python3.10<span class="w"> </span>python3.11<span class="w"> </span>--region<span class="w"> </span>us-east-1
-</code></pre></div>
-
-<p>5) Attach lambda layer to lambda function
-Make sure you attach the most recent lambda layer version! Also make sure that the lambda function python runtime matches with the layer's compatible runtimes.</p>
-<hr>
-<p>Relevant links
-- https://repost.aws/knowledge-center/lambda-python-package-compatible 
-- https://repost.aws/knowledge-center/lambda-import-module-error-python
-- https://docs.aws.amazon.com/cli/latest/reference/lambda/publish-layer-version.html</p>                </article>
-            </aside><!-- /#featured -->
+<p>tags: <a href="/tag/aws-lambda.html">AWS Lambda</a> <a href="/tag/trafilatura.html">Trafilatura</a> </p>
+</footer><!-- /.post-info -->                <p>I want to create an AWS Lambda function that can extract the text from a web article. One way to do this is to create a Lambda Layer with the required package dependencies and then have a Lambda function connect to the Lambda Layer and execute the extraction code. </p>
+<p>I …</p>
+                <a class="readmore" href="/trafilatura-aws-lambda-layer.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
