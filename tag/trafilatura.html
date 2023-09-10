@@ -18,7 +18,57 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/trafilatura-aws-lambda-layer.html">Trafilatura AWS Lambda Layer</a></h1>
+                    <h1 class="entry-title"><a href="/trafilatura-starter.html">Trafilatura Starter</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-09-10T00:00:00-05:00">
+                Published: Sun 10 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/trafilatura.html">Trafilatura</a> </p>
+</footer><!-- /.post-info --><p>In a previous post I mentioned using Trafilatura in an AWS Lambda function. Trafilatura's main purpose is to easily extract metadata from websites. All web crawling info and web document traversal are abstracted away from the user.</p>
+<p>Basic usage:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">fetch_url</span>
+<span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">extract</span><span class="p">,</span> <span class="n">extract_metadata</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">document</span> <span class="o">=</span> <span class="n">fetch_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">extract</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">extract_metadata</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <a href="https://trafilatura.readthedocs.io/en/latest/corefunctions.html#trafilatura.extract_metadata">documentation</a> for extract_metadata states that it returns a "trafilatura.metadata.Document". Unfortunately the only way to truly understand what metadata is available is to look into the source code.</p>
+<p><code>trafilatura/metadata.py</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="s2">&quot;Defines a class to store all necessary data and metadata fields for extracted information.&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;hostname&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;sitename&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;categories&#39;</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">,</span> <span class="s1">&#39;fingerprint&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;license&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;comments&#39;</span><span class="p">,</span> <span class="s1">&#39;commentsbody&#39;</span><span class="p">,</span> <span class="s1">&#39;raw_text&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;pagetype&#39;</span>  <span class="c1"># &#39;locale&#39;?</span>
+    <span class="p">]</span>
+</code></pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/trafilatura-aws-lambda-layer.html" rel="bookmark"
+                           title="Permalink to Trafilatura AWS Lambda Layer">Trafilatura AWS Lambda Layer</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-08-30T00:00:00-05:00">
                 Published: Wed 30 August 2023
@@ -29,39 +79,13 @@
         </address>
 <p>In <a href="/category/misc.html">misc</a>.</p>
 <p>tags: <a href="/tag/aws-lambda.html">AWS Lambda</a> <a href="/tag/trafilatura.html">Trafilatura</a> </p>
-</footer><!-- /.post-info --><p>I want to create an AWS Lambda function that can extract the text from a web article. One way to do this is to create a Lambda Layer with the required package dependencies and then have a Lambda function connect to the Lambda Layer and execute the extraction code. </p>
-<p>I found three promising python libraries that can extract text:  <a href="https://github.com/adbar/trafilatura">trafilatura</a>, <a href="https://github.com/goose3/goose3">goose3</a>, and <a href="https://github.com/codelucas/newspaper">newspaper3k</a>. These libraries functionally work well locally, <em>however</em> I had difficulties in properly creating a lambda layer. In the end I was only successful with trafilatura. Below is a quick summary of how I built the lambda layer.</p>
-<hr>
-<p>1) Create an EC2 instance</p>
-<p>In general, we should create the layer on the same operating system as the Lambda runtime. One easy way to do this is to create a small EC2 instance and then build all dependencies on the EC2 instance. Make sure that the EC2 instance has permissions to call the PublishLayerVersion API operation.</p>
-<p>2) Install library</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--platform<span class="w"> </span>manylinux2014_x86_64<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--target<span class="w"> </span>python<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--python-version<span class="w"> </span><span class="m">3</span>.10<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--only-binary<span class="o">=</span>:all:<span class="w"> </span>--upgrade<span class="w"> </span><span class="se">\</span>
-<span class="w">   </span>trafilatura
-</code></pre></div>
-
-<p>3) Put everything in <code>layer.zip</code>.  The zip file will be used to create the lambda layer</p>
-<div class="highlight"><pre><span></span><code>zip<span class="w"> </span>-r<span class="w"> </span>layer.zip<span class="w"> </span>python
-</code></pre></div>
-
-<p>4) Publish as a lambda layer</p>
-<p>The below code creates lambda layer called trafilatura. If the layer already exists, then the code will create a new version of the lambda layer. </p>
-<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>publish-layer-version<span class="w">  </span>--layer-name<span class="w"> </span>trafilatura<span class="w"> </span>--zip-file<span class="w"> </span>fileb://layer.zip<span class="w"> </span>--compatible-runtimes<span class="w"> </span>python3.8<span class="w"> </span>python3.9<span class="w"> </span>python3.10<span class="w"> </span>python3.11<span class="w"> </span>--region<span class="w"> </span>us-east-1
-</code></pre></div>
-
-<p>5) Attach lambda layer to lambda function
-Make sure you attach the most recent lambda layer version! Also make sure that the lambda function python runtime matches with the layer's compatible runtimes.</p>
-<hr>
-<p>Relevant links</p>
-<ul>
-<li>https://repost.aws/knowledge-center/lambda-python-package-compatible </li>
-<li>https://repost.aws/knowledge-center/lambda-import-module-error-python</li>
-<li>https://docs.aws.amazon.com/cli/latest/reference/lambda/publish-layer-version.html</li>
-</ul>                </article>
-            </aside><!-- /#featured -->
+</footer><!-- /.post-info -->                <p>I want to create an AWS Lambda function that can extract the text from a web article. One way to do this is to create a Lambda Layer with the required package dependencies and then have a Lambda function connect to the Lambda Layer and execute the extraction code. </p>
+<p>I …</p>
+                <a class="readmore" href="/trafilatura-aws-lambda-layer.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>

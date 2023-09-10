@@ -4,21 +4,27 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>Dev log</title>
+        <title>Trafilatura Starter</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="In a previous post I mentioned using Trafilatura in an AWS Lambda function. Trafilatura's main purpose is to easily extract metadata from..." />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
                 <h1><a href="/">Dev log</a></h1>
                 <nav><ul>
-                    <li><a href="/category/misc.html">misc</a></li>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/trafilatura-starter.html" rel="bookmark"
+           title="Permalink to Trafilatura Starter">Trafilatura Starter</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/trafilatura-starter.html">Trafilatura Starter</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-09-10T00:00:00-05:00">
                 Published: Sun 10 September 2023
@@ -29,7 +35,7 @@
         </address>
 <p>In <a href="/category/misc.html">misc</a>.</p>
 <p>tags: <a href="/tag/trafilatura.html">Trafilatura</a> </p>
-</footer><!-- /.post-info --><p>In a previous post I mentioned using Trafilatura in an AWS Lambda function. Trafilatura's main purpose is to easily extract metadata from websites. All web crawling info and web document traversal are abstracted away from the user.</p>
+</footer><!-- /.post-info -->      <p>In a previous post I mentioned using Trafilatura in an AWS Lambda function. Trafilatura's main purpose is to easily extract metadata from websites. All web crawling info and web document traversal are abstracted away from the user.</p>
 <p>Basic usage:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">fetch_url</span>
 <span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">extract</span><span class="p">,</span> <span class="n">extract_metadata</span>
@@ -55,82 +61,11 @@
     <span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;comments&#39;</span><span class="p">,</span> <span class="s1">&#39;commentsbody&#39;</span><span class="p">,</span> <span class="s1">&#39;raw_text&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
     <span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;pagetype&#39;</span>  <span class="c1"># &#39;locale&#39;?</span>
     <span class="p">]</span>
-</code></pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</code></pre></div>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/creating-mock-api-outputs-in-an-expo-react-native-app.html" rel="bookmark"
-                           title="Permalink to Creating mock API outputs in an Expo React Native app">Creating mock API outputs in an Expo React Native app</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-09-09T00:00:00-05:00">
-                Published: Sat 09 September 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/expo.html">Expo</a> <a href="/tag/reactnative.html">ReactNative</a> </p>
-</footer><!-- /.post-info -->                <p>I am currently working on an Expo React Native app and need to call different paid APIs to get data. There are times when I want to update how the data is rendered in the application or the application logic flow. These develepment tasks, especially UI updates, can be a …</p>
-                <a class="readmore" href="/creating-mock-api-outputs-in-an-expo-react-native-app.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/getting-started-with-osm.html" rel="bookmark"
-                           title="Permalink to Getting started with OSM">Getting started with OSM</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-09-02T00:00:00-05:00">
-                Published: Sat 02 September 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/osm.html">OSM</a> </p>
-</footer><!-- /.post-info -->                <p>I have recently been interested in open source mapping and started to contribute to Open Street Map.</p>
-<p><strong><a href="https://maproulette.org/">Map Roulette</a></strong> contains different challenges. Right now I do very basic challenges that fix metadata about a location such as phone numbers or websites. There are more complex channels where you need to …</p>
-                <a class="readmore" href="/getting-started-with-osm.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/trafilatura-aws-lambda-layer.html" rel="bookmark"
-                           title="Permalink to Trafilatura AWS Lambda Layer">Trafilatura AWS Lambda Layer</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-08-30T00:00:00-05:00">
-                Published: Wed 30 August 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/aws-lambda.html">AWS Lambda</a> <a href="/tag/trafilatura.html">Trafilatura</a> </p>
-</footer><!-- /.post-info -->                <p>I want to create an AWS Lambda function that can extract the text from a web article. One way to do this is to create a Lambda Layer with the required package dependencies and then have a Lambda function connect to the Lambda Layer and execute the extraction code. </p>
-<p>I …</p>
-                <a class="readmore" href="/trafilatura-aws-lambda-layer.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>

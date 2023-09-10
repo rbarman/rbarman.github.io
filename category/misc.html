@@ -18,7 +18,57 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/creating-mock-api-outputs-in-an-expo-react-native-app.html">Creating mock API outputs in an Expo React Native app</a></h1>
+                    <h1 class="entry-title"><a href="/trafilatura-starter.html">Trafilatura Starter</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-09-10T00:00:00-05:00">
+                Published: Sun 10 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/trafilatura.html">Trafilatura</a> </p>
+</footer><!-- /.post-info --><p>In a previous post I mentioned using Trafilatura in an AWS Lambda function. Trafilatura's main purpose is to easily extract metadata from websites. All web crawling info and web document traversal are abstracted away from the user.</p>
+<p>Basic usage:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">fetch_url</span>
+<span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">extract</span><span class="p">,</span> <span class="n">extract_metadata</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">document</span> <span class="o">=</span> <span class="n">fetch_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">extract</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">extract_metadata</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <a href="https://trafilatura.readthedocs.io/en/latest/corefunctions.html#trafilatura.extract_metadata">documentation</a> for extract_metadata states that it returns a "trafilatura.metadata.Document". Unfortunately the only way to truly understand what metadata is available is to look into the source code.</p>
+<p><code>trafilatura/metadata.py</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="s2">&quot;Defines a class to store all necessary data and metadata fields for extracted information.&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;hostname&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;sitename&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;categories&#39;</span><span class="p">,</span> <span class="s1">&#39;tags&#39;</span><span class="p">,</span> <span class="s1">&#39;fingerprint&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;license&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;comments&#39;</span><span class="p">,</span> <span class="s1">&#39;commentsbody&#39;</span><span class="p">,</span> <span class="s1">&#39;raw_text&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;pagetype&#39;</span>  <span class="c1"># &#39;locale&#39;?</span>
+    <span class="p">]</span>
+</code></pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/creating-mock-api-outputs-in-an-expo-react-native-app.html" rel="bookmark"
+                           title="Permalink to Creating mock API outputs in an Expo React Native app">Creating mock API outputs in an Expo React Native app</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-09-09T00:00:00-05:00">
                 Published: Sat 09 September 2023
@@ -29,44 +79,10 @@
         </address>
 <p>In <a href="/category/misc.html">misc</a>.</p>
 <p>tags: <a href="/tag/expo.html">Expo</a> <a href="/tag/reactnative.html">ReactNative</a> </p>
-</footer><!-- /.post-info --><p>I am currently working on an Expo React Native app and need to call different paid APIs to get data. There are times when I want to update how the data is rendered in the application or the application logic flow. These develepment tasks, especially UI updates, can be a very iterative process and ultimately very expensive if I need to constantly call APIs to get the data. One work around I have found is to create flags in the application to specifiy if the API should be mocked.</p>
-<p>For example, suppose my application needs to call an AWS Lambda function to sport score related data. 
-In <code>app.json</code> I create a new field called 'local_mock' with a boolean field called 'sports_score'.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;expo&quot;</span><span class="p">:{</span>
-<span class="w">        </span><span class="err">...</span>
-
-<span class="w">       </span><span class="nt">&quot;local_mock&quot;</span><span class="p">:{</span>
-<span class="w">            </span><span class="nt">&quot;sports_score&quot;</span><span class="p">:</span><span class="kc">true</span>
-<span class="w">       </span><span class="p">}</span><span class="w"> </span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>If <code>local_mock.sports_score</code> is true, then the application knows that whenever it is required to get sports score data, it should return mocked output. </p>
-<p>Suppose <code>api.js</code> has a function called <code>get_sports_score</code> which calls an AWS Lambda function.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">Constants</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;expo-constants&#39;</span><span class="p">;</span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">get_sports_score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">Constants</span><span class="p">.</span><span class="nx">manifest</span><span class="p">.</span><span class="nx">local_mock</span><span class="p">.</span><span class="nx">sports_score</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nx">local_mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="s2">&quot;score&quot;</span><span class="o">:</span><span class="s2">&quot;...&quot;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">local_mock</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">else</span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">call_lambda_function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>This approach only works if the data structure of the local mock matches with the data structure of the output from the actual API output. </p>
-<p>I am still learning Expo and React Native development, so there may better ways to implement local mocks of API outputs.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>I am currently working on an Expo React Native app and need to call different paid APIs to get data. There are times when I want to update how the data is rendered in the application or the application logic flow. These develepment tasks, especially UI updates, can be a …</p>
+                <a class="readmore" href="/creating-mock-api-outputs-in-an-expo-react-native-app.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
