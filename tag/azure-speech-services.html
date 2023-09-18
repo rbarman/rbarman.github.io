@@ -96,6 +96,35 @@
 <p>The major descripancy I found is that there can be strings that cause the Requests approach to fail but the SDK approach is successful. I went through a rabbit hole of cleaning the input text to get rid of special characters, confirming the encoding type, and building the xml payload with a python xml library but the request approach still fails. Unfortunately the speech service api endpoint only returns a 400 status code but with no helpful messages. There must be an issue with how I am calling the API with the requests library because I do not get an issue if I make the same API call with Postman.</p>
 <p>In general this is not a problem because one would just go with the SDK approach. The SDK already works and a lot of the implementation details are abstracted away. <em>However</em>, I want to run the tts in an AWS Lambda function. If I want to use the python SDK, then I need to create a custom Lambda layer to accomodate the SDK; this could be doable but will take some time. I think the best course of action right now is to use AWS Polly for tts. </p>                </article>
             </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/pivot-to-aws-polly.html" rel="bookmark"
+                           title="Permalink to Pivot to AWS Polly">Pivot to AWS Polly</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-15T00:00:00-05:00">
+                Published: Fri 15 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/azure-speech-services.html">Azure Speech Services</a> <a href="/tag/aws-polly.html">AWS Polly</a> </p>
+</footer><!-- /.post-info -->                <p>My previous post described my difficulties with azure speech services. Fortunately I was able to pivot to aws very quickly.</p>
+<p>The only tricky part of Polly is that it has a limit on how much characters can be converted at once. So I need to split up my entire text …</p>
+                <a class="readmore" href="/pivot-to-aws-polly.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
