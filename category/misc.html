@@ -18,7 +18,43 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/https-localhost-with-mkcert.html">HTTPS localhost with mkcert</a></h1>
+                    <h1 class="entry-title"><a href="/host-pwa-with-aws-amplify.html">Host PWA with AWS Amplify</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-10-10T00:00:00-05:00">
+                Published: Tue 10 October 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/mkcert.html">mkcert</a> <a href="/tag/progressive-web-app.html">progressive web app</a> <a href="/tag/aws-amplify.html">AWS Amplify</a> </p>
+</footer><!-- /.post-info --><p>Previous post talked about using mkcert to run localhost as https. Unfortunately this does not work if I want to acess the PWA on my phone. I get a message back stating that the connection is not secure and thus I can not download the PWA.</p>
+<p>The simple explanation is that my phone does not trust the self-signed certificate created by mkcert. My phone has its own list of trusted Certified Authorities (CA) but it does not know about the one I created on my computer.</p>
+<p>One cited work around is to export the root certificate (rootCA.pem) to my phone...</p>
+<ul>
+<li>run mkcert -CAROOT on computer to find location of root certificate</li>
+<li>securely transfer the file to phone</li>
+<li>On phone, go to "install network certificate" and select the transfered file (https://support.google.com/pixelphone/answer/2844832?hl=en)</li>
+<li>restart phone</li>
+<li>access PWA link</li>
+</ul>
+<p>Unfortunately this does not work. There may be additional phone settings I must modify.</p>
+<p>Instead of tinkering with mkcert and phone settings, I decided to pivot to AWS Amplify. I just have to zip all the PWA files (do not zip the folder containing the files), upload it to AWS Amplify, and it generates a url to the PWA. Then I can go to the url on my phone and download.</p>
+<p>My real intention was to validate PWA caching on mobile. I needed to go through these steps because I can only download a PWA on mobile if the PWA is served on HTTPs. Initial testing looks promising. I will create a separate post dedicated to caching in the future.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/https-localhost-with-mkcert.html" rel="bookmark"
+                           title="Permalink to HTTPS localhost with mkcert">HTTPS localhost with mkcert</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-09-25T00:00:00-05:00">
                 Published: Mon 25 September 2023
@@ -29,23 +65,10 @@
         </address>
 <p>In <a href="/category/misc.html">misc</a>.</p>
 <p>tags: <a href="/tag/mkcert.html">mkcert</a> <a href="/tag/progressive-web-app.html">progressive web app</a> </p>
-</footer><!-- /.post-info --><p>I am currently building progressive web apps. In order for a PWA to be installed on a device, the PWA needs to be served on HTTPS. I should be able to easily run it on AWS and then install on my devices, but I found an easy way to run it on localhost with https locally.</p>
-<p>Steps:</p>
-<ul>
-<li>Install mkcert (https://github.com/FiloSottile/mkcert)</li>
-<li>Install http-server (https://github.com/http-party/http-server)</li>
-<li>mkcert -install</li>
-<li>cd to project directory</li>
-<li>mkcert localhost</li>
-<li>http-server -S -C localhost.pem -K localhost-key.pem </li>
-<li>Go to https://localhost:8080/</li>
-</ul>
-<p>We can now download the PWA!</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>I am currently building progressive web apps. In order for a PWA to be installed on a device, the PWA needs to be served on HTTPS. I should be able to easily run it on AWS and then install on my devices, but I found an easy way to run …</p>
+                <a class="readmore" href="/https-localhost-with-mkcert.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
