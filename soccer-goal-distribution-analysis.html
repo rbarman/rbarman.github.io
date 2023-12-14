@@ -4,21 +4,27 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content="Pelican" />
-        <title>Dev log - dev</title>
+        <title>Soccer Goal Distribution Analysis</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="I have lately been fascinated with mathematical modeling for soccer games. Expected Goal (xG) models are very fun to look at after a game. I also..." />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
                 <h1><a href="/">Dev log</a></h1>
                 <nav><ul>
-                    <li><a href="/category/misc.html">misc</a></li>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/soccer-goal-distribution-analysis.html" rel="bookmark"
+           title="Permalink to Soccer Goal Distribution Analysis">Soccer Goal Distribution Analysis</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/soccer-goal-distribution-analysis.html">Soccer Goal Distribution Analysis</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2023-12-14T00:00:00-06:00">
                 Published: Thu 14 December 2023
@@ -29,7 +35,7 @@
         </address>
 <p>In <a href="/category/misc.html">misc</a>.</p>
 <p>tags: <a href="/tag/soccer.html">soccer</a> <a href="/tag/statistics.html">statistics</a> </p>
-</footer><!-- /.post-info --><p>I have lately been fascinated with mathematical modeling for soccer games. Expected Goal (xG) models are very fun to look at after a game. I also see a lot of interesting visuals from Soccermatics course (https://soccermatics.readthedocs.io/en/latest/index.html)</p>
+</footer><!-- /.post-info -->      <p>I have lately been fascinated with mathematical modeling for soccer games. Expected Goal (xG) models are very fun to look at after a game. I also see a lot of interesting visuals from Soccermatics course (https://soccermatics.readthedocs.io/en/latest/index.html)</p>
 <p>My first analysis is on the total number of goals a team can score in a game. StatsBomb provides free data for several games. I consumed all of the available LaLiga games (https://github.com/statsbomb/open-data/tree/master/data/matches/11).</p>
 <p>Download the data files:</p>
 <div class="highlight"><pre><span></span><code>!wget<span class="w"> </span>https://raw.githubusercontent.com/statsbomb/open-data/master/data/matches/11/1.json
@@ -135,239 +141,11 @@ P-value: 1.450815221371211e-60
 The Poisson distribution does not fit the data well.
 </code></pre></div>
 
-<p>The lower p-value means that we reject the null hypothesis that the data follows a poisson distribution</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>The lower p-value means that we reject the null hypothesis that the data follows a poisson distribution</p>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/initial-sponsorblock-automation.html" rel="bookmark"
-                           title="Permalink to Initial Sponsorblock automation">Initial Sponsorblock automation</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-11-25T00:00:00-06:00">
-                Published: Sat 25 November 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/sponsorblock.html">sponsorblock</a> </p>
-</footer><!-- /.post-info -->                <p>Many youtube channels create videos with constant intro and outro segments. Common examples are news channels or sport highlight channels. These channels are the perfect usecase to automatically create sponsorblock segments.</p>
-<p>Below contains key parts of the current codebase.</p>
-<p>Store metadata about channels and segments. Below indicates that for the …</p>
-                <a class="readmore" href="/initial-sponsorblock-automation.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/acquierers-multiple-notes.html" rel="bookmark"
-                           title="Permalink to Acquierer's Multiple Notes">Acquierer's Multiple Notes</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-10-26T00:00:00-05:00">
-                Published: Thu 26 October 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/book_notes.html">book_notes</a> </p>
-</footer><!-- /.post-info -->                <p>In general, we want companies with high Return On Equity (ROE) and low Acquier's Multiple (AM). We can assign rank to each company based on ROE and AM (rank = ROE rank + AM rank). The book claims that high ranked companies perform well.</p>
-<p><strong>ROE</strong> is a way to measure company growth …</p>
-                <a class="readmore" href="/acquierers-multiple-notes.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/host-pwa-with-aws-amplify.html" rel="bookmark"
-                           title="Permalink to Host PWA with AWS Amplify">Host PWA with AWS Amplify</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-10-10T00:00:00-05:00">
-                Published: Tue 10 October 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/mkcert.html">mkcert</a> <a href="/tag/progressive-web-app.html">progressive web app</a> <a href="/tag/aws-amplify.html">AWS Amplify</a> </p>
-</footer><!-- /.post-info -->                <p>Previous post talked about using mkcert to run localhost as https. Unfortunately this does not work if I want to acess the PWA on my phone. I get a message back stating that the connection is not secure and thus I can not download the PWA.</p>
-<p>The simple explanation is …</p>
-                <a class="readmore" href="/host-pwa-with-aws-amplify.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/https-localhost-with-mkcert.html" rel="bookmark"
-                           title="Permalink to HTTPS localhost with mkcert">HTTPS localhost with mkcert</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-09-25T00:00:00-05:00">
-                Published: Mon 25 September 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/mkcert.html">mkcert</a> <a href="/tag/progressive-web-app.html">progressive web app</a> </p>
-</footer><!-- /.post-info -->                <p>I am currently building progressive web apps. In order for a PWA to be installed on a device, the PWA needs to be served on HTTPS. I should be able to easily run it on AWS and then install on my devices, but I found an easy way to run …</p>
-                <a class="readmore" href="/https-localhost-with-mkcert.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/pivot-to-aws-polly.html" rel="bookmark"
-                           title="Permalink to Pivot to AWS Polly">Pivot to AWS Polly</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-09-18T00:00:00-05:00">
-                Published: Mon 18 September 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/azure-speech-services.html">Azure Speech Services</a> <a href="/tag/aws-polly.html">AWS Polly</a> </p>
-</footer><!-- /.post-info -->                <p>My previous post described my difficulties with azure speech services. Fortunately I was able to pivot to aws very quickly.</p>
-<p>The only tricky part of Polly is that it has a limit on how much characters can be converted at once. So I need to split up my entire text …</p>
-                <a class="readmore" href="/pivot-to-aws-polly.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/difficulties-with-azure-speech-services.html" rel="bookmark"
-                           title="Permalink to Difficulties with Azure Speech Services">Difficulties with Azure Speech Services</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-09-15T00:00:00-05:00">
-                Published: Fri 15 September 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/azure-speech-services.html">Azure Speech Services</a> </p>
-</footer><!-- /.post-info -->                <p>I am building an application that requires text to speech. I chose Azure Speech Services because of its generous free tier, but after some experimentation it looks like there are issues that will make me reconsider.</p>
-<p>At a high level I want to use Azure Speech Services to convert a …</p>
-                <a class="readmore" href="/difficulties-with-azure-speech-services.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/sql-queries-in-pandas.html" rel="bookmark"
-                           title="Permalink to SQL Queries in Pandas">SQL Queries in Pandas</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-09-10T00:00:00-05:00">
-                Published: Sun 10 September 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/pandas.html">Pandas</a> <a href="/tag/duckdb.html">DuckDB</a> </p>
-</footer><!-- /.post-info -->                <p>I spend a lot of development time in PySpark applications and like to use SparkSQL for transformations. It is very easy to run SparkSQL queries on a Spark DataFrame. </p>
-<div class="highlight"><pre><span></span><code><span class="n">source_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">format</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="n">source_df</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
-<span class="k">FROM</span><span class="w"> </span><span class="k">source</span>
-<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span>
-</code></pre></div>
-
-<p>I have several projects that use …</p>
-                <a class="readmore" href="/sql-queries-in-pandas.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/trafilatura-starter.html" rel="bookmark"
-                           title="Permalink to Trafilatura Starter">Trafilatura Starter</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-09-10T00:00:00-05:00">
-                Published: Sun 10 September 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/trafilatura.html">Trafilatura</a> </p>
-</footer><!-- /.post-info -->                <p>In a previous post I mentioned using Trafilatura in an AWS Lambda function. Trafilatura's main purpose is to easily extract metadata from websites. All web crawling info and web document traversal are abstracted away from the user.</p>
-<p>Basic usage:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">fetch_url</span>
-<span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">extract</span><span class="p">,</span> <span class="n">extract_metadata</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="n">document …</span></code></pre></div>
-                <a class="readmore" href="/trafilatura-starter.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/creating-mock-api-outputs-in-an-expo-react-native-app.html" rel="bookmark"
-                           title="Permalink to Creating mock API outputs in an Expo React Native app">Creating mock API outputs in an Expo React Native app</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2023-09-09T00:00:00-05:00">
-                Published: Sat 09 September 2023
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/dev.html">dev</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>.</p>
-<p>tags: <a href="/tag/expo.html">Expo</a> <a href="/tag/reactnative.html">ReactNative</a> </p>
-</footer><!-- /.post-info -->                <p>I am currently working on an Expo React Native app and need to call different paid APIs to get data. There are times when I want to update how the data is rendered in the application or the application logic flow. These develepment tasks, especially UI updates, can be a …</p>
-                <a class="readmore" href="/creating-mock-api-outputs-in-an-expo-react-native-app.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 2
-        <a href="/author/dev2.html">&raquo;</a>
-        <a href="/author/dev2.html">&#8649;</a>
-</p>
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
