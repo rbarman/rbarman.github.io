@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Difficulties with Azure Speech Services</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="I am building an application that requires text to speech. I chose Azure Speech Services because of its generous free tier, but after some..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Dev log</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/difficulties-with-azure-speech-services.html" rel="bookmark"
+           title="Permalink to Difficulties with Azure Speech Services">Difficulties with Azure Speech Services</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-15T00:00:00-05:00">
+                Published: Fri 15 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/azure-speech-services.html">Azure Speech Services</a> </p>
+</footer><!-- /.post-info -->      <p>I am building an application that requires text to speech. I chose Azure Speech Services because of its generous free tier, but after some experimentation it looks like there are issues that will make me reconsider.</p>
+<p>At a high level I want to use Azure Speech Services to convert a text into an audio encoded string, and then send the string to downstream applications. I can call the API via the python SDK or via http requests.</p>
+<p><strong>Python SDK approach</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">azure.cognitiveservices.speech</span> <span class="k">as</span> <span class="nn">speechsdk</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="n">subscription_key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">service_region</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<span class="n">speech_config</span> <span class="o">=</span> <span class="n">speechsdk</span><span class="o">.</span><span class="n">SpeechConfig</span><span class="p">(</span><span class="n">subscription</span><span class="o">=</span><span class="n">subscription_key</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">service_region</span><span class="p">)</span>
+<span class="n">synthesizer</span> <span class="o">=</span> <span class="n">speechsdk</span><span class="o">.</span><span class="n">SpeechSynthesizer</span><span class="p">(</span><span class="n">speech_config</span><span class="o">=</span><span class="n">speech_config</span><span class="p">,</span> <span class="n">audio_config</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello, this is a test.&quot;</span>
+
+<span class="c1"># Perform text-to-speech synthesis and get the audio data</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">synthesizer</span><span class="o">.</span><span class="n">speak_text_async</span><span class="p">(</span><span class="n">text_to_speak</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="n">speechsdk</span><span class="o">.</span><span class="n">ResultReason</span><span class="o">.</span><span class="n">SynthesizingAudioCompleted</span><span class="p">:</span>
+    <span class="n">audio_data</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">audio_data</span>
+    <span class="n">encoded_audio</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">audio_data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Encoded audio: &quot;</span> <span class="o">+</span> <span class="n">encoded_audio</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Speech synthesis failed: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">reason</span><span class="p">))</span>
+</code></pre></div>
+
+<p><strong>Rest API approach with Requests library</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="k">def</span> <span class="nf">generate_auth_token</span><span class="p">():</span>
+
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Ocp-Apim-Subscription-Key&#39;</span><span class="p">:</span> <span class="n">AUTH_SUBSCRIPTION_KEY</span><span class="p">,</span> 
+        <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="n">AUTH_URL</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+
+<span class="k">def</span> <span class="nf">generate_tts</span><span class="p">(</span><span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;X-Microsoft-OutputFormat&#39;</span><span class="p">:</span> <span class="s1">&#39;riff-24khz-16bit-mono-pcm&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/ssml+xml&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">generate_auth_token</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="p">}</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;speak version=&#39;1.0&#39; xml:lang=&#39;en-US&#39;&gt;</span>
+<span class="s2">    &lt;voice xml:lang=&#39;en-US&#39; xml:gender=&#39;Female&#39; name=&#39;en-US-JennyNeural&#39;&gt;</span>
+<span class="s2">        </span><span class="si">{</span><span class="n">text</span><span class="si">}</span>
+<span class="s2">    &lt;/voice&gt;</span>
+<span class="s2">    &lt;/speak&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># call</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;response status code: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">audio_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+        <span class="n">base64_audio</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">audio_data</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">base64_audio</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;received an error response status code&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+
+<p>The major descripancy I found is that there can be strings that cause the Requests approach to fail but the SDK approach is successful. I went through a rabbit hole of cleaning the input text to get rid of special characters, confirming the encoding type, and building the xml payload with a python xml library but the request approach still fails. Unfortunately the speech service api endpoint only returns a 400 status code but with no helpful messages. There must be an issue with how I am calling the API with the requests library because I do not get an issue if I make the same API call with Postman.</p>
+<p>In general this is not a problem because one would just go with the SDK approach. The SDK already works and a lot of the implementation details are abstracted away. <em>However</em>, I want to run the tts in an AWS Lambda function. If I want to use the python SDK, then I need to create a custom Lambda layer to accomodate the SDK; this could be doable but will take some time. I think the best course of action right now is to use AWS Polly for tts. </p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Quick league competitiveness test</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="This is a quick statistical test to compare the competitiveness between soccer leagues. I am using the free open statsbomb datasets, so I have..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Dev log</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/quick-league-competitiveness-test.html" rel="bookmark"
+           title="Permalink to Quick league competitiveness test">Quick league competitiveness test</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-12-17T00:00:00-06:00">
+                Published: Sun 17 December 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/soccer.html">soccer</a> <a href="/tag/statistics.html">statistics</a> </p>
+</footer><!-- /.post-info -->      <p>This is a quick statistical test to compare the competitiveness between soccer leagues. I am using the free open statsbomb datasets, so I have very limited data to work with. For this initial analysis I am working with 1 season of Ligue1 and 1 season of Bundesliga1. I use the absolute value of goal difference as a proxy of competitiveness. Low goal differences can mean that teams are evenly matched and more competitive while high goal differences mean that few teams dominate and there is not a lot of overal competition.</p>
+<p>Download the data: </p>
+<div class="highlight"><pre><span></span><code>!wget<span class="w"> </span>https://raw.githubusercontent.com/statsbomb/open-data/master/data/matches/7/108.json<span class="w"> </span>-O<span class="w"> </span>ligue_data.json
+!wget<span class="w"> </span>https://raw.githubusercontent.com/statsbomb/open-data/master/data/matches/9/27.json<span class="w"> </span>-O<span class="w"> </span>bundesliga_data.json
+</code></pre></div>
+
+<p>Compute goal differences:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_goal_differences</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
+    <span class="n">goal_differences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">matches</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">_match</span><span class="p">[</span><span class="s1">&#39;home_score&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">_match</span><span class="p">[</span><span class="s1">&#39;away_score&#39;</span><span class="p">])</span>
+            <span class="n">goal_differences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">goal_differences</span>
+
+<span class="n">bundesliga_goal_differences</span> <span class="o">=</span> <span class="n">get_goal_differences</span><span class="p">(</span><span class="n">bundesliga_data_path</span><span class="p">)</span>
+<span class="n">ligue_goal_differences</span> <span class="o">=</span> <span class="n">get_goal_differences</span><span class="p">(</span><span class="n">ligue_data_path</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The mean of bundesliga_goal_differences is 1.46 while mean of ligue_goal_differences is 1.85. Just from the mean values it seems that the bundesliga is more competitive.</p>
+<p>I use a statistical test to see if there is a significant difference between the data from both league. Scipy library has many useful functions to perform these tests. </p>
+<div class="highlight"><pre><span></span><code><span class="n">t_statistic</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">ttest_ind</span><span class="p">(</span><span class="n">bundesliga_goal_differences</span><span class="p">,</span> <span class="n">ligue_goal_differences</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;T-statistic: </span><span class="si">{</span><span class="n">t_statistic</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reject the null hypothesis: There is a significant difference.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail to reject the null hypothesis: There is no significant difference.&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The null hypothesis is that there is no difference between means of goal difference distribtions across both leagues.
+The returned p-value of .13 so I fail to reject the null hypothesis. I don't have evidence that one league is more competitive than the other.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
