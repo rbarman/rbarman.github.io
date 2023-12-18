@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Dev log - Expo</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Dev log</a></h1>
+                <nav><ul>
+                    <li><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/creating-mock-api-outputs-in-an-expo-react-native-app.html">Creating mock API outputs in an Expo React Native app</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-09-09T00:00:00-05:00">
+                Published: Sat 09 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/expo.html">Expo</a> <a href="/tag/reactnative.html">ReactNative</a> </p>
+</footer><!-- /.post-info --><p>I am currently working on an Expo React Native app and need to call different paid APIs to get data. There are times when I want to update how the data is rendered in the application or the application logic flow. These develepment tasks, especially UI updates, can be a very iterative process and ultimately very expensive if I need to constantly call APIs to get the data. One work around I have found is to create flags in the application to specifiy if the API should be mocked.</p>
+<p>For example, suppose my application needs to call an AWS Lambda function to sport score related data. 
+In <code>app.json</code> I create a new field called 'local_mock' with a boolean field called 'sports_score'.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;expo&quot;</span><span class="p">:{</span>
+<span class="w">        </span><span class="err">...</span>
+
+<span class="w">       </span><span class="nt">&quot;local_mock&quot;</span><span class="p">:{</span>
+<span class="w">            </span><span class="nt">&quot;sports_score&quot;</span><span class="p">:</span><span class="kc">true</span>
+<span class="w">       </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>If <code>local_mock.sports_score</code> is true, then the application knows that whenever it is required to get sports score data, it should return mocked output. </p>
+<p>Suppose <code>api.js</code> has a function called <code>get_sports_score</code> which calls an AWS Lambda function.</p>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">Constants</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;expo-constants&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">get_sports_score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">Constants</span><span class="p">.</span><span class="nx">manifest</span><span class="p">.</span><span class="nx">local_mock</span><span class="p">.</span><span class="nx">sports_score</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">local_mock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s2">&quot;score&quot;</span><span class="o">:</span><span class="s2">&quot;...&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">local_mock</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">call_lambda_function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This approach only works if the data structure of the local mock matches with the data structure of the output from the actual API output. </p>
+<p>I am still learning Expo and React Native development, so there may better ways to implement local mocks of API outputs.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

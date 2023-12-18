@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Dev log - AWS Polly</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Dev log</a></h1>
+                <nav><ul>
+                    <li><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/pivot-to-aws-polly.html">Pivot to AWS Polly</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-09-18T00:00:00-05:00">
+                Published: Mon 18 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/azure-speech-services.html">Azure Speech Services</a> <a href="/tag/aws-polly.html">AWS Polly</a> </p>
+</footer><!-- /.post-info --><p>My previous post described my difficulties with azure speech services. Fortunately I was able to pivot to aws very quickly.</p>
+<p>The only tricky part of Polly is that it has a limit on how much characters can be converted at once. So I need to split up my entire text into chuncks.</p>
+<p>The process looks like:</p>
+<div class="highlight"><pre><span></span><code>    <span class="n">polly_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;polly&#39;</span><span class="p">)</span>
+    <span class="n">text_chunks</span> <span class="o">=</span> <span class="n">split_text</span><span class="p">(</span><span class="n">input_text</span><span class="p">)</span>
+    <span class="n">audio_segments</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">text_chunk</span> <span class="ow">in</span> <span class="n">text_chunks</span><span class="p">:</span>
+        <span class="c1"># process text</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">polly_client</span><span class="o">.</span><span class="n">synthesize_speech</span><span class="p">(</span>
+            <span class="n">Text</span><span class="o">=</span><span class="n">chunk</span><span class="p">,</span>
+            <span class="n">OutputFormat</span><span class="o">=</span><span class="s1">&#39;mp3&#39;</span><span class="p">,</span>
+            <span class="n">VoiceId</span><span class="o">=</span><span class="s1">&#39;Joanna&#39;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># store the audio</span>
+        <span class="n">audio_data</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;AudioStream&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">audio_segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">audio_data</span><span class="p">)</span>
+
+    <span class="c1"># combine all audio segments as bytes and return an encoded base64 string</span>
+    <span class="n">concatenated_audio</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">audio_segments</span><span class="p">)</span>
+    <span class="n">audio_encoded</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">concatenated_audio</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>I running this in an AWS Lambda function, so the function also needs an IAM role that can call polly.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

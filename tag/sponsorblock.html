@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Dev log - sponsorblock</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Dev log</a></h1>
+                <nav><ul>
+                    <li><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/initial-sponsorblock-automation.html">Initial Sponsorblock automation</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-11-25T00:00:00-06:00">
+                Published: Sat 25 November 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/sponsorblock.html">sponsorblock</a> </p>
+</footer><!-- /.post-info --><p>Many youtube channels create videos with constant intro and outro segments. Common examples are news channels or sport highlight channels. These channels are the perfect usecase to automatically create sponsorblock segments.</p>
+<p>Below contains key parts of the current codebase.</p>
+<p>Store metadata about channels and segments. Below indicates that for the given youtube channel, I want to create 2 segments for each video - an intro segment from 0 to 3 seconds and an outro segment from t-5 to 5 seconds.</p>
+<div class="highlight"><pre><span></span><code><span class="err">SEGMENT_METAS=</span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;youtube_channel&quot;</span><span class="p">:[</span>
+<span class="w">         </span><span class="p">{</span>
+<span class="w">             </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;intro&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="nt">&quot;seconds_from_start&quot;</span><span class="p">:</span><span class="mi">3</span>
+<span class="w">         </span><span class="p">},</span>
+<span class="w">         </span><span class="p">{</span>
+<span class="w">             </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="s2">&quot;outro&quot;</span><span class="p">,</span>
+<span class="w">             </span><span class="nt">&quot;seconds_from_end&quot;</span><span class="p">:</span><span class="mi">5</span>
+<span class="w">         </span><span class="p">},</span>
+<span class="w">     </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Get latest videos from a youtube channel. </p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">scrapetube</span>
+
+<span class="k">def</span> <span class="nf">get_latest_videos</span><span class="p">(</span><span class="n">channel_url</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span><span class="n">limit</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">videos</span> <span class="o">=</span> <span class="n">scrapetube</span><span class="o">.</span><span class="n">get_channel</span><span class="p">(</span>
+        <span class="n">channel_url</span><span class="o">=</span><span class="n">channel_url</span>
+        <span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span>
+        <span class="p">,</span> <span class="n">sort_by</span><span class="o">=</span><span class="s2">&quot;newest&quot;</span>
+        <span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;videos&quot;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">videos</span>
+</code></pre></div>
+
+<p>Add segment with sponsorblock API.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_segment</span><span class="p">(</span><span class="n">youtube_video_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_time</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">end_time</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
+    <span class="n">post_endpoint</span> <span class="o">=</span> <span class="s2">&quot;https://sponsor.ajay.app/api/skipSegments&quot;</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;videoID&quot;</span><span class="p">:</span> <span class="n">youtube_video_id</span><span class="p">,</span>
+        <span class="s2">&quot;userID&quot;</span><span class="p">:</span> <span class="n">private_id</span><span class="p">,</span>
+        <span class="s2">&quot;userAgent&quot;</span><span class="p">:</span> <span class="n">USER_AGENT</span><span class="s2">&quot;,</span>
+        <span class="s2">&quot;segments&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;segment&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">start_time</span><span class="p">,</span><span class="n">end_time</span><span class="p">],</span>
+            <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="n">category</span>
+        <span class="p">}]</span>
+    <span class="p">}</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">post_endpoint</span><span class="p">,</span> <span class="n">json</span> <span class="o">=</span> <span class="n">params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+
+<p>I have metadata set up for around 10 channels. Current code is in a google colab notebook and I run it when I have a chance. The ideal state would be automated scheduling - some possibilities include automated databricks notebook, state machine / lambda functions, airflow etc. Databricks will probably require the least effort to migrate. </p>
+<p>I also need to add support for more segment metadata. The current setup assumes that all of a channel's videos have the same segments. This is not always true - videos could be in a specific series and have different segments. I need to create conditions for each segment like video name, duration, etc. </p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

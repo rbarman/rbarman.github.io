@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Dev log - misc</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Dev log</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/quick-league-competitiveness-test.html">Quick league competitiveness test</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-12-17T00:00:00-06:00">
+                Published: Sun 17 December 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/soccer.html">soccer</a> <a href="/tag/statistics.html">statistics</a> </p>
+</footer><!-- /.post-info --><p>This is a quick statistical test to compare the competitiveness between soccer leagues. I am using the free open statsbomb datasets, so I have very limited data to work with. For this initial analysis I am working with 1 season of Ligue1 and 1 season of Bundesliga1. I use the absolute value of goal difference as a proxy of competitiveness. Low goal differences can mean that teams are evenly matched and more competitive while high goal differences mean that few teams dominate and there is not a lot of overal competition.</p>
+<p>Download the data: </p>
+<div class="highlight"><pre><span></span><code>!wget<span class="w"> </span>https://raw.githubusercontent.com/statsbomb/open-data/master/data/matches/7/108.json<span class="w"> </span>-O<span class="w"> </span>ligue_data.json
+!wget<span class="w"> </span>https://raw.githubusercontent.com/statsbomb/open-data/master/data/matches/9/27.json<span class="w"> </span>-O<span class="w"> </span>bundesliga_data.json
+</code></pre></div>
+
+<p>Compute goal differences:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_goal_differences</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
+    <span class="n">goal_differences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">matches</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">_match</span><span class="p">[</span><span class="s1">&#39;home_score&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">_match</span><span class="p">[</span><span class="s1">&#39;away_score&#39;</span><span class="p">])</span>
+            <span class="n">goal_differences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">goal_differences</span>
+
+<span class="n">bundesliga_goal_differences</span> <span class="o">=</span> <span class="n">get_goal_differences</span><span class="p">(</span><span class="n">bundesliga_data_path</span><span class="p">)</span>
+<span class="n">ligue_goal_differences</span> <span class="o">=</span> <span class="n">get_goal_differences</span><span class="p">(</span><span class="n">ligue_data_path</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The mean of bundesliga_goal_differences is 1.46 while mean of ligue_goal_differences is 1.85. Just from the mean values it seems that the bundesliga is more competitive.</p>
+<p>I use a statistical test to see if there is a significant difference between the data from both league. Scipy library has many useful functions to perform these tests. </p>
+<div class="highlight"><pre><span></span><code><span class="n">t_statistic</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">ttest_ind</span><span class="p">(</span><span class="n">bundesliga_goal_differences</span><span class="p">,</span> <span class="n">ligue_goal_differences</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;T-statistic: </span><span class="si">{</span><span class="n">t_statistic</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reject the null hypothesis: There is a significant difference.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail to reject the null hypothesis: There is no significant difference.&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The null hypothesis is that there is no difference between means of goal difference distribtions across both leagues.
+The returned p-value of .13 so I fail to reject the null hypothesis. I don't have evidence that one league is more competitive than the other.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/soccer-goal-distribution-analysis.html" rel="bookmark"
+                           title="Permalink to Soccer Goal Distribution Analysis">Soccer Goal Distribution Analysis</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-12-14T00:00:00-06:00">
+                Published: Thu 14 December 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/soccer.html">soccer</a> <a href="/tag/statistics.html">statistics</a> </p>
+</footer><!-- /.post-info -->                <p>I have lately been fascinated with mathematical modeling for soccer games. Expected Goal (xG) models are very fun to look at after a game. I also see a lot of interesting visuals from Soccermatics course (https://soccermatics.readthedocs.io/en/latest/index.html)</p>
+<p>My first analysis is on the total …</p>
+                <a class="readmore" href="/soccer-goal-distribution-analysis.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/initial-sponsorblock-automation.html" rel="bookmark"
+                           title="Permalink to Initial Sponsorblock automation">Initial Sponsorblock automation</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-11-25T00:00:00-06:00">
+                Published: Sat 25 November 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/sponsorblock.html">sponsorblock</a> </p>
+</footer><!-- /.post-info -->                <p>Many youtube channels create videos with constant intro and outro segments. Common examples are news channels or sport highlight channels. These channels are the perfect usecase to automatically create sponsorblock segments.</p>
+<p>Below contains key parts of the current codebase.</p>
+<p>Store metadata about channels and segments. Below indicates that for the …</p>
+                <a class="readmore" href="/initial-sponsorblock-automation.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/acquierers-multiple-notes.html" rel="bookmark"
+                           title="Permalink to Acquierer's Multiple Notes">Acquierer's Multiple Notes</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-10-26T00:00:00-05:00">
+                Published: Thu 26 October 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/book_notes.html">book_notes</a> </p>
+</footer><!-- /.post-info -->                <p>In general, we want companies with high Return On Equity (ROE) and low Acquier's Multiple (AM). We can assign rank to each company based on ROE and AM (rank = ROE rank + AM rank). The book claims that high ranked companies perform well.</p>
+<p><strong>ROE</strong> is a way to measure company growth …</p>
+                <a class="readmore" href="/acquierers-multiple-notes.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/host-pwa-with-aws-amplify.html" rel="bookmark"
+                           title="Permalink to Host PWA with AWS Amplify">Host PWA with AWS Amplify</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-10-10T00:00:00-05:00">
+                Published: Tue 10 October 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/mkcert.html">mkcert</a> <a href="/tag/progressive-web-app.html">progressive web app</a> <a href="/tag/aws-amplify.html">AWS Amplify</a> </p>
+</footer><!-- /.post-info -->                <p>Previous post talked about using mkcert to run localhost as https. Unfortunately this does not work if I want to acess the PWA on my phone. I get a message back stating that the connection is not secure and thus I can not download the PWA.</p>
+<p>The simple explanation is …</p>
+                <a class="readmore" href="/host-pwa-with-aws-amplify.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/https-localhost-with-mkcert.html" rel="bookmark"
+                           title="Permalink to HTTPS localhost with mkcert">HTTPS localhost with mkcert</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-25T00:00:00-05:00">
+                Published: Mon 25 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/mkcert.html">mkcert</a> <a href="/tag/progressive-web-app.html">progressive web app</a> </p>
+</footer><!-- /.post-info -->                <p>I am currently building progressive web apps. In order for a PWA to be installed on a device, the PWA needs to be served on HTTPS. I should be able to easily run it on AWS and then install on my devices, but I found an easy way to run …</p>
+                <a class="readmore" href="/https-localhost-with-mkcert.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/pivot-to-aws-polly.html" rel="bookmark"
+                           title="Permalink to Pivot to AWS Polly">Pivot to AWS Polly</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-18T00:00:00-05:00">
+                Published: Mon 18 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/azure-speech-services.html">Azure Speech Services</a> <a href="/tag/aws-polly.html">AWS Polly</a> </p>
+</footer><!-- /.post-info -->                <p>My previous post described my difficulties with azure speech services. Fortunately I was able to pivot to aws very quickly.</p>
+<p>The only tricky part of Polly is that it has a limit on how much characters can be converted at once. So I need to split up my entire text …</p>
+                <a class="readmore" href="/pivot-to-aws-polly.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/difficulties-with-azure-speech-services.html" rel="bookmark"
+                           title="Permalink to Difficulties with Azure Speech Services">Difficulties with Azure Speech Services</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-15T00:00:00-05:00">
+                Published: Fri 15 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/azure-speech-services.html">Azure Speech Services</a> </p>
+</footer><!-- /.post-info -->                <p>I am building an application that requires text to speech. I chose Azure Speech Services because of its generous free tier, but after some experimentation it looks like there are issues that will make me reconsider.</p>
+<p>At a high level I want to use Azure Speech Services to convert a …</p>
+                <a class="readmore" href="/difficulties-with-azure-speech-services.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/sql-queries-in-pandas.html" rel="bookmark"
+                           title="Permalink to SQL Queries in Pandas">SQL Queries in Pandas</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-10T00:00:00-05:00">
+                Published: Sun 10 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/pandas.html">Pandas</a> <a href="/tag/duckdb.html">DuckDB</a> </p>
+</footer><!-- /.post-info -->                <p>I spend a lot of development time in PySpark applications and like to use SparkSQL for transformations. It is very easy to run SparkSQL queries on a Spark DataFrame. </p>
+<div class="highlight"><pre><span></span><code><span class="n">source_df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">format</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">source_df</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="k">source</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span>
+</code></pre></div>
+
+<p>I have several projects that use …</p>
+                <a class="readmore" href="/sql-queries-in-pandas.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/trafilatura-starter.html" rel="bookmark"
+                           title="Permalink to Trafilatura Starter">Trafilatura Starter</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-09-10T00:00:00-05:00">
+                Published: Sun 10 September 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/trafilatura.html">Trafilatura</a> </p>
+</footer><!-- /.post-info -->                <p>In a previous post I mentioned using Trafilatura in an AWS Lambda function. Trafilatura's main purpose is to easily extract metadata from websites. All web crawling info and web document traversal are abstracted away from the user.</p>
+<p>Basic usage:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">fetch_url</span>
+<span class="kn">from</span> <span class="nn">trafilatura</span> <span class="kn">import</span> <span class="n">extract</span><span class="p">,</span> <span class="n">extract_metadata</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">document …</span></code></pre></div>
+                <a class="readmore" href="/trafilatura-starter.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 2
+        <a href="/category/misc2.html">&raquo;</a>
+        <a href="/category/misc2.html">&#8649;</a>
+</p>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
