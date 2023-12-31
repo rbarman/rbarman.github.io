@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <title>Switching to pure Android</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <meta name="description" content="Over the past few months I have had many ideas for mobile applications. My development process usually followed this flow 1) Build the application..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Dev log</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/switching-to-pure-android.html" rel="bookmark"
+           title="Permalink to Switching to pure Android">Switching to pure Android</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2023-12-30T00:00:00-06:00">
+                Published: Sat 30 December 2023
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/dev.html">dev</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+<p>tags: <a href="/tag/android.html">Android</a> </p>
+</footer><!-- /.post-info -->      <p>Over the past few months I have had many ideas for mobile applications. My development process usually followed this flow</p>
+<p>1) Build the application in Expo</p>
+<p>2) Expo does not provide a lot of flexibility or external library does not work</p>
+<p>3) Build the application in React Native</p>
+<p>4) React Native does not provide a lot of flexibility or external library does not work or build process takes way too long</p>
+<p>5) Build the application as a Progressive Web Application (enable caching for all files, deploy via AWS Amplify, install on phone, end deployment)</p>
+<p>I try with Expo and React Native because they are meant to be cross platform and easy to use. However it becomes very complex if I try to use third party libraries or want to use OS specific features. For example I tried to create Android application with widgets. There is a react native library that claims to support this but the documentation is not great, it requires me to modify android specific code, and a hello world equivalent runs into build failures. Atleast from Expo, I really liked the build process with Expo CLI and ExpoGo app.</p>
+<p>PWAs tend to work but I can only build the equivalent of web apps. I only went down the rabbit hole of PWAs because the build process is very fast and if I enable the PWA to cache all files, I could stop the PWA host and it will still be able to run on a device.</p>
+<p>Unfortunately the application ideas I have can not be productively completed with Expo, ReactNative, or PWAs. There are other cross platform tools like apache cordova or ionic, but I am very sure that these frameworks will run in to the same problem as Expo or ReactNative. They are great to build simple CRUD apps. I feel there are too many abstractions to build unique experiences and the cross platform capabilities quick go away when you want to add specific features or libraries. </p>
+<p>So I decided to go switch to pure Android development. The Android ecosystem has greatly changed since I last coded on Android many years ago. The Jetpack Compose framework is very powerful and I like that we can quickly preview what the Compose components look like. The build process is also significantly cleaner and faster. I can easily pair my device via wifi (ReactNative requires cable. Expo has ExpoGo but still faced connectivity issues) and the application is built within minutes. If I had a better computer, the build could probably finish in under a minute.</p>
+<p>The only downside of pure Android is that I lose the ability to create crossplatform builds. Although I still believe that Expo and ReactNative does not truly have crossplatform ability when you try build complex applications. And it is very unlikely that third party libraries can offer full support for Android and iOS. </p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
